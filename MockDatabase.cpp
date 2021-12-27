@@ -24,7 +24,36 @@ std::vector<std::string> split(const std::string& s, char delim) {
 	return elems;
 }
 
-//Arseniy
+void clearFilesbyPath(std::string pathsArray[])
+{
+	std::ofstream ofs;
+	if (pathsArray->size() == 1)
+	{
+		std::ofstream ofs;
+		std::string path = pathsArray[0];
+		ofs.open(pathsArray[0], std::ios::trunc);
+		ofs.close();
+	}
+	else
+	{
+		for (int i = 0; i < pathsArray->size(); i++)
+		{
+			std::ofstream ofs;
+			std::string path = pathsArray[i];
+			ofs.open(pathsArray[i], std::ios::trunc);
+			ofs.close();
+		}
+	}
+}
+
+void clearFilesbyPath(std::string pathsArray)
+{
+	std::ofstream ofs;
+	std::string path = pathsArray;
+	ofs.open(pathsArray, std::ios::trunc);
+	ofs.close();
+}
+
 #pragma region Work with user
 
 void MockDatabase::addUser(std::string name, bool sex, std::string date, std::string phonenumber,
@@ -88,6 +117,47 @@ void MockDatabase::loadUser(int ID, std::string name, bool sex, std::string date
 		EMPLOYEE, experience, speciality, personalAchievements));
 }
 
+
+Service* MockDatabase::getService(int ID)
+{
+	int id = ID;
+	for each (Service * service in listOfService)
+	{
+		if (service->getID() == id)
+		{
+			return service;
+		}
+	}
+	return nullptr;
+}
+
+ServiceOrder* MockDatabase::getServiceOrder(int ID)
+{
+	int id = ID;
+	for each (ServiceOrder * serviceOrder in listOfServiceOrders)
+	{
+		if (serviceOrder->getID() == id)
+		{
+			return serviceOrder;
+		}
+	}
+	return nullptr;
+}
+
+User* MockDatabase::getUser(int ID)
+{
+	int id = ID;
+	for each (User * serviceOrder in listOfUsers)
+	{
+		if (serviceOrder->getID() == id)
+		{
+			return serviceOrder;
+		}
+	}
+	return nullptr;
+}
+
+
 std::string MockDatabase::getUsers()
 {
 	std::string info = "";
@@ -101,6 +171,36 @@ std::string MockDatabase::getUsers()
 void MockDatabase::clearListOfUsers()
 {
 	listOfUsers.clear();
+}
+
+std::list<User*> MockDatabase::getUsersList()
+{
+	std::list<User*> buff;
+	for each (User* user in this->listOfUsers)
+	{
+		buff.push_back(user);
+	}
+	return buff;
+}
+
+std::list<ServiceOrder*> MockDatabase::getServiceOrdersList()
+{
+	std::list<ServiceOrder*> buff;
+	for each (ServiceOrder * order in this->listOfServiceOrders)
+	{
+		buff.push_back(order);
+	}
+	return buff;
+}
+
+std::list<Service*> MockDatabase::getServiceList()
+{
+	std::list<Service*> buff;
+	for each (Service * service in this->listOfService)
+	{
+		buff.push_back(service);
+	}
+	return buff;
 }
 
 int MockDatabase::numberOfUsers()
@@ -255,7 +355,6 @@ bool MockDatabase::readDataAboutUser(userType status, std::vector<std::string> e
 
 #pragma endregion
 
-//Oleg
 #pragma region Work with service
 
 void MockDatabase::loadService(int ID, std::string name, int price)
@@ -267,6 +366,12 @@ void MockDatabase::addService(std::string name, int price)
 {
 	int id = getMaxServiceID() + 1;
 	this->listOfService.push_back(new Service(id, name, price));
+}
+
+void MockDatabase::addServiceOrder(std::string date, int serviceID, int employeeID, int clientID, float cost, bool status)
+{
+	int id = getMaxServiceID() + 1;
+	this->listOfServiceOrders.push_back(new ServiceOrder(id, serviceID, employeeID, clientID, date, cost, status));
 }
 
 int MockDatabase::numberOfServices()
@@ -290,6 +395,91 @@ bool writeDataAboutServices(std::string path, Service* service)
 		return true;
 	}
 	fout.close();
+}
+
+void MockDatabase::writeServicesToFile()
+{
+	if (numberOfServices().Equals(0))
+	{
+		MessageBox::Show("Данных нет!\nНечего записывать", "Внимание!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+	}
+	else
+	{
+		clearFilesbyPath("services_data.txt");
+		bool isEntrySuccessful = false;
+		for each (Service * Service in this->listOfService)
+		{
+			isEntrySuccessful = writeDataAboutServices("services_data.txt", Service);
+
+		}
+		if (isEntrySuccessful)
+		{
+			MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+}
+
+void MockDatabase::readServicesFromFile()
+{
+	const char delim = '\n';
+	std::string path = "services_data.txt";
+	std::ifstream fin;
+	bool isReadSuccessful = false;
+	fin.open(path);
+	if (!fin.is_open())
+	{
+		MessageBox::Show("Ошибка открытия файла", "Объявление!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+	else
+	{
+		while (!fin.eof())
+		{
+			std::string buffString;
+			getline(fin, buffString, delim);
+			try
+			{
+				buffString = buffString.substr(1, buffString.size() - 2);
+			}
+			catch (std::exception ex)
+			{
+				continue;
+			}
+			std::vector <std::string> elems = split(buffString, ';');
+			if (elems.size() >= 3)
+			{
+				isReadSuccessful = readDataAboutService(elems);
+			}
+		}
+		if (!isReadSuccessful)
+		{
+			MessageBox::Show("Ошибка открытия файла: " + msclr::interop::marshal_as<System::String^>(path), "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
+	}
+	fin.close();
+	if (isReadSuccessful)
+	{
+		MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+}
+
+bool MockDatabase::readDataAboutService(std::vector<std::string> elems)
+{
+	int ID = std::stoi(elems[0]);
+	std::string name = elems[1];
+	int price = std::stoi(elems[2]);
+
+	try
+	{
+		loadService(ID, name, price);
+		return true;
+	}
+	catch (std::exception ex)
+	{
+		return false;
+	}
 }
 
 void MockDatabase::clearListOfServices()
@@ -332,3 +522,101 @@ std::string MockDatabase::getServices()
 }
 
 #pragma endregion
+
+#pragma region Work with database
+
+void MockDatabase::writeDatabaseToFile()
+{
+
+	if (numberOfUsers().Equals(0))
+	{
+		MessageBox::Show("Данных нет!\nНечего записывать", "Внимание!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		return;
+	}
+
+	else
+	{
+		clearFilesbyPath(pathsArray);
+		bool isEntrySuccessful = false;
+		for each (User * user in this->listOfUsers)
+		{
+			switch (user->status) {
+			case EMPLOYEE:
+				isEntrySuccessful = writeDataAboutUser("employeeData.txt", user);
+				break;
+			case ADMIN:
+				isEntrySuccessful = writeDataAboutUser("adminData.txt", user);
+				break;
+			case CLIENT:
+				isEntrySuccessful = writeDataAboutUser("clientData.txt", user);
+				break;
+			default:
+				isEntrySuccessful = writeDataAboutUser("none_undefined.txt", user);
+				break;
+			}
+		}
+		if (isEntrySuccessful)
+		{
+			MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		}
+	}
+}
+
+void MockDatabase::readDatabaseFromFile()
+{
+	const char delim = '\n';
+	std::string path;
+	std::ifstream fin;
+	bool isReadSuccessful = false;
+	for each (std::string path in pathsArray)
+	{
+		fin.open(path);
+		if (!fin.is_open())
+		{
+			MessageBox::Show("Ошибка открытия файла", "Объявление!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
+		}
+		else
+		{
+			while (!fin.eof())
+			{
+				std::string buffString;
+				getline(fin, buffString, delim);
+				try
+				{
+					buffString = buffString.substr(1, buffString.size() - 2);
+				}
+				catch (std::exception ex)
+				{
+					continue;
+				}
+				std::vector <std::string> elems = split(buffString, ';');
+				if (elems.size() >= 7)
+				{
+					if (path == "employeeData.txt")
+						isReadSuccessful = readDataAboutUser(EMPLOYEE, elems);
+					else if (path == "adminData.txt")
+						isReadSuccessful = readDataAboutUser(ADMIN, elems);
+					else if (path == "clientData.txt")
+						isReadSuccessful = readDataAboutUser(CLIENT, elems);
+				}
+			}
+			if (!isReadSuccessful)
+			{
+				MessageBox::Show("Ошибка открытия файла: " + msclr::interop::marshal_as<System::String^>(path), "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+
+		}
+		fin.close();
+	}
+	if (isReadSuccessful)
+	{
+		MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+
+}
+
+#pragma endregion
+
+
+

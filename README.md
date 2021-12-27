@@ -1,1 +1,0 @@
-# barbershop_project

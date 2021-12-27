@@ -6,6 +6,15 @@ bool checkSex(std::string sex)
 	if (sex == "female") return false;
 }
 
+std::string statusToString(userType statusString)
+{
+	if (statusString == EMPLOYEE) return "EMPLOYEE";
+	if (statusString == ADMIN) return "ADMIN";
+	if (statusString == CLIENT) return "CLIENT";
+
+}
+
+
 userType checkSelectedStatus(std::string statusString)
 {
 	if (statusString == "EMPLOYEE" || statusString == "employee") return EMPLOYEE;
@@ -31,4 +40,3 @@ clientStatusType checkClientStatus(int numberOfVisits)
 	if (numberOfVisits > 10) return VIP;
 
 }
-

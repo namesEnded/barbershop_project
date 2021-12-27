@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MOCKDATABASE_H
+#define MOCKDATABASE_H
+
 #include "User.h"
 #include "Admin.h"
 #include "Employee.h"
@@ -26,8 +28,9 @@ public:
 	//void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
 	//	std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM, float experience = DEF_WORK_EXPERIENCE,
 	//	userSpeciality speciality = DEF_USER_SPECIALITY, std::string personalAchievements = DEF_PERSONAL_ACHIEVEMENTS);
-
-	//Arseniy
+	MockDatabase()
+	{
+	}
 	void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
 		std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM);
 
@@ -42,23 +45,44 @@ public:
 		std::string password, userType status, float experience,
 		userSpeciality speciality, std::string personalAchievements);
 
+	void loadService(int ID, std::string name, int price);
+	void addService(std::string name, int price);
+
+	void addServiceOrder(std::string date, int serviceID, int employeeID, int clientID, float cost, bool status);
+
+	Service* getService(int ID);
+	ServiceOrder* getServiceOrder(int ID);
+	User* getUser(int ID);
+
 	std::string getUsers();
-	void clearListOfUsers();
+	std::list<User*> getUsersList();
+	std::list<ServiceOrder*> getServiceOrdersList();
+	std::list<Service*> getServiceList();
 	int numberOfUsers();
+	int numberOfServices();
 	int findUser(std::string email, size_t password);
 	bool emailIsUnique(std::string email);
 	int getUserStatus(int ID);
+	void writeDatabaseToFile();
+	void readDatabaseFromFile();
+	void writeServicesToFile();
+	void readServicesFromFile();
+	bool readDataAboutUser(userType status, std::vector <std::string> elems);
+	bool readDataAboutService(std::vector <std::string> elems);
+	void clearListOfServices();
+	void clearListOfUsers();
 	bool deleteSpecificUser(int ID);
 	int getMaxUserID();
-	bool readDataAboutUser(userType status, std::vector <std::string> elems);
-	//Arseniy
-
-	//Oleg
-	void loadService(int ID, std::string name, int price);
-	void addService(std::string name, int price);
-	int numberOfServices();
-	void clearListOfServices();
 	int getMaxServiceID();
 	int getMaxServiceOrderID();
 	std::string getServices();
+
+	~MockDatabase() // деструктор
+	{
+		/*listOfService.clear();
+		listOfServiceOrders.clear();
+		listOfUsers.clear();*/
+	}
 };
+static MockDatabase db;
+#endif MOCKDATABASE_H

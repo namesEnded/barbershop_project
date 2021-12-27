@@ -15,6 +15,16 @@ int ServiceOrder::getID()
 	return this->ID;
 }
 
+std::string ServiceOrder::getDate()
+{
+	return this->date;
+}
+
+float ServiceOrder::getCost()
+{
+	return this->serviceCostWithDiscount;
+}
+
 void ServiceOrder::setStatus(bool status)
 {
 	this->status = status;
@@ -38,6 +48,11 @@ int ServiceOrder::getClientID()
 int ServiceOrder::getEmployeeID()
 {
 	return this->employeeID;
+}
+
+int ServiceOrder::getServiceID()
+{
+	return this->serviceID;
 }
 
 std::string ServiceOrder::getInfo()
