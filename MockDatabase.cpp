@@ -254,3 +254,81 @@ bool MockDatabase::readDataAboutUser(userType status, std::vector<std::string> e
 }
 
 #pragma endregion
+
+//Oleg
+#pragma region Work with service
+
+void MockDatabase::loadService(int ID, std::string name, int price)
+{
+	this->listOfService.push_back(new Service(ID, name, price));
+}
+
+void MockDatabase::addService(std::string name, int price)
+{
+	int id = getMaxServiceID() + 1;
+	this->listOfService.push_back(new Service(id, name, price));
+}
+
+int MockDatabase::numberOfServices()
+{
+	return this->listOfService.size();
+}
+
+bool writeDataAboutServices(std::string path, Service* service)
+{
+	std::ofstream fout;
+
+	fout.open(path, std::ios::app);
+	if (!fout.is_open())
+	{
+		MessageBox::Show("Ошибка открытия файла: " + msclr::interop::marshal_as<System::String^>(path), "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return false;
+	}
+	else
+	{
+		fout << service->getInfo();
+		return true;
+	}
+	fout.close();
+}
+
+void MockDatabase::clearListOfServices()
+{
+	listOfService.clear();
+}
+
+int MockDatabase::getMaxServiceID()
+{
+	if (listOfService.empty()) return 0;
+	int maxID = -1;
+	for each (Service * service in this->listOfService)
+	{
+		int userID = service->getID();
+		if (service->getID() > maxID) maxID = userID;
+	}
+	return maxID;
+}
+
+int MockDatabase::getMaxServiceOrderID()
+{
+	if (listOfServiceOrders.empty()) return 0;
+	int maxID = -1;
+	for each (ServiceOrder * serviceOrder in this->listOfServiceOrders)
+	{
+		int serviceOrderID = serviceOrder->getID();
+		if (serviceOrder->getID() > maxID) maxID = serviceOrderID;
+	}
+	return maxID;
+}
+
+std::string MockDatabase::getServices()
+{
+	std::string info = "";
+	for each (Service * service in this->listOfService)
+	{
+		info += service->getInfo();
+	}
+	return info;
+}
+
+#pragma endregion

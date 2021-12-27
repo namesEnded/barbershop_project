@@ -52,4 +52,13 @@ public:
 	int getMaxUserID();
 	bool readDataAboutUser(userType status, std::vector <std::string> elems);
 	//Arseniy
+
+	//Oleg
+	void loadService(int ID, std::string name, int price);
+	void addService(std::string name, int price);
+	int numberOfServices();
+	void clearListOfServices();
+	int getMaxServiceID();
+	int getMaxServiceOrderID();
+	std::string getServices();
 };
