@@ -24,13 +24,14 @@
     <ClCompile Include="Service.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="ServiceOrder.cpp">
-    <Filter>Исходные файлы</Filter>
-    </ClCompile>
+=======
     <ClCompile Include="Client.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Employee.cpp">
+>>>>>>> origin/dmitriev_feature
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,17 +54,19 @@
     <ClInclude Include="status.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Admin.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="ServiceOrder.h">
       <Filter>Исходные файлы</Filter>
-    </ClInclude>
+=======
     <ClInclude Include="Client.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Employee.h">
       <Filter>Файлы заголовков</Filter>
+>>>>>>> origin/dmitriev_feature
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -130,9 +130,12 @@
     <ClCompile Include="mainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Admin.h" />
+=======
     <ClInclude Include="Client.h" />
     <ClInclude Include="Employee.h" />
+>>>>>>> origin/dmitriev_feature
     <ClInclude Include="Service.h" />
     <ClInclude Include="ServiceOrder.h" />
     <ClInclude Include="speciality.h" />
