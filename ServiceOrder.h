@@ -4,6 +4,7 @@
 class ServiceOrder{
 private:
 	std::string date;
+	std::string time;
 	int ID;
 	int serviceID;
 	int employeeID;
@@ -13,13 +14,18 @@ private:
 public:
 
 	ServiceOrder() {};
-	ServiceOrder(int ID, int serviceID, int employeeID, int clientID, std::string date, float serviceCostWithDiscount, bool status);
+	ServiceOrder(int ID, int serviceID, int employeeID, int clientID, std::string date, std::string time,
+				float serviceCostWithDiscount, bool status);
+	std::string getTime();
 	int getID();
+	std::string getDate();
+	float getCost();
 	void setStatus(bool status);
 	bool getStatus();
 	float getServiceCostWithDiscount();
 	int getClientID();
 	int getEmployeeID();
+	int getServiceID();
 	std::string getInfo();
 	std::string getName();
 };
