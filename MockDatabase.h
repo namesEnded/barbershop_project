@@ -61,4 +61,11 @@ public:
 	int getMaxServiceID();
 	int getMaxServiceOrderID();
 	std::string getServices();
+
+	//Danya
+	bool readDataAboutService(std::vector <std::string> elems);
+	void writeServicesToFile();
+	void readServicesFromFile();
+	void writeDatabaseToFile();
+	void readDatabaseFromFile();
 };

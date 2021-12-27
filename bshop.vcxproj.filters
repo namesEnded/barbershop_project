@@ -62,9 +62,6 @@
     <ClInclude Include="Admin.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="ServiceOrder.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="checkFunctions.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceOrder.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

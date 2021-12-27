@@ -1,7 +1,7 @@
 #pragma once
 #include "User.h"
 
-class ServiceOrder{
+class ServiceOrder {
 private:
 	std::string date;
 	int ID;

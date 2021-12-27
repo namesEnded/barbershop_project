@@ -43,10 +43,6 @@ int ServiceOrder::getEmployeeID()
 std::string ServiceOrder::getInfo()
 {
 	std::string info = ":";
-	/*std::string info = "{" + std::to_string(getID()) + ";" + getName() + ";" + getSex() + ";" + getDate() + ";" + getPhonenumber() + ";" +
-		getEmail() + ";" + std::to_string(getPassword()) + ";" + getStatusString() + ";" + getSpeciality() + ";" +
-		std::to_string(getExperience()) + ";" + getPersonalAchievements() + ";" + std::to_string(getSalary()) + ";" +
-		std::to_string(getWorkingHours()) + "}" + "\n";*/
 	return info;
 }
 
