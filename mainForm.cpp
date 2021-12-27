@@ -165,13 +165,11 @@ void checkCalendarDays()
 
 System::Void bshop::mainForm::writeDataBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	list.writeDatabaseToFile();
 }
 
 System::Void bshop::mainForm::loadBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	list.clearDatabase();
-	list.readDatabaseFromFile();
+	
 }
 
 System::Void bshop::mainForm::deleteSpecificBtn_Click(System::Object^ sender, System::EventArgs^ e)

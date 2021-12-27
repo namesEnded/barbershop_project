@@ -1,8 +1,6 @@
-
 #include "User.h"
 using namespace std;
 
-#pragma region Aphonin
 User::User(int id, std::string name, bool sex, std::string date, std::string phonenumber, std::string email, size_t password, userType status)
 {
 	this->id= id;
@@ -108,5 +106,3 @@ std::string User::getStatusString()
 //		return true;
 //	return false;
 //}
-
-#pragma endregion

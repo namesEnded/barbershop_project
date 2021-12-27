@@ -1,9 +1,4 @@
 #pragma once
-
-
-#pragma region Aphonin
-
-
 #include "User.h"
 #include "Admin.h"
 #include "Employee.h"
@@ -32,6 +27,7 @@ public:
 	//	std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM, float experience = DEF_WORK_EXPERIENCE,
 	//	userSpeciality speciality = DEF_USER_SPECIALITY, std::string personalAchievements = DEF_PERSONAL_ACHIEVEMENTS);
 
+	//Arseniy
 	void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
 		std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM);
 
@@ -46,29 +42,14 @@ public:
 		std::string password, userType status, float experience,
 		userSpeciality speciality, std::string personalAchievements);
 
-	void loadService(int ID, std::string name, int price);
-	void addService(std::string name, int price);
-
 	std::string getUsers();
+	void clearListOfUsers();
 	int numberOfUsers();
-	int numberOfServices();
 	int findUser(std::string email, size_t password);
 	bool emailIsUnique(std::string email);
 	int getUserStatus(int ID);
-	void writeDatabaseToFile();
-	void readDatabaseFromFile();
-	void writeServicesToFile();
-	void readServicesFromFile();
-	bool readDataAboutUser(userType status, std::vector <std::string> elems);
-	bool readDataAboutService(std::vector <std::string> elems);
-	void clearDatabase();
 	bool deleteSpecificUser(int ID);
 	int getMaxUserID();
-	int getMaxServiceID();
-	int getMaxServiceOrderID();
-	std::string getServices();
+	bool readDataAboutUser(userType status, std::vector <std::string> elems);
+	//Arseniy
 };
-
-
-
-#pragma endregion
