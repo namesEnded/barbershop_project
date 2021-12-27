@@ -122,11 +122,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="mainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="Employee.h" />
     <ClInclude Include="Service.h" />
     <ClInclude Include="speciality.h" />
     <ClInclude Include="status.h" />
