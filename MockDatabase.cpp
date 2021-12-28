@@ -1,4 +1,5 @@
-﻿#include "MockDatabase.h"
+﻿
+#include "MockDatabase.h"
 #include <string>
 #include <sstream>
 #include <vector>

@@ -1,4 +1,5 @@
-﻿#include "mainForm.h"
+﻿//Aphonin, Ankudinov, Timurziev, Dmitriev
+#include "mainForm.h"
 #include <Windows.h> 
 #include <math.h>
 
