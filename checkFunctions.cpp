@@ -1,10 +1,27 @@
 #include "checkFunctions.h"
-
 bool checkSex(std::string sex)
 {
 	if (sex == "male") return true;
 	if (sex == "female") return false;
 }
+
+std::string statusToString(userType statusString)
+{
+	if (statusString == EMPLOYEE) return "EMPLOYEE";
+	if (statusString == ADMIN) return "ADMIN";
+	if (statusString == CLIENT) return "CLIENT";
+	return "NONE";
+}
+
+std::string specialityToString(userSpeciality speciality)
+{
+	if (speciality == BARBER) return "Барбер";
+	if (speciality == ADMINISTRATOR) return "Администратор";
+	if (speciality == CLEANER) return "Уборщик";
+	if (speciality == DIRECTOR) return "Директор";
+	return "NONE";
+}
+
 
 userType checkSelectedStatus(std::string statusString)
 {
@@ -31,4 +48,3 @@ clientStatusType checkClientStatus(int numberOfVisits)
 	if (numberOfVisits > 10) return VIP;
 
 }
-

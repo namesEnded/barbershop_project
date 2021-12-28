@@ -8,14 +8,6 @@ std::string Employee::getInfo()
 							 std::to_string(getWorkingHours()) + "}" + "\n";
 	return info;
 }
-void Employee::setExperience(double experience)
-{
-	this->experience = experience;
-}
-void Employee::setSpeciality(userSpeciality speciality)
-{
-	this->speciality = speciality;
-}
 std::string Employee::getSpeciality()
 {
 	switch (this -> speciality) {
@@ -36,10 +28,7 @@ std::string Employee::getSpeciality()
 		break;
 	}
 }
-void Employee::setPersonalAchievements(std::string personalAchievements)
-{
-}
-double Employee::getExperience()
+float Employee::getExperience()
 {
 	return this->experience;
 }
@@ -49,12 +38,12 @@ std::string Employee::getPersonalAchievements()
 	return this->personalAchievements;
 }
 
-double Employee::getSalary()
+float Employee::getSalary()
 {
 	return this->salary;
 }
 
-double Employee::getWorkingHours()
+float Employee::getWorkingHours()
 {
 	return this->workingHours;
 }
