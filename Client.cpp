@@ -21,6 +21,11 @@ std::string Client::getClientStatus()
 	}
 }
 
+int Client::getClientDiscount()
+{
+	return (int)this->clientStatus;
+}
+
 int Client::getNumberOfVisits()
 {
 	return this->numberOfVisits;

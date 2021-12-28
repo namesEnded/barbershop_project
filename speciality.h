@@ -6,4 +6,4 @@
 enum userSpeciality { BARBER = 0, ADMINISTRATOR, CLEANER, DIRECTOR };
 CONST userSpeciality DEF_USER_SPECIALITY = BARBER;
 CONST std::string DEF_PERSONAL_ACHIEVEMENTS = "онаедхрекэ он фхгмх!";
-CONST float DEF_WORK_EXPERIENCE = 0;
+CONST double DEF_WORK_EXPERIENCE = 0;

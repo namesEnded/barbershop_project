@@ -15,6 +15,7 @@ public:
 		this->numberOfVisits = numberOfVisits;
 	};
 	std::string getClientStatus();
+	int getClientDiscount();
 	int getNumberOfVisits();
 	void setClientStatus(clientStatusType clientStatus);
 	void addVisit();

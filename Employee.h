@@ -3,15 +3,15 @@
 
 class Employee : public User {
 private:
-	float experience;
+	double experience;
 	userSpeciality speciality;
 	std::string personalAchievements;
-	float salary;
-	float workingHours;
+	double salary;
+	double workingHours;
 public:
 	Employee() {};
 	Employee(int id, std::string name, bool sex, std::string date, std::string phonenumber,
-		std::string email, size_t password, userType status, float experience, userSpeciality speciality,
+		std::string email, size_t password, userType status, double experience, userSpeciality speciality,
 		std::string personalAchievements): User(id, name, sex, date, phonenumber, email, password, status) 
 	{
 		this->experience = experience;
@@ -40,14 +40,14 @@ public:
 		}
 	};
 
-	void setExperience(float experience);
-	void setSpeciality(std::string speciality);
+	void setExperience(double experience);
+	void setSpeciality(userSpeciality speciality);
 	std::string getSpeciality();
 	void setPersonalAchievements(std::string personalAchievements);
-	float getExperience();
+	double getExperience();
 	std::string getPersonalAchievements();
-	float getSalary();
-	float getWorkingHours();
+	double getSalary();
+	double getWorkingHours();
 	virtual std::string getInfo();
 
 };
