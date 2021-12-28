@@ -82,12 +82,15 @@ public:
 	void clearListOfServicesOrder();
 	void clearListOfUsers();
 	bool deleteSpecificUser(int ID);
+	bool deleteSpecificService(int ID);
+	bool deleteSpecificServiceOrder(int ID);
 	std::list<int> getOrdersID(Employee* employee);
 	int getMaxUserID();
 	int getMaxServiceID();
 	int getMaxServiceOrderID();
 	std::string getServices();
 	int getOrdersCount(std::string date);
+
 
 	~MockDatabase() // деструктор
 	{

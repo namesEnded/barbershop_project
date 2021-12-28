@@ -41,7 +41,7 @@ public:
 	};
 
 	void setExperience(float experience);
-	void setSpeciality(std::string speciality);
+	void setSpeciality(userSpeciality speciality);
 	std::string getSpeciality();
 	void setPersonalAchievements(std::string personalAchievements);
 	float getExperience();

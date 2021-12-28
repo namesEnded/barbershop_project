@@ -39,6 +39,15 @@ public:
 	std::string getPhonenumber();
 	std::string getEmail();
 	std::string getStatusString();
+
+	void setName(std::string name);
+	void User::setSex(bool sex);
+	void setPhonenumber(std::string phonenumber);
+	void setEmail(std::string email);
+	void setStatus(userType status);
+	void setDate(std::string date);
+	void setPassword(size_t password);
+
 	userType getStatus();
 	std::string getDate();
 	size_t getPassword();

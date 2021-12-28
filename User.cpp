@@ -79,6 +79,42 @@ std::string User::getStatusString()
 	}
 }
 
+void User::setName(std::string name)
+{
+	this->name = name;
+}
+
+void User::setSex(bool sex)
+{
+	this->sex = sex;
+}
+
+void User::setPhonenumber(std::string phonenumber)
+{
+	this->phonenumber = phonenumber;
+}
+
+void User::setEmail(std::string email)
+{
+	this->email = email;
+}
+
+
+void User::setStatus(userType status)
+{
+	this->status = status;
+}
+
+void User::setDate(std::string date)
+{
+	this->date = date;
+}
+
+void User::setPassword(size_t password)
+{
+	this->password = password;
+}
+
 //bool operator==(User& left, const std::string& right)
 //{
 //	if (left.email == right)
