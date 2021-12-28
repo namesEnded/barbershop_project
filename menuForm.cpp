@@ -179,7 +179,6 @@ System::Void bshop::menuForm::addUserBtn_Click(System::Object^ sender, System::E
 	}
 }
 
-
 System::Void bshop::menuForm::menuForm_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
 {
 }
@@ -192,153 +191,6 @@ System::Void bshop::menuForm::clientPanel_VisibleChanged(System::Object^ sender,
 	{
 		Calendar->MinDate = Calendar->TodayDate;
 	}
-}
-
-System::Void bshop::menuForm::exitFromEmployeePanelBtn_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	db2->writeServicesOrdersToFile();
-	this->Close();
-}
-
-System::Void bshop::menuForm::addUserBtn_Click_1(System::Object^ sender, System::EventArgs^ e)
-{
-	addUserPanel->Visible = true;
-}
-
-System::Void bshop::menuForm::addUserTypeCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
-{
-}
-
-System::Void bshop::menuForm::addUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	std::string name = msclr::interop::marshal_as<std::string>(addUserNameTB->Text);
-	bool sex;
-	if (addUserMaleRB->Checked)
-	{
-		sex = true;
-	}
-	else
-	{
-		sex = false;
-	}
-
-	float experience = NULL;
-	std::string personalAchievements = "";
-	std::string date = msclr::interop::marshal_as<std::string>(addUserDateTB->Text);
-	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);
-	std::string email = msclr::interop::marshal_as<std::string>(addUserMailTB->Text);
-	std::string password = msclr::interop::marshal_as<std::string>(addUserPasswordTB->Text);
-	std::string statusString = msclr::interop::marshal_as<std::string>(addUserTypeCB->Text);
-	std::string selectedSpeciality;
-	if (addUserTypeCB->Text == "EMPLOYEE")
-	{
-		std::string selectedSpeciality = msclr::interop::marshal_as<std::string>(addUserSpecialityCB->Text);
-	}
-	else
-	{
-		specialityPanel->Visible = false;
-	}
-	userType status = checkSelectedStatus(statusString);
-	userSpeciality speciality = checkSelectedSpeciality(selectedSpeciality);
-	if (db2->emailIsUnique(email))
-		switch (status) {
-		case EMPLOYEE:
-			if (experience.Equals(NULL)) experience = DEF_WORK_EXPERIENCE;
-			if (personalAchievements.empty()) personalAchievements = DEF_PERSONAL_ACHIEVEMENTS;
-			db2->addUser(name, sex, date, phonenumber, email, password, status, experience,
-				speciality, personalAchievements);
-			db2->writeDatabaseToFile();
-			break;
-		case ADMIN:
-			db2->addUser(name, sex, date, phonenumber, email, password, status);
-			db2->writeDatabaseToFile();
-			break;
-		case CLIENT:
-			db2->addUser(name, sex, date, phonenumber, email, password, status);
-			db2->writeDatabaseToFile();
-			break;
-		default:
-			System::Windows::Forms::MessageBox::Show("There is no such status");
-			break;
-		}
-	else System::Windows::Forms::MessageBox::Show("Пользователь с таким e-mail уже существует");
-}
-
-System::Void bshop::menuForm::changeUserPanel_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
-{
-	if (changeUserPanel->Visible == true)
-	{
-		for each (User* user in db2->getUsersList())
-		{
-			changeUserIdCB->Items->Add(user->getID());
-		}
-	}
-}
-
-System::Void bshop::menuForm::changeUserIdCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
-{
-	int selectID =std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->SelectedItem->ToString()));
-	User* selectUser = db2->getUser(selectID);
-	changeUserNameTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getName());
-
-	changeUserMaleRB->Checked = (selectUser->getSex())==("true") ? true : false;
-	if (!changeUserMaleRB->Checked) changeUserFemaleRB->Checked = true;
-	changeUserDateTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getDate());
-	changeUserPhonenumberTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getPhonenumber());
-	changeUserMailTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getEmail());
-	changeUserPasswordTB->Text = "Введите новый пароль!";
-	userType status = selectUser->getStatus();
-	changeUserTypeCB->Text = msclr::interop::marshal_as<System::String^>(statusToString(status));
-	if (status == EMPLOYEE)
-	{
-		changeUserSpecialityPanel->Visible = true;
-		Employee* selectEmployee = (Employee*)selectUser;
-		changeUserSpecialityCB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getSpeciality());
-		changeUserExperienceTB->Text = msclr::interop::marshal_as<System::String^>(std::to_string(selectEmployee->getExperience()));
-		changePersonalAchievementsTB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getPersonalAchievements());
-	}
-	else
-	{
-		changeUserSpecialityPanel->Visible = false;
-	}
-
-}
-
-System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	int selectID = std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->Text));
-	User* selectUser = db2->getUser(selectID);
-	selectUser->setName(msclr::interop::marshal_as<std::string>(changeUserNameTB->Text));
-	selectUser->setSex(changeUserMaleRB->Checked);
-	selectUser->setDate(msclr::interop::marshal_as<std::string>(changeUserDateTB->Text));
-	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
-	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
-	size_t passwordHash = NULL;
-	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
-	selectUser->setPassword(passwordHash);
-	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
-	selectUser->setStatus(status);
-	if (status == EMPLOYEE)
-	{
-		Employee* selectEmployee = (Employee*)selectUser;
-		selectEmployee->setSpeciality(checkSelectedSpeciality(msclr::interop::marshal_as<std::string>(changeUserSpecialityCB->Text)));
-		selectEmployee->setExperience(std::stoi(msclr::interop::marshal_as<std::string>(changeUserExperienceTB->Text)));
-		selectEmployee->setPersonalAchievements(msclr::interop::marshal_as<std::string>(changePersonalAchievementsTB->Text));
-	}
-
-
-}
-
-System::Void bshop::menuForm::changeUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
-{
-	if (changeUserTypeCB->Text == "EMPLOYEE") changeUserSpecialityPanel->Visible = true;
-	else changeUserSpecialityPanel->Visible = false;
-}
-
-System::Void bshop::menuForm::addUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
-{
-	if (addUserTypeCB->Text == "EMPLOYEE") specialityPanel->Visible = true;
-	else specialityPanel->Visible = false;
 }
 
 System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
@@ -490,10 +342,15 @@ System::Void bshop::menuForm::updateServiceOrderBtn_Click(System::Object^ sender
 	}
 
 }
-
 #pragma endregion
 
+
 #pragma region Работа с панелью рабочего
+System::Void bshop::menuForm::exitFromEmployeePanelBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	db2->writeServicesOrdersToFile();
+	this->Close();
+}
 
 System::Void bshop::menuForm::updateTimetable(MonthCalendar^ employeeCalendar, TextBox^ selectedDateEmployeeTB)
 {
@@ -601,5 +458,170 @@ System::Void bshop::menuForm::employeeCalendar_DateChanged(System::Object^ sende
 		}
 	}
 	curOrders = employeeServicesOrders;*/
+}
+#pragma endregion
+
+
+#pragma region Добавить нового пользователя из панели админа 
+System::Void bshop::menuForm::addUserBtn_Click_1(System::Object^ sender, System::EventArgs^ e)
+{
+	addUserPanel->Visible = true;
+	if (addUserPanel->Visible == true) addUserPanel->Visible = false;
+}
+
+System::Void bshop::menuForm::addUserTypeCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
+{
+}
+
+System::Void bshop::menuForm::addUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	std::string name = msclr::interop::marshal_as<std::string>(addUserNameTB->Text);
+	bool sex;
+	if (addUserMaleRB->Checked)
+	{
+		sex = true;
+	}
+	else
+	{
+		sex = false;
+	}
+
+	float experience = NULL;
+	std::string personalAchievements = "";
+	std::string date = msclr::interop::marshal_as<std::string>(addUserDateTB->Text);
+	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);
+	std::string email = msclr::interop::marshal_as<std::string>(addUserMailTB->Text);
+	std::string password = msclr::interop::marshal_as<std::string>(addUserPasswordTB->Text);
+	std::string statusString = msclr::interop::marshal_as<std::string>(addUserTypeCB->Text);
+
+	if (name == "" || email == "" || statusString == "" || password == "")
+	{
+		MessageBox::Show("Есть пустые поля!", "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+	std::string selectedSpeciality;
+	if (addUserTypeCB->Text == "EMPLOYEE")
+	{
+		std::string selectedSpeciality = msclr::interop::marshal_as<std::string>(addUserSpecialityCB->Text);
+	}
+	else
+	{
+		specialityPanel->Visible = false;
+	}
+	userType status = checkSelectedStatus(statusString);
+	userSpeciality speciality = checkSelectedSpeciality(selectedSpeciality);
+	if (db2->emailIsUnique(email))
+		switch (status) {
+		case EMPLOYEE:
+			if (experience.Equals(NULL)) experience = DEF_WORK_EXPERIENCE;
+			if (personalAchievements.empty()) personalAchievements = DEF_PERSONAL_ACHIEVEMENTS;
+			db2->addUser(name, sex, date, phonenumber, email, password, status, experience,
+				speciality, personalAchievements);
+			db2->writeDatabaseToFile();
+			break;
+		case ADMIN:
+			db2->addUser(name, sex, date, phonenumber, email, password, status);
+			db2->writeDatabaseToFile();
+			break;
+		case CLIENT:
+			db2->addUser(name, sex, date, phonenumber, email, password, status);
+			db2->writeDatabaseToFile();
+			break;
+		default:
+			System::Windows::Forms::MessageBox::Show("There is no such status");
+			break;
+		}
+	else System::Windows::Forms::MessageBox::Show("Пользователь с таким e-mail уже существует");
+}
+
+System::Void bshop::menuForm::addUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (addUserTypeCB->Text == "EMPLOYEE") specialityPanel->Visible = true;
+	else specialityPanel->Visible = false;
+}
+#pragma endregion
+
+
+#pragma region Изменить пользователя из панели админа 
+System::Void bshop::menuForm::changeUserPanel_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (changeUserPanel->Visible == true)
+	{
+		for each (User * user in db2->getUsersList())
+		{
+			changeUserIdCB->Items->Add(user->getID());
+		}
+	}
+}
+
+System::Void bshop::menuForm::changeUserIdCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
+{
+	int selectID = std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->SelectedItem->ToString()));
+	User* selectUser = db2->getUser(selectID);
+	changeUserNameTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getName());
+
+	changeUserMaleRB->Checked = (selectUser->getSex()) == ("true") ? true : false;
+	if (!changeUserMaleRB->Checked) changeUserFemaleRB->Checked = true;
+	changeUserDateTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getDate());
+	changeUserPhonenumberTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getPhonenumber());
+	changeUserMailTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getEmail());
+	changeUserPasswordTB->Text = "Введите новый пароль!";
+	userType status = selectUser->getStatus();
+	changeUserTypeCB->Text = msclr::interop::marshal_as<System::String^>(statusToString(status));
+	if (status == EMPLOYEE)
+	{
+		changeUserSpecialityPanel->Visible = true;
+		Employee* selectEmployee = (Employee*)selectUser;
+		changeUserSpecialityCB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getSpeciality());
+		changeUserExperienceTB->Text = msclr::interop::marshal_as<System::String^>(std::to_string(selectEmployee->getExperience()));
+		changePersonalAchievementsTB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getPersonalAchievements());
+	}
+	else
+	{
+		changeUserSpecialityPanel->Visible = false;
+	}
+
+}
+
+System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+
+	if (changeUserNameTB->Text == "" ||
+		changeUserMailTB->Text == "" ||
+		changeUserPasswordTB->Text == "" ||
+		changeUserSpecialityCB->Text == "" ||
+		changeUserTypeCB->Text == "")
+	{
+		MessageBox::Show("Есть пустые поля!", "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	int selectID = std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->Text));
+	User* selectUser = db2->getUser(selectID);
+	selectUser->setName(msclr::interop::marshal_as<std::string>(changeUserNameTB->Text));
+	selectUser->setSex(changeUserMaleRB->Checked);
+	selectUser->setDate(msclr::interop::marshal_as<std::string>(changeUserDateTB->Text));
+	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
+	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
+	size_t passwordHash = NULL;
+	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
+	selectUser->setPassword(passwordHash);
+	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
+	selectUser->setStatus(status);
+	if (status == EMPLOYEE)
+	{
+		Employee* selectEmployee = (Employee*)selectUser;
+		selectEmployee->setSpeciality(checkSelectedSpeciality(msclr::interop::marshal_as<std::string>(changeUserSpecialityCB->Text)));
+		selectEmployee->setExperience(std::stoi(msclr::interop::marshal_as<std::string>(changeUserExperienceTB->Text)));
+		selectEmployee->setPersonalAchievements(msclr::interop::marshal_as<std::string>(changePersonalAchievementsTB->Text));
+	}
+
+
+}
+
+System::Void bshop::menuForm::changeUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (changeUserTypeCB->Text == "EMPLOYEE") changeUserSpecialityPanel->Visible = true;
+	else changeUserSpecialityPanel->Visible = false;
 }
 #pragma endregion
