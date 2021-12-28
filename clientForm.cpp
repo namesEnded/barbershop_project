@@ -4,6 +4,7 @@
 MockDatabase* DBClientForm = MockDatabase::getInstance();
 static std::map<int, int> indexOfEmployeesMenu;
 static std::map<int, int> indexOfClientsMenu;
+static std::map<int, int> indexOfService;
 
 System::Int32 bshop::clientForm::findID(int Index, bool isEmployee)
 {
@@ -88,7 +89,14 @@ System::Void bshop::clientForm::acceptOrderBtn_Click(System::Object^ sender, Sys
 			std::to_string((Calendar->SelectionStart).Month) + "-" +
 			std::to_string((Calendar->SelectionStart).Day);
 		time = msclr::interop::marshal_as<std::string>(availableTimeLB->SelectedItem->ToString());
-		serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->Text));
+
+		int serviceDIndex = serviceIDCB->SelectedIndex;
+		if (serviceDIndex == -1)
+		{
+			serviceDIndex = serviceIDCB->Items->IndexOf(employeeIDCB->Text);
+		}
+		serviceID = indexOfService[serviceDIndex];
+		//serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->Text));
 		int employeeIndex = employeeIDCB->SelectedIndex;
 		if (employeeIndex == -1)
 		{
@@ -135,7 +143,14 @@ System::Void bshop::clientForm::Calendar_DateSelected(System::Object^ sender, Sy
 
 System::Void bshop::clientForm::serviceIDCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
-	int serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->SelectedItem->ToString()));
+	int serviceDIndex = serviceIDCB->SelectedIndex;
+	if (serviceDIndex == -1)
+	{
+		serviceDIndex = serviceIDCB->Items->IndexOf(employeeIDCB->Text);
+	}
+
+	//int serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->SelectedItem->ToString()));
+	int serviceID = indexOfService[serviceDIndex];
 	double cost = DBClientForm->getService(serviceID)->getPrice();
 	Client* curClient = (Client*)DBClientForm->getUser(this->ID);
 	if (this->userStatus == CLIENT)
@@ -162,31 +177,33 @@ System::Void bshop::clientForm::updateServiceOrderBtn_Click(System::Object^ send
 
 	for each (ServiceOrder * serviceOrder in ServicesOrders)
 	{
-
-		std::string ID = std::to_string(serviceOrder->getID());
-		Employee* selectedEmployee = (Employee*)DBClientForm->getUser(serviceOrder->getEmployeeID());
-		std::string employeeName = selectedEmployee != nullptr ? selectedEmployee->getName() :
-			"œŒÀ‹«Œ¬¿“≈À‹ ”ƒ¿À®Õ, ID:" + std::to_string(serviceOrder->getEmployeeID());
-		Client* selectedClient = (Client*)DBClientForm->getUser(serviceOrder->getClientID());
-		std::string clientName = selectedClient != nullptr ? selectedClient->getName() :
-			"œŒÀ‹«Œ¬¿“≈À‹ ”ƒ¿À®Õ, ID:" + std::to_string(serviceOrder->getClientID());
-
-		Service* selectedService = (Service*)DBClientForm->getService(serviceOrder->getServiceID());
-		std::string serviceName = selectedService != nullptr ? selectedService->getName() :
-			"”—À”√¿ ”ƒ¿À≈Õ¿, ID:" + std::to_string(serviceOrder->getServiceID());
-
-		std::string cost = std::to_string(serviceOrder->getCost());
-		std::string data = serviceOrder->getDate();
-		std::string time = serviceOrder->getTime();
-		std::string status = serviceOrder->getStatus().Equals(true) ? "œÓ‚Â‰∏Ì" : "ÕÂ ÔÓ‚Â‰∏Ì";
-		std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data, time};
-		orderInitGrid->Rows->Add();
-		int k = orderInitGrid->ColumnCount;
-		for (int j = 0; j < k; j++)
+		if (serviceOrder->getClientID() == ID)
 		{
-			orderInitGrid->Rows[i]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j]);
+			std::string ID = std::to_string(serviceOrder->getID());
+			Employee* selectedEmployee = (Employee*)DBClientForm->getUser(serviceOrder->getEmployeeID());
+			std::string employeeName = selectedEmployee != nullptr ? selectedEmployee->getName() :
+				"œŒÀ‹«Œ¬¿“≈À‹ ”ƒ¿À®Õ, ID:" + std::to_string(serviceOrder->getEmployeeID());
+			Client* selectedClient = (Client*)DBClientForm->getUser(serviceOrder->getClientID());
+			std::string clientName = selectedClient != nullptr ? selectedClient->getName() :
+				"œŒÀ‹«Œ¬¿“≈À‹ ”ƒ¿À®Õ, ID:" + std::to_string(serviceOrder->getClientID());
+
+			Service* selectedService = (Service*)DBClientForm->getService(serviceOrder->getServiceID());
+			std::string serviceName = selectedService != nullptr ? selectedService->getName() :
+				"”—À”√¿ ”ƒ¿À≈Õ¿, ID:" + std::to_string(serviceOrder->getServiceID());
+
+			std::string cost = std::to_string(serviceOrder->getCost());
+			std::string data = serviceOrder->getDate();
+			std::string time = serviceOrder->getTime();
+			std::string status = serviceOrder->getStatus().Equals(true) ? "œÓ‚Â‰∏Ì" : "ÕÂ ÔÓ‚Â‰∏Ì";
+			std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data, time };
+			orderInitGrid->Rows->Add();
+			int k = orderInitGrid->ColumnCount;
+			for (int j = 0; j < k; j++)
+			{
+				orderInitGrid->Rows[i]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j]);
+			}
+			i++;
 		}
-		i++;
 	}
 
 	std::list<Service*> Services = DBClientForm->getServiceList();
@@ -194,7 +211,9 @@ System::Void bshop::clientForm::updateServiceOrderBtn_Click(System::Object^ send
 
 	for each (Service * service in Services)
 	{
-		serviceIDCB->Items->Add(service->getID());
+		String^ serviceName = msclr::interop::marshal_as<System::String^>(service->getName());
+		serviceIDCB->Items->Add(serviceName);
+		indexOfService[serviceIDCB->Items->Count - 1] = service->getID();
 	}
 
 	for each (User * user in Users)
