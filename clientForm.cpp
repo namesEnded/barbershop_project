@@ -149,6 +149,7 @@ System::Void bshop::clientForm::serviceIDCB_SelectionChangeCommitted(System::Obj
 		serviceDIndex = serviceIDCB->Items->IndexOf(employeeIDCB->Text);
 	}
 
+
 	//int serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->SelectedItem->ToString()));
 	int serviceID = indexOfService[serviceDIndex];
 	double cost = DBClientForm->getService(serviceID)->getPrice();
