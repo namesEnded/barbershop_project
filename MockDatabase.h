@@ -72,7 +72,6 @@ public:
 	std::list<std::string> MockDatabase::getOrdersTimes(std::string date);
 	static MockDatabase* getInstance();
 	int numberOfServicesOrder();
-	bool deleteSpecificServiceOrder(int ID);
 #pragma endregion
 
 
@@ -87,7 +86,6 @@ public:
 	bool deleteSpecificService(int ID);
 	int getMaxServiceOrderID();
 	std::string getServices();
-	void clearListOfServices();
 	int getMaxServiceID();
 #pragma endregion
 
