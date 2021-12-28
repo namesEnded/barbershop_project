@@ -561,7 +561,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			// 
 			// adminPanel
 			// 
-			this->adminPanel->Controls->Add(this->changeServicePanel);
 			this->adminPanel->Controls->Add(this->deleteSpecidicServiceOrderBtn);
 			this->adminPanel->Controls->Add(this->deleteSpecificUser);
 			this->adminPanel->Controls->Add(this->showReportBtn);
@@ -571,7 +570,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->adminPanel->Controls->Add(this->changeUserBtn);
 			this->adminPanel->Controls->Add(this->addUserBtn);
 			this->adminPanel->Controls->Add(this->AdminLbl);
-			this->adminPanel->Controls->Add(this->changeUserPanel);
 			this->adminPanel->Controls->Add(this->addUserPanel);
 			this->adminPanel->Controls->Add(this->reportPanel);
 			this->adminPanel->Controls->Add(this->addServicePanel);
@@ -582,6 +580,8 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->adminPanel->Controls->Add(this->label2);
 			this->adminPanel->Controls->Add(this->label1);
 			this->adminPanel->Controls->Add(this->updateGridsBtn);
+			this->adminPanel->Controls->Add(this->changeServicePanel);
+			this->adminPanel->Controls->Add(this->changeUserPanel);
 			this->adminPanel->Location = System::Drawing::Point(12, 12);
 			this->adminPanel->Name = L"adminPanel";
 			this->adminPanel->Size = System::Drawing::Size(904, 709);
