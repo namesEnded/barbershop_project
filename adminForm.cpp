@@ -492,6 +492,10 @@ System::Void bshop::adminForm::writeDataBtn_Click(System::Object^ sender, System
 
 System::Void bshop::adminForm::loadBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
+
+	DBAdminForm->clearListOfServices();
+	DBAdminForm->clearListOfServicesOrder();
+	DBAdminForm->clearListOfUsers();
 	DBAdminForm->readDatabaseFromFile();
 	DBAdminForm->readServicesFromFile();
 	DBAdminForm->readServicesOrdersFromFile();
