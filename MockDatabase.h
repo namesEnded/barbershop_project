@@ -24,7 +24,7 @@ private:
 	std::list<User*> listOfUsers;
 	std::list<ServiceOrder*> listOfServiceOrders;
 	std::list<Service*> listOfService;
-	//static MockDatabase* db;
+	static MockDatabase* db;
 
 public:
 	//void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
@@ -58,7 +58,7 @@ public:
 	Service* getService(int ID);
 	ServiceOrder* getServiceOrder(int ID);
 	User* getUser(int ID);
-	//static MockDatabase* getInstance();
+	static MockDatabase* getInstance();
 	std::string getUsers();
 	std::list<User*> getUsersList();
 	std::list<ServiceOrder*> getServiceOrdersList();
@@ -79,8 +79,10 @@ public:
 	bool readDataAboutServiceOrder(std::vector <std::string> elems);
 	bool readDataAboutService(std::vector <std::string> elems);
 	void clearListOfServices();
+	void clearListOfServicesOrder();
 	void clearListOfUsers();
 	bool deleteSpecificUser(int ID);
+	std::list<int> getOrdersID(Employee* employee);
 	int getMaxUserID();
 	int getMaxServiceID();
 	int getMaxServiceOrderID();
@@ -95,5 +97,5 @@ public:
 		//delete db;
 	}
 };
-static MockDatabase db;
+//static MockDatabase db;
 #endif MOCKDATABASE_H
