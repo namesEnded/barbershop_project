@@ -247,7 +247,7 @@ System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 	/*std::string date = std::to_string((Calendar->SelectionStart).Day) + "/" +
 		std::to_string((Calendar->SelectionStart).Month) + "/" +
 		std::to_string((Calendar->SelectionStart).Year);*/
-	float cost;
+	double cost;
 	int	clientID = this->ID;
 	int employeeID;
 	int serviceID;
@@ -276,7 +276,7 @@ System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 			employeeIndex = employeeIDCB->Items->IndexOf(employeeIDCB->Text);
 		}
 		employeeID = findID(employeeIndex, true);
-		cost = std::stoi(msclr::interop::marshal_as<std::string>(costTB->Text));
+		cost = std::stod(msclr::interop::marshal_as<std::string>(costTB->Text));
 	}
 	catch (std::exception ex)
 	{
@@ -325,7 +325,7 @@ System::Void bshop::menuForm::serviceIDCB_SelectedValueChanged(System::Object^ s
 System::Void bshop::menuForm::serviceIDCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
 	int serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->SelectedItem->ToString()));
-	float cost = db2->getService(serviceID)->getPrice();
+	double cost = db2->getService(serviceID)->getPrice();
 	Client* curClient = (Client*)db2->getUser(this->ID);
 	if (this->userStatus == CLIENT)
 	{
@@ -543,7 +543,7 @@ System::Void bshop::menuForm::addUserFormBtn_Click(System::Object^ sender, Syste
 		sex = false;
 	}
 
-	float experience = NULL;
+	double experience = NULL;
 	std::string personalAchievements = "";
 	std::string date = msclr::interop::marshal_as<std::string>(addUserDateTB->Text);
 	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);
@@ -667,6 +667,7 @@ System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, Sy
 	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
 	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
 	size_t passwordHash = NULL;
+	#pragma warning(suppress : 4996)
 	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
 	selectUser->setPassword(passwordHash);
 	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
@@ -969,10 +970,10 @@ System::Void bshop::menuForm::makeReportBtn_Click(System::Object^ sender, System
 	int curMonth = Tm.tm_mon+1;
 	int curDay = Tm.tm_mday;
 	int clientsNumber = 0;
-	float salary = 0;
-	float proceeds = 0;
-	float Profit = 0;
-	float averageÑheck = 0;
+	double salary = 0;
+	double proceeds = 0;
+	double Profit = 0;
+	double averageÑheck = 0;
 	if (reportPeriodCB->Text == "Ãîä")
 	{
 		for each (ServiceOrder* serviceOrder in db2->getServiceOrdersList())

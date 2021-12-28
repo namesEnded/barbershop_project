@@ -23,9 +23,6 @@ namespace bshop {
 			InitializeComponent();
 			this->ID = ID;
 			this->userStatus = userStatus;
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 	protected:

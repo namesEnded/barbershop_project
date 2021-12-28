@@ -9,7 +9,7 @@
 #include <fstream>
 #include <iomanip>
 
-MockDatabase* db4 = MockDatabase::getInstance();
+MockDatabase* DBAdminForm = MockDatabase::getInstance();
 #pragma region –‡·ÓÚ‡ Ò ÔÓÎ¸ÁÓ‚‡ÚÂÎˇÏË ËÁ Ô‡ÌÂÎË ‡‰ÏËÌ‡ 
 
 System::Void bshop::adminForm::clearAllGrids()
@@ -62,7 +62,7 @@ System::Void bshop::adminForm::addUserFormBtn_Click(System::Object^ sender, Syst
 		sex = false;
 	}
 
-	float experience = NULL;
+	double experience = NULL;
 	std::string personalAchievements = "";
 	std::string date = msclr::interop::marshal_as<std::string>(addUserDateTB->Text);
 	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);
@@ -86,22 +86,22 @@ System::Void bshop::adminForm::addUserFormBtn_Click(System::Object^ sender, Syst
 	}
 	userType status = checkSelectedStatus(statusString);
 	userSpeciality speciality = checkSelectedSpeciality(selectedSpeciality);
-	if (db4->emailIsUnique(email))
+	if (DBAdminForm->emailIsUnique(email))
 		switch (status) {
 		case EMPLOYEE:
 			if (experience.Equals(NULL)) experience = DEF_WORK_EXPERIENCE;
 			if (personalAchievements.empty()) personalAchievements = DEF_PERSONAL_ACHIEVEMENTS;
-			db4->addUser(name, sex, date, phonenumber, email, password, status, experience,
+			DBAdminForm->addUser(name, sex, date, phonenumber, email, password, status, experience,
 				speciality, personalAchievements);
-			db4->writeDatabaseToFile();
+			DBAdminForm->writeDatabaseToFile();
 			break;
 		case ADMIN:
-			db4->addUser(name, sex, date, phonenumber, email, password, status);
-			db4->writeDatabaseToFile();
+			DBAdminForm->addUser(name, sex, date, phonenumber, email, password, status);
+			DBAdminForm->writeDatabaseToFile();
 			break;
 		case CLIENT:
-			db4->addUser(name, sex, date, phonenumber, email, password, status);
-			db4->writeDatabaseToFile();
+			DBAdminForm->addUser(name, sex, date, phonenumber, email, password, status);
+			DBAdminForm->writeDatabaseToFile();
 			break;
 		default:
 			System::Windows::Forms::MessageBox::Show("There is no such status");
@@ -127,7 +127,7 @@ System::Void bshop::adminForm::addUserTypeCB_SelectedIndexChanged(System::Object
 System::Void bshop::adminForm::changeUserIdCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
 	int selectID = std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->SelectedItem->ToString()));
-	User* selectUser = db4->getUser(selectID);
+	User* selectUser = DBAdminForm->getUser(selectID);
 	changeUserNameTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getName());
 
 	changeUserMaleRB->Checked = (selectUser->getSex()) == ("true") ? true : false;
@@ -168,13 +168,14 @@ System::Void bshop::adminForm::changeUserFormBtn_Click(System::Object^ sender, S
 	}
 
 	int selectID = std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->Text));
-	User* selectUser = db4->getUser(selectID);
+	User* selectUser = DBAdminForm->getUser(selectID);
 	selectUser->setName(msclr::interop::marshal_as<std::string>(changeUserNameTB->Text));
 	selectUser->setSex(changeUserMaleRB->Checked);
 	selectUser->setDate(msclr::interop::marshal_as<std::string>(changeUserDateTB->Text));
 	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
 	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
 	size_t passwordHash = NULL;
+	#pragma warning(suppress : 4996)
 	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
 	selectUser->setPassword(passwordHash);
 	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
@@ -185,7 +186,7 @@ System::Void bshop::adminForm::changeUserFormBtn_Click(System::Object^ sender, S
 		selectEmployee->setSpeciality(checkSelectedSpeciality(msclr::interop::marshal_as<std::string>(changeUserSpecialityCB->Text)));
 		selectEmployee->setExperience(std::stoi(msclr::interop::marshal_as<std::string>(changeUserExperienceTB->Text)));
 		selectEmployee->setPersonalAchievements(msclr::interop::marshal_as<std::string>(changePersonalAchievementsTB->Text));
-		db4->writeDatabaseToFile();
+		DBAdminForm->writeDatabaseToFile();
 	}
 
 
@@ -242,7 +243,7 @@ System::Void bshop::adminForm::deleteSpecificUser_Click(System::Object^ sender, 
 			int userID = std::stoi(msclr::interop::marshal_as<std::string>(usersDataGrid->Rows[i]->Cells[0]->Value->ToString()));
 			try
 			{
-				isDel = db4->deleteSpecificUser(userID);
+				isDel = DBAdminForm->deleteSpecificUser(userID);
 			}
 			catch (std::exception ex)
 			{
@@ -254,7 +255,7 @@ System::Void bshop::adminForm::deleteSpecificUser_Click(System::Object^ sender, 
 	if (isDel)
 	{
 		System::Windows::Forms::MessageBox::Show("”‰‡ÎÂÌËÂ ÔÓ¯ÎÓ ÛÒÔÂ¯ÌÓ!");
-		db4->writeDatabaseToFile();
+		DBAdminForm->writeDatabaseToFile();
 	}
 }
 
@@ -267,8 +268,8 @@ System::Void bshop::adminForm::addServiceBtn_Click(System::Object^ sender, Syste
 	int price = std::stoi(msclr::interop::marshal_as<std::string>(servicePriceTB->Text));
 	try
 	{
-		db4->addService(name, price);
-		db4->writeServicesToFile();
+		DBAdminForm->addService(name, price);
+		DBAdminForm->writeServicesToFile();
 	}
 	catch (std::exception ex)
 	{
@@ -279,13 +280,13 @@ System::Void bshop::adminForm::addServiceBtn_Click(System::Object^ sender, Syste
 
 System::Void bshop::adminForm::saveServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db4->writeServicesToFile();
+	DBAdminForm->writeServicesToFile();
 }
 
 System::Void bshop::adminForm::loadServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db4->clearListOfServices();
-	db4->readServicesFromFile();
+	DBAdminForm->clearListOfServices();
+	DBAdminForm->readServicesFromFile();
 }
 
 System::Void bshop::adminForm::updateServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
@@ -293,7 +294,7 @@ System::Void bshop::adminForm::updateServicesBtn_Click(System::Object^ sender, S
 	servicesRTB->Clear();
 	try
 	{
-		String^ info = msclr::interop::marshal_as<System::String^>(db4->getServices());
+		String^ info = msclr::interop::marshal_as<System::String^>(DBAdminForm->getServices());
 		servicesRTB->AppendText(info);
 	}
 	catch (std::exception ex)
@@ -342,10 +343,10 @@ System::Void bshop::adminForm::changeServiceFormBtn_Click(System::Object^ sender
 			int serviseID = std::stoi(msclr::interop::marshal_as<std::string>(servicesDataGrid->Rows[i]->Cells[0]->Value->ToString()));
 			try
 			{
-				Service* buffService = db4->getService(serviseID);
+				Service* buffService = DBAdminForm->getService(serviseID);
 				buffService->setName(name);
 				buffService->setPrice(price);
-				db4->writeServicesToFile();
+				DBAdminForm->writeServicesToFile();
 			}
 			catch (std::exception ex)
 			{
@@ -379,7 +380,7 @@ System::Void bshop::adminForm::delOrderBtn_Click(System::Object^ sender, System:
 			int serviseID = std::stoi(msclr::interop::marshal_as<std::string>(servicesDataGrid->Rows[i]->Cells[0]->Value->ToString()));
 			try
 			{
-				isDel = db4->deleteSpecificService(serviseID);
+				isDel = DBAdminForm->deleteSpecificService(serviseID);
 			}
 			catch (std::exception ex)
 			{
@@ -391,7 +392,7 @@ System::Void bshop::adminForm::delOrderBtn_Click(System::Object^ sender, System:
 	if (isDel)
 	{
 		System::Windows::Forms::MessageBox::Show("”‰‡ÎÂÌËÂ ÔÓ¯ÎÓ ÛÒÔÂ¯ÌÓ!");
-		db4->writeServicesToFile();
+		DBAdminForm->writeServicesToFile();
 	}
 }
 
@@ -416,9 +417,9 @@ System::Void bshop::adminForm::addServiceBtnFromAdminPanel_Click(System::Object^
 System::Void bshop::adminForm::updateGridsBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	clearAllGrids();
-	std::list<ServiceOrder*> ServicesOrders = db4->getServiceOrdersList();
-	std::list<Service*> Services = db4->getServiceList();
-	std::list<User*> Users = db4->getUsersList();
+	std::list<ServiceOrder*> ServicesOrders = DBAdminForm->getServiceOrdersList();
+	std::list<Service*> Services = DBAdminForm->getServiceList();
+	std::list<User*> Users = DBAdminForm->getUsersList();
 	for each (User * user in Users)
 	{
 		std::string ID = std::to_string(user->getID());
@@ -454,14 +455,14 @@ System::Void bshop::adminForm::updateGridsBtn_Click(System::Object^ sender, Syst
 	for each (ServiceOrder * serviceOrder in ServicesOrders)
 	{
 		std::string ID = std::to_string(serviceOrder->getID());
-		Employee* selectedEmployee = (Employee*)db4->getUser(serviceOrder->getEmployeeID());
+		Employee* selectedEmployee = (Employee*)DBAdminForm->getUser(serviceOrder->getEmployeeID());
 		std::string employeeName = selectedEmployee != nullptr ? selectedEmployee->getName() : 
 					"œŒÀ‹«Œ¬¿“≈À‹ ”ƒ¿À®Õ, ID:" + std::to_string(serviceOrder->getEmployeeID());
-		Client* selectedClient = (Client*)db4->getUser(serviceOrder->getClientID());
+		Client* selectedClient = (Client*)DBAdminForm->getUser(serviceOrder->getClientID());
 		std::string clientName = selectedClient != nullptr ? selectedClient->getName() :
 					"œŒÀ‹«Œ¬¿“≈À‹ ”ƒ¿À®Õ, ID:" + std::to_string(serviceOrder->getClientID());
 
-		Service* selectedService = (Service*)db4->getService(serviceOrder->getServiceID());
+		Service* selectedService = (Service*)DBAdminForm->getService(serviceOrder->getServiceID());
 		std::string serviceName = selectedService != nullptr ? selectedService->getName() :
 			"”—À”√¿ ”ƒ¿À≈Õ¿, ID:" + std::to_string(serviceOrder->getServiceID());
 
@@ -480,12 +481,16 @@ System::Void bshop::adminForm::updateGridsBtn_Click(System::Object^ sender, Syst
 
 System::Void bshop::adminForm::writeDataBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	return System::Void();
+	DBAdminForm->writeDatabaseToFile();
+	DBAdminForm->writeServicesOrdersToFile();
+	DBAdminForm->writeServicesToFile();
 }
 
 System::Void bshop::adminForm::loadBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	return System::Void();
+	DBAdminForm->readDatabaseFromFile();
+	DBAdminForm->readServicesFromFile();
+	DBAdminForm->readServicesOrdersFromFile();
 }
 
 System::Void bshop::adminForm::deleteSpecidicServiceOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
@@ -510,7 +515,7 @@ System::Void bshop::adminForm::deleteSpecidicServiceOrderBtn_Click(System::Objec
 			int serviseOrderID = std::stoi(msclr::interop::marshal_as<std::string>(ordersDataGrid->Rows[i]->Cells[0]->Value->ToString()));
 			try
 			{
-				isDel = db4->deleteSpecificServiceOrder(serviseOrderID);
+				isDel = DBAdminForm->deleteSpecificServiceOrder(serviseOrderID);
 			}
 			catch (std::exception ex)
 			{
@@ -522,7 +527,7 @@ System::Void bshop::adminForm::deleteSpecidicServiceOrderBtn_Click(System::Objec
 	if (isDel)
 	{
 		System::Windows::Forms::MessageBox::Show("”‰‡ÎÂÌËÂ ÔÓ¯ÎÓ ÛÒÔÂ¯ÌÓ!");
-		db4->writeServicesOrdersToFile();
+		DBAdminForm->writeServicesOrdersToFile();
 	}
 }
 
@@ -550,13 +555,13 @@ System::Void bshop::adminForm::makeReportBtn_Click(System::Object^ sender, Syste
 	int curMonth = Tm.tm_mon + 1;
 	int curDay = Tm.tm_mday;
 	int clientsNumber = 0;
-	float salary = 0;
-	float proceeds = 0;
-	float Profit = 0;
-	float average—heck = 0;
+	double salary = 0;
+	double proceeds = 0;
+	double Profit = 0;
+	double average—heck = 0;
 	if (reportPeriodCB->Text == "√Ó‰")
 	{
-		for each (ServiceOrder * serviceOrder in db4->getServiceOrdersList())
+		for each (ServiceOrder * serviceOrder in DBAdminForm->getServiceOrdersList())
 		{
 			std::string date = serviceOrder->getDate();
 			std::vector <std::string> elems = splitToElems(date, '-');
@@ -572,7 +577,7 @@ System::Void bshop::adminForm::makeReportBtn_Click(System::Object^ sender, Syste
 
 			}
 		}
-		for each (User * user in db4->getUsersList())
+		for each (User * user in DBAdminForm->getUsersList())
 		{
 			if (user->getStatus() == EMPLOYEE)
 			{
@@ -609,7 +614,7 @@ System::Void bshop::adminForm::makeReportBtn_Click(System::Object^ sender, Syste
 	if (reportPeriodCB->Text == "ÃÂÒˇˆ")
 	{
 		String^ monthInfo = "";
-		for each (ServiceOrder * serviceOrder in db4->getServiceOrdersList())
+		for each (ServiceOrder * serviceOrder in DBAdminForm->getServiceOrdersList())
 		{
 			std::string date = serviceOrder->getDate();
 			std::vector <std::string> elems = splitToElems(date, '-');
@@ -626,7 +631,7 @@ System::Void bshop::adminForm::makeReportBtn_Click(System::Object^ sender, Syste
 
 			}
 		}
-		for each (User * user in db4->getUsersList())
+		for each (User * user in DBAdminForm->getUsersList())
 		{
 			if (user->getStatus() == EMPLOYEE)
 			{
@@ -665,7 +670,7 @@ System::Void bshop::adminForm::makeReportBtn_Click(System::Object^ sender, Syste
 	if (reportPeriodCB->Text == "ƒÂÌ¸")
 	{
 		String^ dayInfo = "";
-		for each (ServiceOrder * serviceOrder in db4->getServiceOrdersList())
+		for each (ServiceOrder * serviceOrder in DBAdminForm->getServiceOrdersList())
 		{
 			std::string date = serviceOrder->getDate();
 			std::vector <std::string> elems = splitToElems(date, '-');
@@ -680,7 +685,7 @@ System::Void bshop::adminForm::makeReportBtn_Click(System::Object^ sender, Syste
 
 			}
 		}
-		for each (User * user in db4->getUsersList())
+		for each (User * user in DBAdminForm->getUsersList())
 		{
 			if (user->getStatus() == EMPLOYEE)
 			{
@@ -721,7 +726,7 @@ System::Void bshop::adminForm::mainTabSekector_Selected(System::Object^ sender, 
 {
 
 	changeUserIdCB->Items->Clear();
-	for each (User * user in db4->getUsersList())
+	for each (User * user in DBAdminForm->getUsersList())
 	{
 		changeUserIdCB->Items->Add(user->getID());
 	}

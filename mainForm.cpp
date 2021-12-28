@@ -99,7 +99,7 @@ System::Void bshop::mainForm::addUserFormBtn_Click(System::Object^ sender, Syste
 		sex = false;
 	}
 
-	float experience = NULL;
+	double experience = NULL;
 	std::string personalAchievements = "";
 	std::string date = msclr::interop::marshal_as<std::string>(addUserDateTB->Text);
 	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);

@@ -80,7 +80,7 @@ void MockDatabase::addUser(std::string name, bool sex, std::string date, std::st
 }
 
 void MockDatabase::addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
-	std::string password, userType status, float experience, userSpeciality speciality, std::string personalAchievements)
+	std::string password, userType status, double experience, userSpeciality speciality, std::string personalAchievements)
 {
 	std::hash<std::string> hasher;
 	size_t passwordHash = hasher(password);
@@ -94,6 +94,7 @@ void MockDatabase::loadUser(int ID, std::string name, bool sex, std::string date
 	std::string email, std::string password, userType status, int numberOfVisits)
 {
 	size_t passwordHash = NULL;
+	#pragma warning(suppress : 4996)
 	sscanf(password.c_str(), "%zu", &passwordHash);
 	switch (status) {
 	case ADMIN:
@@ -110,10 +111,11 @@ void MockDatabase::loadUser(int ID, std::string name, bool sex, std::string date
 }
 
 void MockDatabase::loadUser(int ID, std::string name, bool sex, std::string date, std::string phonenumber,
-	std::string email, std::string password, userType status, float experience,
+	std::string email, std::string password, userType status, double experience,
 	userSpeciality speciality, std::string personalAchievements)
 {
 	size_t passwordHash = NULL;
+	#pragma warning(suppress : 4996)
 	sscanf(password.c_str(), "%zu", &passwordHash);
 	this->listOfUsers.push_back(new Employee(ID, name, sex, date, phonenumber, email, passwordHash,
 		EMPLOYEE, experience, speciality, personalAchievements));
@@ -247,7 +249,7 @@ std::list<Service*> MockDatabase::getServiceList()
 
 int MockDatabase::numberOfUsers()
 {
-	return this->listOfUsers.size();
+	return static_cast<int>(this->listOfUsers.size());
 }
 
 int MockDatabase::findUser(std::string email, size_t password)
@@ -277,6 +279,7 @@ int MockDatabase::findUser(std::string email, size_t password)
 		System::Windows::Forms::MessageBox::Show("Такого пользователя нет!");
 		return NOT_FOUND;
 	}
+	return NOT_FOUND;
 }
 
 bool MockDatabase::emailIsUnique(std::string email)
@@ -297,6 +300,7 @@ int MockDatabase::getUserStatus(int ID)
 			{
 				return true;
 			}
+			return false;
 		});
 	if (findIter != listOfUsers.end())
 	{
@@ -374,9 +378,12 @@ bool MockDatabase::deleteSpecificServiceOrder(int ID)
 std::list<int> MockDatabase::getOrdersID(Employee* employee)
 {
 	std::list<int> orders;
-	for each (ServiceOrder* serviceOrder in listOfServiceOrders)
+	if (employee != nullptr)
 	{
-		if (serviceOrder->getEmployeeID() == employee->getID()) orders.push_back(serviceOrder->getID());
+		for each (ServiceOrder * serviceOrder in listOfServiceOrders)
+		{
+			if (serviceOrder->getEmployeeID() == employee->getID()) orders.push_back(serviceOrder->getID());
+		}
 	}
 	return orders;
 }
@@ -404,14 +411,14 @@ bool MockDatabase::readDataAboutUser(userType status, std::vector<std::string> e
 	std::string email = elems[5];
 	std::string password = elems[6];
 	userSpeciality speciality;
-	float experience = NULL;
+	double experience = NULL;
 	int numberOfVisits = NULL;
 	std::string personalAchievements = "";
 
 	switch (status) {
 	case EMPLOYEE:
 		speciality = checkSelectedSpeciality(elems[8]);
-		experience = std::stoi(elems[9]);
+		experience = std::stod(elems[9]);
 		personalAchievements = (elems[10]);
 		loadUser(ID, name, sex, date, phonenumber,
 			email, password, status, experience, speciality, personalAchievements);
@@ -441,7 +448,7 @@ bool MockDatabase::readDataAboutServiceOrder(std::vector<std::string> elems)
 	int serviceID = std::stoi(elems[1]);
 	int employeeID = std::stoi(elems[2]);
 	int clientID = std::stoi(elems[3]);
-	float cost = std::stod(elems[4]);
+	double cost = std::stod(elems[4]);
 	bool status = elems[5] == "true" ? true : false;
 	std::string date = elems[6];
 	std::string time = elems[7];
@@ -472,25 +479,25 @@ void MockDatabase::addService(std::string name, int price)
 	this->listOfService.push_back(new Service(id, name, price));
 }
 
-void MockDatabase::addServiceOrder(std::string date, std::string time, int serviceID, int employeeID, int clientID, float cost, bool status)
+void MockDatabase::addServiceOrder(std::string date, std::string time, int serviceID, int employeeID, int clientID, double cost, bool status)
 {
 	int id = getMaxServiceOrderID() + 1;
 	this->listOfServiceOrders.push_back(new ServiceOrder(id, serviceID, employeeID, clientID, date, time, cost, status));
 }
 
-void MockDatabase::loadServiceOrder(int id, std::string date, std::string time, int serviceID, int employeeID, int clientID, float cost, bool status)
+void MockDatabase::loadServiceOrder(int id, std::string date, std::string time, int serviceID, int employeeID, int clientID, double cost, bool status)
 {
 	this->listOfServiceOrders.push_back(new ServiceOrder(id, serviceID, employeeID, clientID, date, time, cost, status));
 }
 
 int MockDatabase::numberOfServices()
 {
-	return this->listOfService.size();
+	return static_cast<int>(this->listOfService.size());
 }
 
 int MockDatabase::numberOfServicesOrder()
 {
-	return this->listOfServiceOrders.size();
+	return static_cast<int>(this->listOfServiceOrders.size());
 }
 
 bool writeDataAboutServices(std::string path, Service* service)

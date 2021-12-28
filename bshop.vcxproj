@@ -171,6 +171,9 @@
     <EmbeddedResource Include="clientForm.resx">
       <DependentUpon>clientForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="employeeForm.resx">
+      <DependentUpon>employeeForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.h</DependentUpon>
       <SubType>Designer</SubType>

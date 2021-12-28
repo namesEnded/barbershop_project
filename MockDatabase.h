@@ -28,7 +28,7 @@ private:
 
 public:
 	//void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
-	//	std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM, float experience = DEF_WORK_EXPERIENCE,
+	//	std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM, double experience = DEF_WORK_EXPERIENCE,
 	//	userSpeciality speciality = DEF_USER_SPECIALITY, std::string personalAchievements = DEF_PERSONAL_ACHIEVEMENTS);
 
 	MockDatabase()
@@ -38,21 +38,21 @@ public:
 		std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM);
 	 
 	void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
-		std::string password, userType status, float experience,
+		std::string password, userType status, double experience,
 		userSpeciality speciality, std::string personalAchievements = DEF_PERSONAL_ACHIEVEMENTS);
 
 	void loadUser(int ID, std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
 		std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM);
 
 	void loadUser(int ID, std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
-		std::string password, userType status, float experience,
+		std::string password, userType status, double experience,
 		userSpeciality speciality, std::string personalAchievements);
 
 	void loadService(int ID, std::string name, int price);
 	void addService(std::string name, int price);
 
-	void addServiceOrder(std::string date, std::string time, int serviceID, int employeeID, int clientID, float cost, bool status);
-	void loadServiceOrder(int id, std::string date, std::string time, int serviceID, int employeeID, int clientID, float cost, bool status);
+	void addServiceOrder(std::string date, std::string time, int serviceID, int employeeID, int clientID, double cost, bool status);
+	void loadServiceOrder(int id, std::string date, std::string time, int serviceID, int employeeID, int clientID, double cost, bool status);
 	bool timeIsAvailable(std::string date, std::string time);
 	std::list<std::string> MockDatabase::getOrdersTimes(std::string date);
 	Service* getService(int ID);

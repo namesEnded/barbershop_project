@@ -23,18 +23,11 @@ namespace bshop {
 			InitializeComponent();
 			this->ID = ID;
 			this->userStatus = userStatus;
-
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 		menuForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 	protected:
@@ -365,6 +358,22 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserBtn = (gcnew System::Windows::Forms::Button());
 			this->addUserBtn = (gcnew System::Windows::Forms::Button());
 			this->AdminLbl = (gcnew System::Windows::Forms::Label());
+			this->ordersDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->orderID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->employeeID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->clientID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->orderStatus = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->servicesDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->servicesID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->serviceName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->usersDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->userID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->userName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->userCurrentStatus = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->updateGridsBtn = (gcnew System::Windows::Forms::Button());
 			this->changeServicePanel = (gcnew System::Windows::Forms::Panel());
 			this->deleteServices = (gcnew System::Windows::Forms::Label());
 			this->changeServicePriceLbl = (gcnew System::Windows::Forms::Label());
@@ -443,22 +452,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->serviceNameTB = (gcnew System::Windows::Forms::TextBox());
 			this->servicePriceTB = (gcnew System::Windows::Forms::TextBox());
 			this->addServiceBtn = (gcnew System::Windows::Forms::Button());
-			this->ordersDataGrid = (gcnew System::Windows::Forms::DataGridView());
-			this->orderID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->employeeID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->clientID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->orderStatus = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->servicesDataGrid = (gcnew System::Windows::Forms::DataGridView());
-			this->servicesID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->serviceName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->usersDataGrid = (gcnew System::Windows::Forms::DataGridView());
-			this->userID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->userName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->userCurrentStatus = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->updateGridsBtn = (gcnew System::Windows::Forms::Button());
 			this->clientPanel = (gcnew System::Windows::Forms::Panel());
 			this->ClientNameLbl = (gcnew System::Windows::Forms::Label());
 			this->ordersList = (gcnew System::Windows::Forms::Label());
@@ -513,6 +506,9 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			changeNameLbl = (gcnew System::Windows::Forms::Label());
 			addNameLbl = (gcnew System::Windows::Forms::Label());
 			this->adminPanel->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ordersDataGrid))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->servicesDataGrid))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersDataGrid))->BeginInit();
 			this->changeServicePanel->SuspendLayout();
 			this->changeUserPanel->SuspendLayout();
 			this->changeUserSpecialityPanel->SuspendLayout();
@@ -522,9 +518,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->specialityPanel->SuspendLayout();
 			this->reportPanel->SuspendLayout();
 			this->addServicePanel->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ordersDataGrid))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->servicesDataGrid))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersDataGrid))->BeginInit();
 			this->clientPanel->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->orderInitGrid))->BeginInit();
 			this->employeePanel->SuspendLayout();
@@ -577,7 +570,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->adminPanel->Controls->Add(this->label2);
 			this->adminPanel->Controls->Add(this->label1);
 			this->adminPanel->Controls->Add(this->updateGridsBtn);
-			this->adminPanel->Location = System::Drawing::Point(990, 168);
+			this->adminPanel->Location = System::Drawing::Point(990, 228);
 			this->adminPanel->Name = L"adminPanel";
 			this->adminPanel->Size = System::Drawing::Size(651, 709);
 			this->adminPanel->TabIndex = 1;
@@ -670,6 +663,138 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->AdminLbl->Size = System::Drawing::Size(36, 13);
 			this->AdminLbl->TabIndex = 0;
 			this->AdminLbl->Text = L"Admin";
+			// 
+			// ordersDataGrid
+			// 
+			this->ordersDataGrid->AllowUserToAddRows = false;
+			this->ordersDataGrid->AllowUserToDeleteRows = false;
+			this->ordersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->ordersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->ordersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->orderID,
+					this->employeeID, this->clientID, this->orderStatus
+			});
+			this->ordersDataGrid->Location = System::Drawing::Point(292, 498);
+			this->ordersDataGrid->MultiSelect = false;
+			this->ordersDataGrid->Name = L"ordersDataGrid";
+			this->ordersDataGrid->Size = System::Drawing::Size(543, 176);
+			this->ordersDataGrid->TabIndex = 9;
+			// 
+			// orderID
+			// 
+			this->orderID->HeaderText = L"ID";
+			this->orderID->Name = L"orderID";
+			// 
+			// employeeID
+			// 
+			this->employeeID->HeaderText = L"employee";
+			this->employeeID->Name = L"employeeID";
+			// 
+			// clientID
+			// 
+			this->clientID->HeaderText = L"client";
+			this->clientID->Name = L"clientID";
+			// 
+			// orderStatus
+			// 
+			this->orderStatus->HeaderText = L"status";
+			this->orderStatus->Name = L"orderStatus";
+			// 
+			// servicesDataGrid
+			// 
+			this->servicesDataGrid->AllowUserToAddRows = false;
+			this->servicesDataGrid->AllowUserToDeleteRows = false;
+			this->servicesDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->servicesDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->servicesDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+				this->servicesID,
+					this->serviceName
+			});
+			this->servicesDataGrid->Location = System::Drawing::Point(292, 290);
+			this->servicesDataGrid->MultiSelect = false;
+			this->servicesDataGrid->Name = L"servicesDataGrid";
+			this->servicesDataGrid->Size = System::Drawing::Size(543, 178);
+			this->servicesDataGrid->TabIndex = 8;
+			// 
+			// servicesID
+			// 
+			this->servicesID->HeaderText = L"ID";
+			this->servicesID->Name = L"servicesID";
+			// 
+			// serviceName
+			// 
+			this->serviceName->HeaderText = L"Name";
+			this->serviceName->Name = L"serviceName";
+			// 
+			// usersDataGrid
+			// 
+			this->usersDataGrid->AllowUserToAddRows = false;
+			this->usersDataGrid->AllowUserToDeleteRows = false;
+			this->usersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->usersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->usersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->userID,
+					this->userName, this->userCurrentStatus
+			});
+			this->usersDataGrid->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
+			this->usersDataGrid->Location = System::Drawing::Point(292, 92);
+			this->usersDataGrid->MultiSelect = false;
+			this->usersDataGrid->Name = L"usersDataGrid";
+			this->usersDataGrid->Size = System::Drawing::Size(543, 168);
+			this->usersDataGrid->TabIndex = 7;
+			// 
+			// userID
+			// 
+			this->userID->HeaderText = L"ID";
+			this->userID->Name = L"userID";
+			// 
+			// userName
+			// 
+			this->userName->HeaderText = L"Name";
+			this->userName->Name = L"userName";
+			// 
+			// userCurrentStatus
+			// 
+			this->userCurrentStatus->HeaderText = L"Status";
+			this->userCurrentStatus->Name = L"userCurrentStatus";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(292, 482);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(36, 13);
+			this->label3->TabIndex = 15;
+			this->label3->Text = L"orders";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(292, 274);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(46, 13);
+			this->label2->TabIndex = 14;
+			this->label2->Text = L"services";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(292, 73);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(32, 13);
+			this->label1->TabIndex = 13;
+			this->label1->Text = L"users";
+			// 
+			// updateGridsBtn
+			// 
+			this->updateGridsBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateGridsBtn.BackgroundImage")));
+			this->updateGridsBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->updateGridsBtn->Location = System::Drawing::Point(795, 31);
+			this->updateGridsBtn->Name = L"updateGridsBtn";
+			this->updateGridsBtn->Size = System::Drawing::Size(40, 40);
+			this->updateGridsBtn->TabIndex = 12;
+			this->updateGridsBtn->UseVisualStyleBackColor = true;
+			this->updateGridsBtn->Click += gcnew System::EventHandler(this, &menuForm::updateGridsBtn_Click);
 			// 
 			// changeServicePanel
 			// 
@@ -1471,138 +1596,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->addServiceBtn->UseVisualStyleBackColor = true;
 			this->addServiceBtn->Click += gcnew System::EventHandler(this, &menuForm::addServiceBtn_Click);
 			// 
-			// ordersDataGrid
-			// 
-			this->ordersDataGrid->AllowUserToAddRows = false;
-			this->ordersDataGrid->AllowUserToDeleteRows = false;
-			this->ordersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->ordersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ordersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->orderID,
-					this->employeeID, this->clientID, this->orderStatus
-			});
-			this->ordersDataGrid->Location = System::Drawing::Point(292, 498);
-			this->ordersDataGrid->MultiSelect = false;
-			this->ordersDataGrid->Name = L"ordersDataGrid";
-			this->ordersDataGrid->Size = System::Drawing::Size(543, 176);
-			this->ordersDataGrid->TabIndex = 9;
-			// 
-			// orderID
-			// 
-			this->orderID->HeaderText = L"ID";
-			this->orderID->Name = L"orderID";
-			// 
-			// employeeID
-			// 
-			this->employeeID->HeaderText = L"employee";
-			this->employeeID->Name = L"employeeID";
-			// 
-			// clientID
-			// 
-			this->clientID->HeaderText = L"client";
-			this->clientID->Name = L"clientID";
-			// 
-			// orderStatus
-			// 
-			this->orderStatus->HeaderText = L"status";
-			this->orderStatus->Name = L"orderStatus";
-			// 
-			// servicesDataGrid
-			// 
-			this->servicesDataGrid->AllowUserToAddRows = false;
-			this->servicesDataGrid->AllowUserToDeleteRows = false;
-			this->servicesDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->servicesDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->servicesDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
-				this->servicesID,
-					this->serviceName
-			});
-			this->servicesDataGrid->Location = System::Drawing::Point(292, 290);
-			this->servicesDataGrid->MultiSelect = false;
-			this->servicesDataGrid->Name = L"servicesDataGrid";
-			this->servicesDataGrid->Size = System::Drawing::Size(543, 178);
-			this->servicesDataGrid->TabIndex = 8;
-			// 
-			// servicesID
-			// 
-			this->servicesID->HeaderText = L"ID";
-			this->servicesID->Name = L"servicesID";
-			// 
-			// serviceName
-			// 
-			this->serviceName->HeaderText = L"Name";
-			this->serviceName->Name = L"serviceName";
-			// 
-			// usersDataGrid
-			// 
-			this->usersDataGrid->AllowUserToAddRows = false;
-			this->usersDataGrid->AllowUserToDeleteRows = false;
-			this->usersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->usersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->usersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->userID,
-					this->userName, this->userCurrentStatus
-			});
-			this->usersDataGrid->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
-			this->usersDataGrid->Location = System::Drawing::Point(292, 92);
-			this->usersDataGrid->MultiSelect = false;
-			this->usersDataGrid->Name = L"usersDataGrid";
-			this->usersDataGrid->Size = System::Drawing::Size(543, 168);
-			this->usersDataGrid->TabIndex = 7;
-			// 
-			// userID
-			// 
-			this->userID->HeaderText = L"ID";
-			this->userID->Name = L"userID";
-			// 
-			// userName
-			// 
-			this->userName->HeaderText = L"Name";
-			this->userName->Name = L"userName";
-			// 
-			// userCurrentStatus
-			// 
-			this->userCurrentStatus->HeaderText = L"Status";
-			this->userCurrentStatus->Name = L"userCurrentStatus";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(292, 482);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(36, 13);
-			this->label3->TabIndex = 15;
-			this->label3->Text = L"orders";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(292, 274);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(46, 13);
-			this->label2->TabIndex = 14;
-			this->label2->Text = L"services";
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(292, 73);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(32, 13);
-			this->label1->TabIndex = 13;
-			this->label1->Text = L"users";
-			// 
-			// updateGridsBtn
-			// 
-			this->updateGridsBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateGridsBtn.BackgroundImage")));
-			this->updateGridsBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->updateGridsBtn->Location = System::Drawing::Point(795, 31);
-			this->updateGridsBtn->Name = L"updateGridsBtn";
-			this->updateGridsBtn->Size = System::Drawing::Size(40, 40);
-			this->updateGridsBtn->TabIndex = 12;
-			this->updateGridsBtn->UseVisualStyleBackColor = true;
-			this->updateGridsBtn->Click += gcnew System::EventHandler(this, &menuForm::updateGridsBtn_Click);
-			// 
 			// clientPanel
 			// 
 			this->clientPanel->Controls->Add(this->ClientNameLbl);
@@ -1623,9 +1616,9 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->clientPanel->Controls->Add(this->serviceIDfromOrderLbl);
 			this->clientPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->clientPanel->Location = System::Drawing::Point(68, 12);
+			this->clientPanel->Location = System::Drawing::Point(990, 165);
 			this->clientPanel->Name = L"clientPanel";
-			this->clientPanel->Size = System::Drawing::Size(961, 751);
+			this->clientPanel->Size = System::Drawing::Size(651, 751);
 			this->clientPanel->TabIndex = 17;
 			this->clientPanel->Visible = false;
 			this->clientPanel->VisibleChanged += gcnew System::EventHandler(this, &menuForm::clientPanel_VisibleChanged);
@@ -1839,7 +1832,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			// 
 			// employeePanel
 			// 
-			this->employeePanel->Controls->Add(this->clientPanel);
 			this->employeePanel->Controls->Add(this->updateOrdersGridBtn);
 			this->employeePanel->Controls->Add(this->label6);
 			this->employeePanel->Controls->Add(this->label5);
@@ -1860,7 +1852,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->employeePanel->Controls->Add(this->nameEmployeeLbl);
 			this->employeePanel->Controls->Add(this->exitFromEmployeePanelBtn);
 			this->employeePanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 12.25F, System::Drawing::FontStyle::Bold));
-			this->employeePanel->Location = System::Drawing::Point(10, 11);
+			this->employeePanel->Location = System::Drawing::Point(23, 28);
 			this->employeePanel->Name = L"employeePanel";
 			this->employeePanel->Size = System::Drawing::Size(913, 712);
 			this->employeePanel->TabIndex = 18;
@@ -2127,6 +2119,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->Controls->Add(this->addServicePanel);
 			this->Controls->Add(this->changeServicePanel);
 			this->Controls->Add(this->adminPanel);
+			this->Controls->Add(this->clientPanel);
 			this->MaximizeBox = false;
 			this->Name = L"menuForm";
 			this->ShowIcon = false;
@@ -2137,6 +2130,9 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->VisibleChanged += gcnew System::EventHandler(this, &menuForm::menuForm_VisibleChanged);
 			this->adminPanel->ResumeLayout(false);
 			this->adminPanel->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ordersDataGrid))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->servicesDataGrid))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersDataGrid))->EndInit();
 			this->changeServicePanel->ResumeLayout(false);
 			this->changeServicePanel->PerformLayout();
 			this->changeUserPanel->ResumeLayout(false);
@@ -2155,9 +2151,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->reportPanel->PerformLayout();
 			this->addServicePanel->ResumeLayout(false);
 			this->addServicePanel->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ordersDataGrid))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->servicesDataGrid))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersDataGrid))->EndInit();
 			this->clientPanel->ResumeLayout(false);
 			this->clientPanel->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->orderInitGrid))->EndInit();

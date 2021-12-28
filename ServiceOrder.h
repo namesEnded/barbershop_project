@@ -9,20 +9,20 @@ private:
 	int serviceID;
 	int employeeID;
 	int clientID;
-	float serviceCostWithDiscount;
+	double serviceCostWithDiscount;
 	bool status;
 public:
 
 	ServiceOrder() {};
 	ServiceOrder(int ID, int serviceID, int employeeID, int clientID, std::string date, std::string time,
-				float serviceCostWithDiscount, bool status);
+				double serviceCostWithDiscount, bool status);
 	std::string getTime();
 	int getID();
 	std::string getDate();
-	float getCost();
+	double getCost();
 	void setStatus(bool status);
 	bool getStatus();
-	float getServiceCostWithDiscount();
+	double getServiceCostWithDiscount();
 	int getClientID();
 	int getEmployeeID();
 	int getServiceID();

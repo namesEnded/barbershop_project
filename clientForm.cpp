@@ -1,7 +1,7 @@
 #include "clientForm.h"
 
 
-MockDatabase* db5 = MockDatabase::getInstance();
+MockDatabase* DBClientForm = MockDatabase::getInstance();
 static std::map<int, int> indexOfEmployeesMenu;
 static std::map<int, int> indexOfClientsMenu;
 
@@ -32,7 +32,7 @@ System::Void bshop::clientForm::clientForm_Load(System::Object^ sender, System::
 	Calendar->SetDate(Calendar->TodayDate);
 	Calendar->MinDate = Calendar->TodayDate;
 	updateServiceOrderBtn_Click(sender, e);
-	ClientNameLbl->Text = msclr::interop::marshal_as<System::String^>(db5->getUser(ID)->getName());
+	ClientNameLbl->Text = msclr::interop::marshal_as<System::String^>(DBClientForm->getUser(ID)->getName());
 }
 
 
@@ -44,7 +44,7 @@ System::Void bshop::clientForm::updateAvailableTimes()
 	std::string date = std::to_string((Calendar->SelectionStart).Year) + "-" +
 		std::to_string((Calendar->SelectionStart).Month) + "-" +
 		std::to_string((Calendar->SelectionStart).Day);
-	std::list<std::string> times = db5->getOrdersTimes(date);
+	std::list<std::string> times = DBClientForm->getOrdersTimes(date);
 	if (times.size() == 0)
 	{
 		timeStatusLbl->Text = "Âñ¸ çàáðîíèðîâàíî!";
@@ -61,7 +61,7 @@ System::Void bshop::clientForm::acceptOrderBtn_Click(System::Object^ sender, Sys
 	/*std::string date = std::to_string((Calendar->SelectionStart).Day) + "/" +
 		std::to_string((Calendar->SelectionStart).Month) + "/" +
 		std::to_string((Calendar->SelectionStart).Year);*/
-	float cost;
+	double cost;
 	int	clientID = this->ID;
 	int employeeID;
 	int serviceID;
@@ -90,34 +90,34 @@ System::Void bshop::clientForm::acceptOrderBtn_Click(System::Object^ sender, Sys
 			employeeIndex = employeeIDCB->Items->IndexOf(employeeIDCB->Text);
 		}
 		employeeID = findID(employeeIndex, true);
-		cost = std::stoi(msclr::interop::marshal_as<std::string>(costTB->Text));
+		cost = std::stod(msclr::interop::marshal_as<std::string>(costTB->Text));
 	}
 	catch (std::exception ex)
 	{
 		MessageBox::Show("Îøèáêà ââîäà!", "Îøèáêà!", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 	DateTime dateDT((Calendar->SelectionStart).Year, (Calendar->SelectionStart).Month, (Calendar->SelectionStart).Day);
-	if (db5->getOrdersCount(date) >= 8)
+	if (DBClientForm->getOrdersCount(date) >= 8)
 	{
 		MessageBox::Show("Íà äàííûé äåíü âñå ìåñòà çàáðîíèðîâàíû!", "Îøèáêà!", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		return;
 	}
 	else
 	{
-		db5->addServiceOrder(date, time, serviceID, employeeID, clientID, cost, false);
+		DBClientForm->addServiceOrder(date, time, serviceID, employeeID, clientID, cost, false);
 		updateAvailableTimes();
-		if (db5->getOrdersCount(date) >= 8)
+		if (DBClientForm->getOrdersCount(date) >= 8)
 		{
 			Calendar->AddBoldedDate(dateDT);
 			Calendar->UpdateBoldedDates();
 		}
 	}
-	db5->writeServicesOrdersToFile();
+	DBClientForm->writeServicesOrdersToFile();
 }
 
 System::Void bshop::clientForm::exitFromClientPanel_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db5->writeServicesOrdersToFile();
+	DBClientForm->writeServicesOrdersToFile();
 	this->Close();
 }
 
@@ -130,8 +130,8 @@ System::Void bshop::clientForm::Calendar_DateSelected(System::Object^ sender, Sy
 System::Void bshop::clientForm::serviceIDCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
 	int serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->SelectedItem->ToString()));
-	float cost = db5->getService(serviceID)->getPrice();
-	Client* curClient = (Client*)db5->getUser(this->ID);
+	double cost = DBClientForm->getService(serviceID)->getPrice();
+	Client* curClient = (Client*)DBClientForm->getUser(this->ID);
 	if (this->userStatus == CLIENT)
 	{
 		cost = Math::Round((cost - ((cost / 100) * curClient->getClientDiscount())), 2);
@@ -148,7 +148,7 @@ System::Void bshop::clientForm::serviceIDCB_SelectionChangeCommitted(System::Obj
 
 System::Void bshop::clientForm::updateServiceOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	std::list<ServiceOrder*> ServicesOrders = db5->getServiceOrdersList();
+	std::list<ServiceOrder*> ServicesOrders = DBClientForm->getServiceOrdersList();
 	employeeIDCB->Items->Clear();
 	serviceIDCB->Items->Clear();
 	orderInitGrid->Rows->Clear();
@@ -158,14 +158,14 @@ System::Void bshop::clientForm::updateServiceOrderBtn_Click(System::Object^ send
 	{
 
 		std::string ID = std::to_string(serviceOrder->getID());
-		Employee* selectedEmployee = (Employee*)db5->getUser(serviceOrder->getEmployeeID());
+		Employee* selectedEmployee = (Employee*)DBClientForm->getUser(serviceOrder->getEmployeeID());
 		std::string employeeName = selectedEmployee != nullptr ? selectedEmployee->getName() :
 			"ÏÎËÜÇÎÂÀÒÅËÜ ÓÄÀË¨Í, ID:" + std::to_string(serviceOrder->getEmployeeID());
-		Client* selectedClient = (Client*)db5->getUser(serviceOrder->getClientID());
+		Client* selectedClient = (Client*)DBClientForm->getUser(serviceOrder->getClientID());
 		std::string clientName = selectedClient != nullptr ? selectedClient->getName() :
 			"ÏÎËÜÇÎÂÀÒÅËÜ ÓÄÀË¨Í, ID:" + std::to_string(serviceOrder->getClientID());
 
-		Service* selectedService = (Service*)db5->getService(serviceOrder->getServiceID());
+		Service* selectedService = (Service*)DBClientForm->getService(serviceOrder->getServiceID());
 		std::string serviceName = selectedService != nullptr ? selectedService->getName() :
 			"ÓÑËÓÃÀ ÓÄÀËÅÍÀ, ID:" + std::to_string(serviceOrder->getServiceID());
 
@@ -182,8 +182,8 @@ System::Void bshop::clientForm::updateServiceOrderBtn_Click(System::Object^ send
 		i++;
 	}
 
-	std::list<Service*> Services = db5->getServiceList();
-	std::list<User*> Users = db5->getUsersList();
+	std::list<Service*> Services = DBClientForm->getServiceList();
+	std::list<User*> Users = DBClientForm->getUsersList();
 
 	for each (Service * service in Services)
 	{
