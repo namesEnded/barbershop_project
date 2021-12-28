@@ -160,7 +160,6 @@ System::Void bshop::adminForm::changeUserFormBtn_Click(System::Object^ sender, S
 	if (changeUserNameTB->Text == "" ||
 		changeUserMailTB->Text == "" ||
 		changeUserPasswordTB->Text == "" ||
-		changeUserSpecialityCB->Text == "" ||
 		changeUserTypeCB->Text == "")
 	{
 		MessageBox::Show("Åñòü ïóñòûå ïîëÿ!", "Îøèáêà!", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -174,9 +173,14 @@ System::Void bshop::adminForm::changeUserFormBtn_Click(System::Object^ sender, S
 	selectUser->setDate(msclr::interop::marshal_as<std::string>(changeUserDateTB->Text));
 	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
 	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
-	size_t passwordHash = NULL;
+	//size_t passwordHash = NULL;
 	#pragma warning(suppress : 4996)
-	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
+	std::string pass = msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text);
+	//sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
+
+	std::hash<std::string> hasher;
+	size_t passwordHash = hasher(pass);
+
 	selectUser->setPassword(passwordHash);
 	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
 	selectUser->setStatus(status);
@@ -464,7 +468,7 @@ System::Void bshop::adminForm::updateGridsBtn_Click(System::Object^ sender, Syst
 
 		Service* selectedService = (Service*)DBAdminForm->getService(serviceOrder->getServiceID());
 		std::string serviceName = selectedService != nullptr ? selectedService->getName() :
-			"ÓÑËÓÃÀ ÓÄÀËÅÍÀ, ID:" + std::to_string(serviceOrder->getServiceID());
+					"ÓÑËÓÃÀ ÓÄÀËÅÍÀ, ID:" + std::to_string(serviceOrder->getServiceID());
 
 
 		std::string status = serviceOrder->getStatus().Equals(true) ? "Ïðîâåä¸í" : "Íå ïðîâåä¸í";
@@ -730,4 +734,9 @@ System::Void bshop::adminForm::mainTabSekector_Selected(System::Object^ sender, 
 	{
 		changeUserIdCB->Items->Add(user->getID());
 	}
+}
+
+System::Void bshop::adminForm::adminForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	Application::Exit();
 }

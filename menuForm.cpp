@@ -305,6 +305,7 @@ System::Void bshop::menuForm::exitFromClientPanel_Click(System::Object^ sender, 
 {
 	db2->writeServicesOrdersToFile();
 	this->Close();
+	Application::Exit();
 }
 
 System::Void bshop::menuForm::updateAvailableTimes(System::Object^ sender, System::EventArgs^ e)
@@ -398,6 +399,7 @@ System::Void bshop::menuForm::exitFromEmployeePanelBtn_Click(System::Object^ sen
 {
 	db2->writeServicesOrdersToFile();
 	this->Close();
+	Application::Exit();
 }
 
 System::Void bshop::menuForm::updateTimetable(MonthCalendar^ employeeCalendar, TextBox^ selectedDateEmployeeTB)
@@ -666,9 +668,13 @@ System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, Sy
 	selectUser->setDate(msclr::interop::marshal_as<std::string>(changeUserDateTB->Text));
 	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
 	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
-	size_t passwordHash = NULL;
-	#pragma warning(suppress : 4996)
-	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
+	//size_t passwordHash = NULL;
+	//#pragma warning(suppress : 4996)
+	//sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
+
+	std::hash<std::string> hasher;
+	size_t passwordHash = hasher(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text));
+
 	selectUser->setPassword(passwordHash);
 	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
 	selectUser->setStatus(status);

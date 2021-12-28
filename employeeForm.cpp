@@ -6,12 +6,12 @@ std::list<ServiceOrder*> currentOrdersEmployeeForm;
 
 System::Void bshop::employeeForm::employeeForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	currentEmployeeEmployeeForm = (Employee*)DBEmployeeForm->getUser(this->ID);
 	employeeCalendar->SetDate(employeeCalendar->TodayDate);
 	updateTimetable(employeeCalendar, selectedDateEmployeeTB);
 	updateOrdersGrid(currentOrdersEmployeeForm);
 	orderEmployeeIdCB->Items->Clear();
 	orderEmployeeIdCB->Items->Clear();
-	currentEmployeeEmployeeForm = (Employee*)DBEmployeeForm->getUser(this->ID);
 	nameEmployeeTB->Text = msclr::interop::marshal_as<System::String^>(currentEmployeeEmployeeForm->getName());
 	specialityEmployeeTB->Text = msclr::interop::marshal_as<System::String^>(currentEmployeeEmployeeForm->getSpeciality());
 	achievementsEmployeeTB->Text = msclr::interop::marshal_as<System::String^>(currentEmployeeEmployeeForm->getPersonalAchievements());
@@ -52,11 +52,17 @@ System::Void bshop::employeeForm::updateOrdersGrid(std::list<ServiceOrder*> orde
 	}
 }
 
+System::Void bshop::employeeForm::employeeForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	Application::Exit();
+}
+
 #pragma region Работа с панелью рабочего
 System::Void bshop::employeeForm::exitFromEmployeePanelBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	DBEmployeeForm->writeServicesOrdersToFile();
 	this->Close();
+	Application::Exit();
 }
 
 System::Void bshop::employeeForm::updateTimetable(MonthCalendar^ employeeCalendar, TextBox^ selectedDateEmployeeTB)

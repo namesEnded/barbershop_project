@@ -96,6 +96,11 @@ void MockDatabase::loadUser(int ID, std::string name, bool sex, std::string date
 	size_t passwordHash = NULL;
 	#pragma warning(suppress : 4996)
 	sscanf(password.c_str(), "%zu", &passwordHash);
+
+
+	/*std::hash<std::string> hasher;
+	size_t passwordHash = hasher(password);*/
+
 	switch (status) {
 	case ADMIN:
 		this->listOfUsers.push_back(new Admin(ID, name, sex, date, phonenumber, email, passwordHash, ADMIN));
@@ -117,6 +122,11 @@ void MockDatabase::loadUser(int ID, std::string name, bool sex, std::string date
 	size_t passwordHash = NULL;
 	#pragma warning(suppress : 4996)
 	sscanf(password.c_str(), "%zu", &passwordHash);
+
+	/*std::hash<std::string> hasher;
+	size_t passwordHash = hasher(password);*/
+
+
 	this->listOfUsers.push_back(new Employee(ID, name, sex, date, phonenumber, email, passwordHash,
 		EMPLOYEE, experience, speciality, personalAchievements));
 }

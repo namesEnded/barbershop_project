@@ -193,7 +193,13 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 			this->servicesDataGrid = (gcnew System::Windows::Forms::DataGridView());
 			this->servicesID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->serviceName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->ordersDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->orderID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->employeeID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->clientID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->orderStatus = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->serviceInOrder = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->addUserTab = (gcnew System::Windows::Forms::TabPage());
 			this->addUserPanel = (gcnew System::Windows::Forms::Panel());
 			this->addUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
@@ -284,12 +290,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 			this->changeUserBtn = (gcnew System::Windows::Forms::Button());
 			this->addUserBtn = (gcnew System::Windows::Forms::Button());
 			this->AdminLbl = (gcnew System::Windows::Forms::Label());
-			this->Price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->orderID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->employeeID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->clientID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->orderStatus = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->serviceInOrder = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			changeNameLbl = (gcnew System::Windows::Forms::Label());
 			addNameLbl = (gcnew System::Windows::Forms::Label());
 			this->adminPanel->SuspendLayout();
@@ -505,6 +505,11 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 			this->serviceName->HeaderText = L"Name";
 			this->serviceName->Name = L"serviceName";
 			// 
+			// Price
+			// 
+			this->Price->HeaderText = L"Price";
+			this->Price->Name = L"Price";
+			// 
 			// ordersDataGrid
 			// 
 			this->ordersDataGrid->AllowUserToAddRows = false;
@@ -520,6 +525,31 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 			this->ordersDataGrid->Name = L"ordersDataGrid";
 			this->ordersDataGrid->Size = System::Drawing::Size(543, 176);
 			this->ordersDataGrid->TabIndex = 9;
+			// 
+			// orderID
+			// 
+			this->orderID->HeaderText = L"ID";
+			this->orderID->Name = L"orderID";
+			// 
+			// employeeID
+			// 
+			this->employeeID->HeaderText = L"employee";
+			this->employeeID->Name = L"employeeID";
+			// 
+			// clientID
+			// 
+			this->clientID->HeaderText = L"client";
+			this->clientID->Name = L"clientID";
+			// 
+			// orderStatus
+			// 
+			this->orderStatus->HeaderText = L"status";
+			this->orderStatus->Name = L"orderStatus";
+			// 
+			// serviceInOrder
+			// 
+			this->serviceInOrder->HeaderText = L"service";
+			this->serviceInOrder->Name = L"serviceInOrder";
 			// 
 			// addUserTab
 			// 
@@ -1448,36 +1478,6 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 			this->AdminLbl->TabIndex = 0;
 			this->AdminLbl->Text = L"Панель управления администратора";
 			// 
-			// Price
-			// 
-			this->Price->HeaderText = L"Price";
-			this->Price->Name = L"Price";
-			// 
-			// orderID
-			// 
-			this->orderID->HeaderText = L"ID";
-			this->orderID->Name = L"orderID";
-			// 
-			// employeeID
-			// 
-			this->employeeID->HeaderText = L"employee";
-			this->employeeID->Name = L"employeeID";
-			// 
-			// clientID
-			// 
-			this->clientID->HeaderText = L"client";
-			this->clientID->Name = L"clientID";
-			// 
-			// orderStatus
-			// 
-			this->orderStatus->HeaderText = L"status";
-			this->orderStatus->Name = L"orderStatus";
-			// 
-			// serviceInOrder
-			// 
-			this->serviceInOrder->HeaderText = L"service";
-			this->serviceInOrder->Name = L"serviceInOrder";
-			// 
 			// adminForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1485,7 +1485,8 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 			this->ClientSize = System::Drawing::Size(898, 732);
 			this->Controls->Add(this->adminPanel);
 			this->Name = L"adminForm";
-			this->Text = L"adminForm";
+			this->Text = L"Админ";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &adminForm::adminForm_FormClosing);
 			this->adminPanel->ResumeLayout(false);
 			this->adminPanel->PerformLayout();
 			this->mainTabSekector->ResumeLayout(false);
@@ -1546,6 +1547,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceInOrder;
 	private: System::Void changeServiceFormBtn_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void makeReportBtn_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void mainTabSekector_Selected(System::Object^ sender, System::Windows::Forms::TabControlEventArgs^ e);
+	private: System::Void adminForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }
 #endif ADMINFORM_H
