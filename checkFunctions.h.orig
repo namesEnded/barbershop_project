@@ -2,6 +2,11 @@
 #define CHECKFUNCTIONS_H
 #include "User.h"
 #include "speciality.h"
+<<<<<<< HEAD
+static std::map<int, int> indexOfEmployees;
+static std::map<int, int> indexOfClients;
+=======
+>>>>>>> origin/dmitriev_feature
 bool checkSex(std::string sex);
 userType checkSelectedStatus(std::string statusString);
 userSpeciality checkSelectedSpeciality(std::string selectedSpeciality);

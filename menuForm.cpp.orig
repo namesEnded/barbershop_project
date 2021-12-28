@@ -6,8 +6,12 @@
 MockDatabase* db2 = MockDatabase::getInstance();
 Employee* currentEmployee;
 std::list<ServiceOrder*> curOrders;
+<<<<<<< HEAD
+
+=======
 static std::map<int, int> indexOfEmployeesMenu;
 static std::map<int, int> indexOfClientsMenu;
+>>>>>>> origin/dmitriev_feature
 System::Void bshop::menuForm::menuForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
 	switch (userStatus) {
@@ -17,9 +21,12 @@ System::Void bshop::menuForm::menuForm_Load(System::Object^ sender, System::Even
 	case CLIENT:
 		//outputRTB->Text = "CLIENT";
 		clientPanel->Visible = true;
+<<<<<<< HEAD
+=======
 		Calendar->SetDate(employeeCalendar->TodayDate);
 		updateServiceOrderBtn_Click(sender, e);
 		ClientNameLbl->Text = msclr::interop::marshal_as<System::String^>(db2->getUser(ID)->getName());
+>>>>>>> origin/dmitriev_feature
 		break;
 	case EMPLOYEE:
 		//outputRTB->Text = "EMPLOYEE";
@@ -62,6 +69,7 @@ System::Void bshop::menuForm::updateBtn_Click(System::Object^ sender, System::Ev
 		std::string ID = std::to_string(user->getID());
 		std::string Name = user->getName();
 		std::string status = statusToString(user->getStatus());
+<<<<<<< HEAD
 
 		std::vector<std::string> v = { ID, Name, status };
 		usersDataGrid->Rows->Add();
@@ -88,6 +96,34 @@ System::Void bshop::menuForm::updateBtn_Click(System::Object^ sender, System::Ev
 		}
 	}
 
+=======
+
+		std::vector<std::string> v = { ID, Name, status };
+		usersDataGrid->Rows->Add();
+		int i = usersDataGrid->Rows->Count;
+		int k = usersDataGrid->ColumnCount;
+		for (int j = 1; j < k; j++)
+		{
+			usersDataGrid->Rows[i - 1]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j - 1]);
+		}
+	}
+
+	for each (Service * service in Services)
+	{
+		std::string ID = std::to_string(service->getID());
+		std::string Name = service->getName();
+
+		std::vector<std::string> v = { ID, Name };
+		servicesDataGrid->Rows->Add();
+		int i = servicesDataGrid->Rows->Count;
+		int k = servicesDataGrid->ColumnCount;
+		for (int j = 1; j < k; j++)
+		{
+			servicesDataGrid->Rows[i - 1]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j - 1]);
+		}
+	}
+
+>>>>>>> origin/dmitriev_feature
 	for each (ServiceOrder * serviceOrder in ServicesOrders)
 	{
 		std::string ID = std::to_string(serviceOrder->getID());
@@ -110,14 +146,22 @@ System::Int32 bshop::menuForm::findID(int Index, bool isEmployee)
 
 	int res = 0;
 	if (isEmployee) {
+<<<<<<< HEAD
+		for (const auto& kv : indexOfEmployees) {
+=======
 		for (const auto& kv : indexOfEmployeesMenu) {
+>>>>>>> origin/dmitriev_feature
 			if (kv.first == Index)
 				return res = kv.second;
 		}
 	}
 	else
 	{
+<<<<<<< HEAD
+		for (const auto& kv : indexOfClients) {
+=======
 		for (const auto& kv : indexOfClientsMenu) {
+>>>>>>> origin/dmitriev_feature
 			if (kv.first == Index)
 				return res = kv.second;
 		}
@@ -179,12 +223,21 @@ System::Void bshop::menuForm::addUserBtn_Click(System::Object^ sender, System::E
 	}
 }
 
+<<<<<<< HEAD
+
 System::Void bshop::menuForm::menuForm_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
 {
+	Calendar->MinDate = Calendar->TodayDate;
+=======
+System::Void bshop::menuForm::menuForm_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
+{
+>>>>>>> origin/dmitriev_feature
 }
 
 #pragma region Работа с панелью клиента
 
+<<<<<<< HEAD
+=======
 System::Void bshop::menuForm::clientPanel_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
 {
 	if (clientPanel->Visible == true) 
@@ -193,6 +246,7 @@ System::Void bshop::menuForm::clientPanel_VisibleChanged(System::Object^ sender,
 	}
 }
 
+>>>>>>> origin/dmitriev_feature
 System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	/*std::string date = std::to_string((Calendar->SelectionStart).Day) + "/" +
@@ -206,7 +260,11 @@ System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 	std::string date;
 	try
 	{
+<<<<<<< HEAD
+		if (availableTimeLB->SelectedItem == NULL ||
+=======
 		if (availableTimeLB->SelectedItem == nullptr ||
+>>>>>>> origin/dmitriev_feature
 			serviceIDCB->Text == "" ||
 			employeeIDCB->Text == "" ||
 			//clientIDCB->Text == ""   ||
@@ -222,10 +280,13 @@ System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 		time = msclr::interop::marshal_as<std::string>(availableTimeLB->SelectedItem->ToString());
 		serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->Text));
 		int employeeIndex = employeeIDCB->SelectedIndex;
+<<<<<<< HEAD
+=======
 		if (employeeIndex == -1) 
 		{
 			employeeIndex = employeeIDCB->Items->IndexOf(employeeIDCB->Text);
 		}
+>>>>>>> origin/dmitriev_feature
 		employeeID = findID(employeeIndex, true);
 		cost = std::stoi(msclr::interop::marshal_as<std::string>(costTB->Text));
 	}
@@ -249,13 +310,20 @@ System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 			Calendar->UpdateBoldedDates();
 		}
 	}
+<<<<<<< HEAD
+=======
 	db2->writeServicesOrdersToFile();
+>>>>>>> origin/dmitriev_feature
 }
 
 System::Void bshop::menuForm::exitFromClientPanel_Click(System::Object^ sender, System::EventArgs^ e)
 {
+<<<<<<< HEAD
+	return System::Void();
+=======
 	db2->writeServicesOrdersToFile();
 	this->Close();
+>>>>>>> origin/dmitriev_feature
 }
 
 System::Void bshop::menuForm::updateAvailableTimes(System::Object^ sender, System::EventArgs^ e)
@@ -299,7 +367,10 @@ System::Void bshop::menuForm::updateServiceOrderBtn_Click(System::Object^ sender
 	serviceIDCB->Items->Clear();
 	orderInitGrid->Rows->Clear();
 	int i = 0;
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/dmitriev_feature
 	for each (ServiceOrder * serviceOrder in ServicesOrders)
 	{
 		std::string ID = std::to_string(serviceOrder->getID());
@@ -333,15 +404,27 @@ System::Void bshop::menuForm::updateServiceOrderBtn_Click(System::Object^ sender
 		{
 			String^ userName = msclr::interop::marshal_as<System::String^>(user->getName());
 			employeeIDCB->Items->Add(userName);
+<<<<<<< HEAD
+			indexOfEmployees[(employeeIDCB->Items->Count - 1)] = user->getID();
+		}
+		if (user->getStatus() == CLIENT)
+		{
+			indexOfClients[(employeeIDCB->Items->Count - 1)] = user->getID();
+=======
 			indexOfEmployeesMenu[(employeeIDCB->Items->Count - 1)] = user->getID();
 		}
 		if (user->getStatus() == CLIENT)
 		{
 			indexOfClientsMenu[(employeeIDCB->Items->Count - 1)] = user->getID();
+>>>>>>> origin/dmitriev_feature
 		}
 	}
 
 }
+<<<<<<< HEAD
+
+#pragma endregion
+=======
 #pragma endregion
 
 
@@ -352,6 +435,7 @@ System::Void bshop::menuForm::exitFromEmployeePanelBtn_Click(System::Object^ sen
 	this->Close();
 }
 
+>>>>>>> origin/dmitriev_feature
 System::Void bshop::menuForm::updateTimetable(MonthCalendar^ employeeCalendar, TextBox^ selectedDateEmployeeTB)
 {
 	std::string time;
@@ -459,6 +543,10 @@ System::Void bshop::menuForm::employeeCalendar_DateChanged(System::Object^ sende
 	}
 	curOrders = employeeServicesOrders;*/
 }
+<<<<<<< HEAD
+
+
+=======
 #pragma endregion
 
 
@@ -625,3 +713,4 @@ System::Void bshop::menuForm::changeUserTypeCB_SelectedIndexChanged(System::Obje
 	else changeUserSpecialityPanel->Visible = false;
 }
 #pragma endregion
+>>>>>>> origin/dmitriev_feature

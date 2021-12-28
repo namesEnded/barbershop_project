@@ -5,8 +5,11 @@
 using namespace bshop; // Название проекта 
 using namespace System;
 using namespace System::Windows::Forms;
+<<<<<<< HEAD
+=======
 static std::map<int, int> indexOfEmployees;
 static std::map<int, int> indexOfClients;
+>>>>>>> origin/dmitriev_feature
 //MockDatabase db3;
 int curID;
 MockDatabase* db3 = MockDatabase::getInstance();
@@ -422,8 +425,12 @@ System::Void bshop::mainForm::lgnAcceptBtn_Click(System::Object^ sender, System:
 	if (userID !=NOT_FOUND)
 	{
 		menuForm^ form;
+<<<<<<< HEAD
+		int userStatus = db3->getUserStatus(userID);
+=======
 		int userStatus = db3->getUser(userID)->getStatus();
 		//int userStatus = db3->getUserStatus(userID);
+>>>>>>> origin/dmitriev_feature
 		//switch (userStatus) {
 		//case ADMIN:
 		//	/*form = gcnew menuForm(userID, ADMIN);

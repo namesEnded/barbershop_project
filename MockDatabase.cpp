@@ -293,7 +293,7 @@ int MockDatabase::getUserStatus(int ID)
 	std::string emailS = email;
 	std::list<User*>::iterator findIter = std::find_if(listOfUsers.begin(), listOfUsers.end(), [&ID](User* user)
 		{
-			if (user->id == ID)
+			if (user->getID() == ID)
 			{
 				return true;
 			}
