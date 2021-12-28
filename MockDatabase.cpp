@@ -547,7 +547,7 @@ void MockDatabase::writeServicesToFile()
 		}
 		if (isEntrySuccessful)
 		{
-			MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			//MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 	}
 }
@@ -593,7 +593,7 @@ void MockDatabase::readServicesFromFile()
 	fin.close();
 	if (isReadSuccessful)
 	{
-		MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		//MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	}
 }
 
@@ -707,7 +707,7 @@ void MockDatabase::writeDatabaseToFile()
 		}
 		if (isEntrySuccessful)
 		{
-			MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			//MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 	}
 }
@@ -761,7 +761,7 @@ void MockDatabase::readDatabaseFromFile()
 	}
 	if (isReadSuccessful)
 	{
-		MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		//MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	}
 
 }
@@ -784,7 +784,7 @@ void MockDatabase::writeServicesOrdersToFile()
 		}
 		if (isEntrySuccessful)
 		{
-			MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			//MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
 	}
 }
@@ -830,7 +830,7 @@ void MockDatabase::readServicesOrdersFromFile()
 	fin.close();
 	if (isReadSuccessful)
 	{
-		MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+		//MessageBox::Show("Данные успешно сохранены", "Сообщение!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 	}
 }
 

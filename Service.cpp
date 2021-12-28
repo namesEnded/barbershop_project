@@ -14,7 +14,7 @@ int Service::getID()
 
 void Service::setPrice(int price)
 {
-	this->name = price;
+	this->price = price;
 }
 
 void Service::setName(std::string name)

@@ -805,7 +805,7 @@ System::Void bshop::menuForm::changeServiceFormBtn_Click(System::Object^ sender,
 		{
 			std::string name = msclr::interop::marshal_as<std::string>(changeServiceNameTB->Text);
 			int price = std::stoi(msclr::interop::marshal_as<std::string>(changeServicePriceTB->Text));
-			int serviseID = std::stoi(msclr::interop::marshal_as<std::string>(servicesDataGrid->Rows[i]->Cells[0]->ToString()));
+			int serviseID = std::stoi(msclr::interop::marshal_as<std::string>(servicesDataGrid->Rows[i]->Cells[0]->Value->ToString()));
 			try
 			{
 				Service* buffService = db2->getService(serviseID);
