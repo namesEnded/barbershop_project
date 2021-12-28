@@ -1,5 +1,4 @@
 #include "checkFunctions.h"
-
 bool checkSex(std::string sex)
 {
 	if (sex == "male") return true;
@@ -11,7 +10,16 @@ std::string statusToString(userType statusString)
 	if (statusString == EMPLOYEE) return "EMPLOYEE";
 	if (statusString == ADMIN) return "ADMIN";
 	if (statusString == CLIENT) return "CLIENT";
+	return "NONE";
+}
 
+std::string specialityToString(userSpeciality speciality)
+{
+	if (speciality == BARBER) return "Барбер";
+	if (speciality == ADMINISTRATOR) return "Администратор";
+	if (speciality == CLEANER) return "Уборщик";
+	if (speciality == DIRECTOR) return "Директор";
+	return "NONE";
 }
 
 

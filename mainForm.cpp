@@ -5,10 +5,11 @@
 using namespace bshop; // Название проекта 
 using namespace System;
 using namespace System::Windows::Forms;
-//MockDatabase db;
+static std::map<int, int> indexOfEmployees;
+static std::map<int, int> indexOfClients;
+//MockDatabase db3;
 int curID;
-std::list<std::map<int, int>> addedEmployee;
-std::list<std::map<int, int>> addedClient;
+MockDatabase* db3 = MockDatabase::getInstance();
 
 [STAThreadAttribute]
 void main(array<String^>^ args) {
@@ -20,6 +21,10 @@ void main(array<String^>^ args) {
 
 System::Void bshop::mainForm::mainForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
+
+	db3->readDatabaseFromFile();
+	db3->readServicesFromFile();
+	db3->readServicesOrdersFromFile();
 	/*users.push_back(user1);
 	users.push_back(user2);*/
 }
@@ -30,7 +35,7 @@ System::Void bshop::mainForm::updateAvailableTimes()
 	std::string date = std::to_string((Calendar->SelectionStart).Year) + "-" +
 		std::to_string((Calendar->SelectionStart).Month) + "-" +
 		std::to_string((Calendar->SelectionStart).Day);
-	std::list<std::string> times = db.getOrdersTimes(date);
+	std::list<std::string> times = db3->getOrdersTimes(date);
 	if (times.size() == 0)
 	{
 		timeStatusLbl->Text = "Всё забронировано!";
@@ -55,9 +60,9 @@ System::Void bshop::mainForm::Calendar_DateSelected(System::Object^ sender, Syst
 System::Void bshop::mainForm::serviceIDCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
 	int serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->SelectedItem->ToString()));
-	float cost = db.getService(serviceID)->getPrice();
-	Client* curClient = (Client*)db.getUser(curID);
-	if (db.getUser(curID)->getStatus() == CLIENT)
+	float cost = db3->getService(serviceID)->getPrice();
+	Client* curClient = (Client*)db3->getUser(curID);
+	if (db3->getUser(curID)->getStatus() == CLIENT)
 	{
 		cost = Math::Round((cost - ((cost / 100) * curClient->getClientDiscount())), 2);
 		String^ costString = cost.ToString();
@@ -74,24 +79,41 @@ System::Void bshop::mainForm::serviceIDCB_SelectionChangeCommitted(System::Objec
 
 System::Void bshop::mainForm::updateServiceOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	std::list<ServiceOrder*> ServicesOrders = db.getServiceOrdersList();
-	clientIDCB->Items->Clear();
+	std::list<ServiceOrder*> ServicesOrders = db3->getServiceOrdersList();
+	//clientIDCB->Items->Clear();
 	employeeIDCB->Items->Clear();
 	serviceIDCB->Items->Clear();
 	orderInitGrid->Rows->Clear();
 	int i = 0;
 	for each (ServiceOrder * serviceOrder in ServicesOrders)
 	{
+		//std::string ID = std::to_string(serviceOrder->getID());
+		//std::string employeeName = db3->getUser(serviceOrder->getEmployeeID())->getName();
+		//std::string serviceName = db3->getService(serviceOrder->getServiceID())->getName();
+		//std::string clientName = db3->getUser(serviceOrder->getClientID())->getName();
+		//std::string cost = std::to_string(serviceOrder->getCost());
+		//std::string data = serviceOrder->getDate();
+		//std::string status = serviceOrder->getStatus().Equals(true) ? "Проведён" : "Не проведён";
+		//std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data };
+		//orderInitGrid->Rows->Add();
+		////int i = orderInitGrid->Rows->Count;
+		//int k = orderInitGrid->ColumnCount;
+		//for (int j = 0; j < k; j++)
+		//{
+		//	orderInitGrid->Rows[i]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j]);
+		//}
+		//i++;
+
 		std::string ID = std::to_string(serviceOrder->getID());
-		std::string employeeName = db.getUser(serviceOrder->getEmployeeID())->getName();
-		std::string serviceName = db.getService(serviceOrder->getServiceID())->getName();
-		std::string clientName = db.getUser(serviceOrder->getClientID())->getName();
+		std::string employeeName = db3->getUser(serviceOrder->getEmployeeID())->getName();
+		std::string serviceName = db3->getService(serviceOrder->getServiceID())->getName();
+		std::string clientName = db3->getUser(serviceOrder->getClientID())->getName();
 		std::string cost = std::to_string(serviceOrder->getCost());
 		std::string data = serviceOrder->getDate();
+		std::string time = serviceOrder->getTime();
 		std::string status = serviceOrder->getStatus().Equals(true) ? "Проведён" : "Не проведён";
-		std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data };
+		std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data, time};
 		orderInitGrid->Rows->Add();
-		//int i = orderInitGrid->Rows->Count;
 		int k = orderInitGrid->ColumnCount;
 		for (int j = 0; j < k; j++)
 		{
@@ -100,10 +122,8 @@ System::Void bshop::mainForm::updateServiceOrderBtn_Click(System::Object^ sender
 		i++;
 	}
 
-	std::list<Service*> Services = db.getServiceList();
- 	std::list<User*> Users = db.getUsersList();
-
-
+	std::list<Service*> Services = db3->getServiceList();
+ 	std::list<User*> Users = db3->getUsersList();
 	//std::list<std::map<int, std::string>> Users;
 
 	/*std::map<int, std::string> employeeMap;
@@ -132,19 +152,11 @@ System::Void bshop::mainForm::updateServiceOrderBtn_Click(System::Object^ sender
 		{
 			String^ userName = msclr::interop::marshal_as<System::String^>(user->getName());
 			employeeIDCB->Items->Add(userName);
-			std::map<int, int> buff;
-			//buff[employeeIDCB->Items->IndexOf(userName)] =
-			//buff[employeeIDCB->Items->IndexOf(employeeIDCB->Items->Count)] = user->getID();
-			buff[employeeIDCB->Items->Count-1] = user->getID();
-			addedEmployee.push_back(buff);
+			indexOfEmployees[(employeeIDCB->Items->Count-1)] = user->getID();
 		}
 		if (user->getStatus() == CLIENT)
 		{
-			clientIDCB->Items->Add(msclr::interop::marshal_as<System::String^>(user->getName()));
-			std::map<int, int> buff;
-			//buff[employeeIDCB->Items->IndexOf(employeeIDCB->Items->Count)] = user->getID();
-			buff[employeeIDCB->Items->Count-1] = user->getID();
-			addedClient.push_back(buff);
+			indexOfClients[(employeeIDCB->Items->Count-1)] = user->getID();
 		}
 	}
 
@@ -157,7 +169,7 @@ System::Void bshop::mainForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 		std::to_string((Calendar->SelectionStart).Month) + "/" +
 		std::to_string((Calendar->SelectionStart).Year);*/
 	float cost;
-	int	clientID;
+	int	clientID = curID;
 	int employeeID;
 	int serviceID;
 	std::string time;
@@ -167,7 +179,7 @@ System::Void bshop::mainForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 		if (availableTimeLB->SelectedItem == NULL ||
 			serviceIDCB->Text == ""  ||
 			employeeIDCB->Text == "" ||
-			clientIDCB->Text == ""   ||
+			//clientIDCB->Text == ""   ||
 			availableTimeLB->Items->Count == 0 ||
 			costTB->Text == "")
 		{
@@ -181,8 +193,10 @@ System::Void bshop::mainForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 		serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->Text));
 		int employeeIndex = employeeIDCB->SelectedIndex;
 		employeeID = findID(employeeIndex, true);
-		int clientIndex = clientIDCB->SelectedIndex;
-		clientID = findID(clientIndex, false);
+
+		//int clientIndex = clientIDCB->SelectedIndex;
+		//clientID = findID(clientIndex, false);
+
 		/*serviceID = std::stoi(msclr::interop::marshal_as<std::string>(serviceIDCB->Text));
 		employeeID = std::stoi(msclr::interop::marshal_as<std::string>(employeeIDCB->Text));
 		clientID = std::stoi(msclr::interop::marshal_as<std::string>(clientIDCB->Text));*/
@@ -194,34 +208,48 @@ System::Void bshop::mainForm::acceptOrderBtn_Click(System::Object^ sender, Syste
 	}
 	DateTime dateDT((Calendar->SelectionStart).Year, (Calendar->SelectionStart).Month, (Calendar->SelectionStart).Day);
 	//TypeDescriptor::GetConverter(dateDT)->ConvertFrom(msclr::interop::marshal_as<System::String^>(date));
-	if (db.getOrdersCount(date) >= 8) 
+	if (db3->getOrdersCount(date) >= 8) 
 	{
 		MessageBox::Show("На данный день все места забронированы!", "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		return;
 	}
 	else 
 	{
-		bool status = false;
-		if (orderStatusCB->Checked)
-		{
-			status = true;
-		}
 
 		//int ID = std::stoi(msclr::interop::marshal_as<std::string>(oerderID->Text));
-		db.addServiceOrder(date, time, serviceID, employeeID, clientID, cost, status);
+		db3->addServiceOrder(date, time, serviceID, employeeID, clientID, cost, false);
 		updateAvailableTimes();
-		if (db.getOrdersCount(date) >= 8) 
+		if (db3->getOrdersCount(date) >= 8) 
 		{ 
 			Calendar->AddBoldedDate(dateDT); 
 			Calendar->UpdateBoldedDates();
 		}
 	}
+	availableTimeLB->Text = "";
+	serviceIDCB->Text = "";
+	employeeIDCB->Text = "";
+
 }
 
-System::Int32 bshop::mainForm::findID(int employeeIndex, bool isEmployee)
+System::Int32 bshop::mainForm::findID(int Index, bool isEmployee)
 {
 	int res = 0;
 	if (isEmployee) {
+		for (const auto& kv : indexOfEmployees) {
+			if (kv.first == Index)
+				return res = kv.second;
+		}
+	}
+	else
+	{
+		for (const auto& kv : indexOfClients) {
+			if (kv.first == Index)
+				return res = kv.second;
+		}
+	}
+	return -1;
+
+	/*if (isEmployee) {
 		std::list<std::map<int, int>>::iterator list_it = addedEmployee.begin();
 		std::map<int, int>::iterator map_it = (*list_it).begin();
 		for (; map_it != (*list_it).end(); map_it++)
@@ -243,8 +271,8 @@ System::Int32 bshop::mainForm::findID(int employeeIndex, bool isEmployee)
 				res = map_it->second;
 			}
 		}
-	}
-	return res;
+	}*/
+	/*return res;*/
 
 	/*std::list<std::map<int, int>>::iterator findIter = std::find_if(addedEmployee.begin(), addedEmployee.end(),
 		[&employeeIndex](std::map<int, int>* buff)
@@ -253,6 +281,7 @@ System::Int32 bshop::mainForm::findID(int employeeIndex, bool isEmployee)
 		});
 	return findIter;*/
 }
+
 
 //int findID(int employeeIndex, bool isEmployee)
 //{
@@ -300,9 +329,9 @@ System::Void bshop::mainForm::updateBtn_Click(System::Object^ sender, System::Ev
 	usersRTB->Clear();
 	try
 	{
-				String^ numberOfUsers = msclr::interop::marshal_as<System::String^>("Number of users: " + std::to_string((db.numberOfUsers())));
+				String^ numberOfUsers = msclr::interop::marshal_as<System::String^>("Number of users: " + std::to_string((db3->numberOfUsers())));
 				numberOfUsersLbl->Text = numberOfUsers;
-				String^ info = msclr::interop::marshal_as<System::String^>(db.getUsers());
+				String^ info = msclr::interop::marshal_as<System::String^>(db3->getUsers());
 				usersRTB->AppendText(info);
 	}
 	catch (std::exception ex)
@@ -339,19 +368,19 @@ System::Void bshop::mainForm::regBtn_Click(System::Object^ sender, System::Event
 	//short status = std::stoi(statusString);
 	userType status = checkSelectedStatus(statusString);
 	userSpeciality speciality = checkSelectedSpeciality(selectedSpeciality);
-	if (db.emailIsUnique(email))
+	if (db3->emailIsUnique(email))
 		switch (status) {
 				case EMPLOYEE:
 					if (experience.Equals(NULL)) experience = DEF_WORK_EXPERIENCE;
 					if (personalAchievements.empty()) personalAchievements = DEF_PERSONAL_ACHIEVEMENTS;
-					db.addUser(name, sex, date, phonenumber, email, password, status, experience, 
+					db3->addUser(name, sex, date, phonenumber, email, password, status, experience, 
 								speciality, personalAchievements);
 					break;
 				case ADMIN:
-					db.addUser(name, sex, date, phonenumber, email, password, status);
+					db3->addUser(name, sex, date, phonenumber, email, password, status);
 					break;
 				case CLIENT:
-					db.addUser(name, sex, date, phonenumber, email, password, status);
+					db3->addUser(name, sex, date, phonenumber, email, password, status);
 					break;
 				default:
 					System::Windows::Forms::MessageBox::Show("There is no such status");
@@ -389,32 +418,60 @@ System::Void bshop::mainForm::lgnAcceptBtn_Click(System::Object^ sender, System:
 	std::string inputEmail= msclr::interop::marshal_as<std::string>(lgnEmailTB->Text);
 	std::string inputPassword = msclr::interop::marshal_as<std::string>(lgnPasswordTB->Text);
 	size_t passwordHash = hasher(inputPassword);
-	int userID = db.findUser(inputEmail, passwordHash);
+	int userID = db3->findUser(inputEmail, passwordHash);
 	if (userID !=NOT_FOUND)
 	{
 		menuForm^ form;
-		int userStatus = db.getUserStatus(userID);
+		int userStatus = db3->getUser(userID)->getStatus();
+		//int userStatus = db3->getUserStatus(userID);
+		//switch (userStatus) {
+		//case ADMIN:
+		//	/*form = gcnew menuForm(userID, ADMIN);
+		//	form->Show();
+		//	this->Hide();*/
+		//	curID = userID;
+		//	adminPanel->Visible = true;
+		//	break;
+		//case CLIENT:
+		//	/*form = gcnew menuForm(userID, CLIENT);
+		//	form->Show();
+		//	this->Hide();*/
+		//	curID = userID;
+		//	clientPanel->Visible = true;
+		//	break;
+		//case EMPLOYEE:
+		//	/*form = gcnew menuForm(userID, EMPLOYEE);
+		//	form->Show();
+		//	this->Hide(); */
+		//	curID = userID;
+		//	employeePanel->Visible = true;
+		//	break;
+		//default:
+		//	System::Windows::Forms::MessageBox::Show("Пользователь имеет неизвестный статус");
+		//	break;
+		//}
+
 		switch (userStatus) {
 		case ADMIN:
-			/*form = gcnew menuForm(userID, ADMIN);
+			form = gcnew menuForm(userID, ADMIN);
 			form->Show();
-			this->Hide();*/
-			curID = userID;
-			adminPanel->Visible = true;
+			this->Hide();
+			/*curID = userID;
+			adminPanel->Visible = true;*/
 			break;
 		case CLIENT:
-			/*form = gcnew menuForm(userID, CLIENT);
+			form = gcnew menuForm(userID, CLIENT);
 			form->Show();
-			this->Hide();*/
-			curID = userID;
-			clientPanel->Visible = true;
+			this->Hide();
+			/*curID = userID;
+			clientPanel->Visible = true;*/
 			break;
 		case EMPLOYEE:
-		/*	form = gcnew menuForm(userID, EMPLOYEE);
+			form = gcnew menuForm(userID, EMPLOYEE);
 			form->Show();
-			this->Hide(); */
-			curID = userID;
-			employeePanel->Visible = true;
+			this->Hide();
+			/*curID = userID;
+			employeePanel->Visible = true;*/
 			break;
 		default:
 			System::Windows::Forms::MessageBox::Show("Пользователь имеет неизвестный статус");
@@ -433,19 +490,19 @@ void checkCalendarDays()
 
 System::Void bshop::mainForm::writeDataBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db.writeDatabaseToFile();
+	db3->writeDatabaseToFile();
 }
 
 System::Void bshop::mainForm::loadBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db.clearListOfUsers();
-	db.readDatabaseFromFile();
+	db3->clearListOfUsers();
+	db3->readDatabaseFromFile();
 }
 
 System::Void bshop::mainForm::deleteSpecificBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	int ID = std::stoi(msclr::interop::marshal_as<std::string>(deleteByIDTB->Text));
-	bool isDelete = db.deleteSpecificUser(ID);
+	bool isDelete = db3->deleteSpecificUser(ID);
 	updateBtn_Click(sender, e);
 	if (isDelete)
 	{
@@ -459,13 +516,13 @@ System::Void bshop::mainForm::deleteSpecificBtn_Click(System::Object^ sender, Sy
 
 System::Void bshop::mainForm::loadServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db.clearListOfServices();
-	db.readServicesFromFile();
+	db3->clearListOfServices();
+	db3->readServicesFromFile();
 }
 
 System::Void bshop::mainForm::saveServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	db.writeServicesToFile();
+	db3->writeServicesToFile();
 }
 
 System::Void bshop::mainForm::updateServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
@@ -473,7 +530,7 @@ System::Void bshop::mainForm::updateServicesBtn_Click(System::Object^ sender, Sy
 	servicesRTB->Clear();
 	try
 	{
-		String^ info = msclr::interop::marshal_as<System::String^>(db.getServices());
+		String^ info = msclr::interop::marshal_as<System::String^>(db3->getServices());
 		servicesRTB->AppendText(info);
 	}
 	catch (std::exception ex)
@@ -489,7 +546,7 @@ System::Void bshop::mainForm::addServiceBtn_Click(System::Object^ sender, System
 	int price =std::stoi(msclr::interop::marshal_as<std::string>(servicePriceTB->Text));
 	try
 	{
-		db.addService(name, price);
+		db3->addService(name, price);
 	}
 	catch (std::exception ex)
 	{
@@ -501,9 +558,9 @@ System::Void bshop::mainForm::addServiceBtn_Click(System::Object^ sender, System
 System::Void bshop::mainForm::updateGrid_Click(System::Object^ sender, System::EventArgs^ e)
 {
 
-	std::list<ServiceOrder*> ServicesOrders = db.getServiceOrdersList();
-	std::list<Service*> Services = db.getServiceList();
-	std::list<User*> Users = db.getUsersList();
+	std::list<ServiceOrder*> ServicesOrders = db3->getServiceOrdersList();
+	std::list<Service*> Services = db3->getServiceList();
+	std::list<User*> Users = db3->getUsersList();
 	for each (User * user in Users)
 	{
 		std::string ID = std::to_string(user->getID());
@@ -538,8 +595,8 @@ System::Void bshop::mainForm::updateGrid_Click(System::Object^ sender, System::E
 	for each (ServiceOrder * serviceOrder in ServicesOrders)
 	{
 		std::string ID = std::to_string(serviceOrder->getID());
-		std::string employeeName = db.getUser(serviceOrder->getEmployeeID())->getName();
-		std::string clientName = db.getUser(serviceOrder->getClientID())->getName();
+		std::string employeeName = db3->getUser(serviceOrder->getEmployeeID())->getName();
+		std::string clientName = db3->getUser(serviceOrder->getClientID())->getName();
 		std::string status = serviceOrder->getStatus().Equals(true) ? "Проведён" : "Не проведён";
 		std::vector<std::string> v = { ID, employeeName, clientName, status };
 		ordersDataGrid->Rows->Add();
@@ -552,3 +609,13 @@ System::Void bshop::mainForm::updateGrid_Click(System::Object^ sender, System::E
 	}
 }
 
+System::Void bshop::mainForm::loadOrdersBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	db3->clearListOfServicesOrder();
+	db3->readServicesOrdersFromFile();
+}
+
+System::Void bshop::mainForm::saveOrdersBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	db3->writeServicesOrdersToFile();
+}
