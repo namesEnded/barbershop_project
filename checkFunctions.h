@@ -1,3 +1,4 @@
+//Ankudinov
 #ifndef CHECKFUNCTIONS_H
 #define CHECKFUNCTIONS_H
 #include "User.h"

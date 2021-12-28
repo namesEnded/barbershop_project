@@ -1,3 +1,4 @@
+//Aphonin, Dmitriev, Ankudinov
 #ifndef MOCKDATABASE_H
 #define MOCKDATABASE_H
 
@@ -34,6 +35,8 @@ public:
 	MockDatabase()
 	{
 	}
+
+#pragma region Aphonin
 	void addUser(std::string name, bool sex, std::string date, std::string phonenumber, std::string email,
 		std::string password, userType status, int numberOfVisits = DEF_VISIT_NUM);
 	 
@@ -48,27 +51,49 @@ public:
 		std::string password, userType status, double experience,
 		userSpeciality speciality, std::string personalAchievements);
 
-	void loadService(int ID, std::string name, int price);
-	void addService(std::string name, int price);
-
+	int numberOfUsers();
+	int findUser(std::string email, size_t password);
+	int getUserStatus(int ID);
+	bool deleteSpecificUser(int ID);
+	bool emailIsUnique(std::string email);
+	User* getUser(int ID);
+	std::string getUsers();
+	std::list<User*> getUsersList();
+	void clearListOfServices();
+	void clearListOfServicesOrder();
+	void clearListOfUsers();
 	void addServiceOrder(std::string date, std::string time, int serviceID, int employeeID, int clientID, double cost, bool status);
 	void loadServiceOrder(int id, std::string date, std::string time, int serviceID, int employeeID, int clientID, double cost, bool status);
 	bool timeIsAvailable(std::string date, std::string time);
+	int getMaxUserID();
+	std::list<int> getOrdersID(Employee* employee);
+	int getOrdersCount(std::string date);
+	bool deleteSpecificServiceOrder(int ID);
 	std::list<std::string> MockDatabase::getOrdersTimes(std::string date);
+	static MockDatabase* getInstance();
+	int numberOfServicesOrder();
+	bool deleteSpecificServiceOrder(int ID);
+#pragma endregion
+
+
+#pragma region Dmitriev
+	void loadService(int ID, std::string name, int price);
+	void addService(std::string name, int price);
 	Service* getService(int ID);
 	ServiceOrder* getServiceOrder(int ID);
-	User* getUser(int ID);
-	static MockDatabase* getInstance();
-	std::string getUsers();
-	std::list<User*> getUsersList();
 	std::list<ServiceOrder*> getServiceOrdersList();
 	std::list<Service*> getServiceList();
-	int numberOfUsers();
 	int numberOfServices();
-	int numberOfServicesOrder();
-	int findUser(std::string email, size_t password);
-	bool emailIsUnique(std::string email);
-	int getUserStatus(int ID);
+	bool deleteSpecificService(int ID);
+	int getMaxServiceOrderID();
+	std::string getServices();
+	void clearListOfServices();
+	int getMaxServiceID();
+#pragma endregion
+
+
+
+#pragma region Ankudinov
 	void writeDatabaseToFile();
 	void readDatabaseFromFile();
 	void writeServicesOrdersToFile();
@@ -78,19 +103,7 @@ public:
 	bool readDataAboutUser(userType status, std::vector <std::string> elems);
 	bool readDataAboutServiceOrder(std::vector <std::string> elems);
 	bool readDataAboutService(std::vector <std::string> elems);
-	void clearListOfServices();
-	void clearListOfServicesOrder();
-	void clearListOfUsers();
-	bool deleteSpecificUser(int ID);
-	bool deleteSpecificService(int ID);
-	bool deleteSpecificServiceOrder(int ID);
-	std::list<int> getOrdersID(Employee* employee);
-	int getMaxUserID();
-	int getMaxServiceID();
-	int getMaxServiceOrderID();
-	std::string getServices();
-	int getOrdersCount(std::string date);
-
+#pragma endregion
 
 	~MockDatabase() // деструктор
 	{
