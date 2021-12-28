@@ -54,6 +54,16 @@ namespace bshop {
 	private: System::Windows::Forms::Label^ selectDateLbl;
 	private: System::Windows::Forms::Label^ orderCostLbl;
 	private: System::Windows::Forms::DataGridView^ orderInitGrid;
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Label^ employeeIDFromOrderLbl;
+	private: System::Windows::Forms::Label^ serviceIDfromOrderLbl;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ OrderID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ serviceID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ employeeOerderID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clientIDOrder;
@@ -61,8 +71,6 @@ namespace bshop {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ sssorderStatus;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ordersDate;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ orderTime;
-	private: System::Windows::Forms::Label^ employeeIDFromOrderLbl;
-	private: System::Windows::Forms::Label^ serviceIDfromOrderLbl;
 		   /// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
@@ -91,6 +99,7 @@ namespace bshop {
 			this->selectDateLbl = (gcnew System::Windows::Forms::Label());
 			this->orderCostLbl = (gcnew System::Windows::Forms::Label());
 			this->orderInitGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->OrderID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->serviceID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->employeeOerderID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->clientIDOrder = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -262,9 +271,9 @@ namespace bshop {
 			this->orderInitGrid->AllowUserToDeleteRows = false;
 			this->orderInitGrid->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::ColumnHeader;
 			this->orderInitGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->orderInitGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
-				this->serviceID,
-					this->employeeOerderID, this->clientIDOrder, this->cost, this->sssorderStatus, this->ordersDate, this->orderTime
+			this->orderInitGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->OrderID,
+					this->serviceID, this->employeeOerderID, this->clientIDOrder, this->cost, this->sssorderStatus, this->ordersDate, this->orderTime
 			});
 			this->orderInitGrid->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
 			this->orderInitGrid->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
@@ -275,6 +284,13 @@ namespace bshop {
 			this->orderInitGrid->RowHeadersWidth = 30;
 			this->orderInitGrid->Size = System::Drawing::Size(694, 137);
 			this->orderInitGrid->TabIndex = 0;
+			// 
+			// OrderID
+			// 
+			this->OrderID->HeaderText = L"ID";
+			this->OrderID->Name = L"OrderID";
+			this->OrderID->ReadOnly = true;
+			this->OrderID->Width = 46;
 			// 
 			// serviceID
 			// 
@@ -349,7 +365,8 @@ namespace bshop {
 			this->ClientSize = System::Drawing::Size(898, 732);
 			this->Controls->Add(this->clientPanel);
 			this->Name = L"clientForm";
-			this->Text = L"clientForm";
+			this->Text = L"Клиент";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &clientForm::clientForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &clientForm::clientForm_Load);
 			this->clientPanel->ResumeLayout(false);
 			this->clientPanel->PerformLayout();
@@ -366,6 +383,7 @@ namespace bshop {
 	private: System::Void clientForm_Load(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void updateAvailableTimes();
 	private: System::Int32 findID(int Index, bool isEmployee);
+	private: System::Void clientForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }
 #endif CLIENTFORM_H

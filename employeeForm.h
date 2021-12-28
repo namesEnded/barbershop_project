@@ -393,7 +393,8 @@ namespace bshop {
 			this->ClientSize = System::Drawing::Size(914, 712);
 			this->Controls->Add(this->employeePanel);
 			this->Name = L"employeeForm";
-			this->Text = L"employeeForm";
+			this->Text = L"Работник";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &employeeForm::employeeForm_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &employeeForm::employeeForm_Load);
 			this->employeePanel->ResumeLayout(false);
 			this->employeePanel->PerformLayout();
@@ -411,6 +412,7 @@ namespace bshop {
 	private: System::Void exitFromEmployeePanelBtn_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void updateTimetable(MonthCalendar^ employeeCalendar, TextBox^ selectedDateEmployeeTB);
 	private: System::Void updateOrdersGrid(std::list<ServiceOrder*> orders);
+	private: System::Void employeeForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e);
 };
 }
 #endif EMPLOYEEFORM_H

@@ -186,6 +186,7 @@
     <ResourceCompile Include="bshop.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="1.cd" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -25,6 +25,11 @@ System::Int32 bshop::clientForm::findID(int Index, bool isEmployee)
 	return -1;
 }
 
+System::Void bshop::clientForm::clientForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	Application::Exit();
+}
+
 
 
 System::Void bshop::clientForm::clientForm_Load(System::Object^ sender, System::EventArgs^ e)
@@ -119,6 +124,7 @@ System::Void bshop::clientForm::exitFromClientPanel_Click(System::Object^ sender
 {
 	DBClientForm->writeServicesOrdersToFile();
 	this->Close();
+	Application::Exit();
 }
 
 
@@ -171,8 +177,9 @@ System::Void bshop::clientForm::updateServiceOrderBtn_Click(System::Object^ send
 
 		std::string cost = std::to_string(serviceOrder->getCost());
 		std::string data = serviceOrder->getDate();
+		std::string time = serviceOrder->getTime();
 		std::string status = serviceOrder->getStatus().Equals(true) ? "Проведён" : "Не проведён";
-		std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data };
+		std::vector<std::string> v = { ID, serviceName, employeeName,clientName, cost,  status, data, time};
 		orderInitGrid->Rows->Add();
 		int k = orderInitGrid->ColumnCount;
 		for (int j = 0; j < k; j++)

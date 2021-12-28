@@ -125,3 +125,8 @@ System::Void bshop::mainForm::addUserFormBtn_Click(System::Object^ sender, Syste
 	addUserPanel->Visible = false;
 	addUserPanel->Enabled = false;
 }
+
+System::Void bshop::mainForm::mainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
+{
+	Application::Exit();
+}
