@@ -341,6 +341,16 @@ bool MockDatabase::deleteSpecificUser(int ID)
 	return isDelete;
 }
 
+std::list<int> MockDatabase::getOrdersID(Employee* employee)
+{
+	std::list<int> orders;
+	for each (ServiceOrder* serviceOrder in listOfServiceOrders)
+	{
+		if (serviceOrder->getEmployeeID() == employee->getID()) orders.push_back(serviceOrder->getID());
+	}
+	return orders;
+}
+
 int MockDatabase::getMaxUserID()
 {
 	if (listOfUsers.empty()) return 0;
@@ -397,14 +407,14 @@ bool MockDatabase::readDataAboutUser(userType status, std::vector<std::string> e
 
 bool MockDatabase::readDataAboutServiceOrder(std::vector<std::string> elems)
 {
-	std::string date;
-	std::string time;
 	int ID = std::stoi(elems[0]);
 	int serviceID = std::stoi(elems[1]);
 	int employeeID = std::stoi(elems[2]);
 	int clientID = std::stoi(elems[3]);
 	float cost = std::stod(elems[4]);
-	bool status = std::stoi(elems[5]);
+	bool status = elems[5] == "true" ? true : false;
+	std::string date = elems[6];
+	std::string time = elems[7];
 
 	try
 	{
@@ -434,7 +444,7 @@ void MockDatabase::addService(std::string name, int price)
 
 void MockDatabase::addServiceOrder(std::string date, std::string time, int serviceID, int employeeID, int clientID, float cost, bool status)
 {
-	int id = getMaxServiceID() + 1;
+	int id = getMaxServiceOrderID() + 1;
 	this->listOfServiceOrders.push_back(new ServiceOrder(id, serviceID, employeeID, clientID, date, time, cost, status));
 }
 
@@ -577,6 +587,11 @@ bool MockDatabase::readDataAboutService(std::vector<std::string> elems)
 void MockDatabase::clearListOfServices()
 {
 	listOfService.clear();
+}
+
+void MockDatabase::clearListOfServicesOrder()
+{
+	listOfServiceOrders.clear();
 }
 
 int MockDatabase::getMaxServiceID()

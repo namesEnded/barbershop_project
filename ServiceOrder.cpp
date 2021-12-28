@@ -64,11 +64,10 @@ int ServiceOrder::getServiceID()
 
 std::string ServiceOrder::getInfo()
 {
-	std::string info = ":";
-	/*std::string info = "{" + std::to_string(getID()) + ";" + getName() + ";" + getSex() + ";" + getDate() + ";" + getPhonenumber() + ";" +
-		getEmail() + ";" + std::to_string(getPassword()) + ";" + getStatusString() + ";" + getSpeciality() + ";" +
-		std::to_string(getExperience()) + ";" + getPersonalAchievements() + ";" + std::to_string(getSalary()) + ";" +
-		std::to_string(getWorkingHours()) + "}" + "\n";*/
+	std::string status = getStatus().Equals(true) ? "true": "false";
+	std::string info = "{" + std::to_string(getID()) + ";" + std::to_string(getServiceID()) + ";" + 
+				std::to_string(getEmployeeID()) + ";" + std::to_string(getClientID()) + ";" + 
+				std::to_string(getCost()) + ";" + status + ";" + getDate() + ";" + getTime() + "}" + "\n";
 	return info;
 }
 

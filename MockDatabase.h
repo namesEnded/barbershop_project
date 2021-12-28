@@ -79,8 +79,10 @@ public:
 	bool readDataAboutServiceOrder(std::vector <std::string> elems);
 	bool readDataAboutService(std::vector <std::string> elems);
 	void clearListOfServices();
+	void clearListOfServicesOrder();
 	void clearListOfUsers();
 	bool deleteSpecificUser(int ID);
+	std::list<int> getOrdersID(Employee* employee);
 	int getMaxUserID();
 	int getMaxServiceID();
 	int getMaxServiceOrderID();
