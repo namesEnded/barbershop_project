@@ -1,70 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Admin">
-    <Position X="8" Y="6.25" Width="1.5" />
+    <Position X="19.75" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAEAAEQAAIABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Admin.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client">
-    <Position X="10.25" Y="6.25" Width="1.5" />
+    <Position X="17.5" Y="12.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAQACAAAQARAAAQAAEAAQ=</HashCode>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAgAQACAAAQARAAAQAAEAAQ=</HashCode>
       <FileName>Client.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Employee">
-    <Position X="12.5" Y="6.25" Width="1.5" />
+    <Position X="22" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AANACAAEAAAgAIIACAAAAACASAAAgAAAAABAAQAAAAA=</HashCode>
       <FileName>Employee.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MockDatabase">
-    <Position X="14.75" Y="6.25" Width="1.5" />
+    <Position X="24.25" Y="12.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>oAggAOBAAAAAABAQCAACEAgAASAAAgAJLECCYBABQAA=</HashCode>
+      <HashCode>oAggAOBAAEAQABAQCAACEEgAESAoAgQpLECCYBCJUAA=</HashCode>
       <FileName>MockDatabase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Service">
-    <Position X="22" Y="3" Width="1.5" />
+    <Position X="26.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAgACAAAAAARAAQAAEQABAAAAEAAAAAAA=</HashCode>
       <FileName>Service.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ServiceOrder">
-    <Position X="18.5" Y="3" Width="1.5" />
+    <Position X="32.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQkAAAAAAAAgACAAAAAAAAgQAAABkAABAAEAwAAAQA=</HashCode>
+      <HashCode>IAQlASEAAAAAgACAAAAAAAAgQAAABkAABAAEAwEAAQA=</HashCode>
       <FileName>ServiceOrder.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="User">
-    <Position X="11.25" Y="0.5" Width="1.5" />
+    <Position X="20.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQBAQAAAABAAAigAAQIAAAAQEAEBAAEAAAEAwAAAgA=</HashCode>
+      <HashCode>EAQBAQAAAABAAAygAAQIAAAAQEAEBEBEAAAEQwAAAoA=</HashCode>
       <FileName>User.h</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="userSpeciality">
-    <Position X="16.75" Y="3" Width="1.5" />
+    <Position X="28.75" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAAAAAAAAAABAAAAAAAEAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>speciality.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="userType">
-    <Position X="20.25" Y="3" Width="1.5" />
+    <Position X="26.75" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAEAACAA=</HashCode>
       <FileName>status.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="clientStatusType">
-    <Position X="15" Y="3" Width="1.5" />
+    <Position X="30.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAACAAAABAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>status.h</FileName>

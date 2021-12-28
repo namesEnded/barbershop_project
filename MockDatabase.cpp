@@ -16,7 +16,7 @@ std::string pathsArray[3] = { "employeeData.txt", "adminData.txt", "clientData.t
 
 
 
-std::vector<std::string> split(const std::string& s, char delim) {
+std::vector<std::string> split_to_elem(const std::string& s, char delim) {
 	std::stringstream ss(s);
 	std::string item;
 	std::vector<std::string> elems;
@@ -341,6 +341,36 @@ bool MockDatabase::deleteSpecificUser(int ID)
 	return isDelete;
 }
 
+bool MockDatabase::deleteSpecificService(int ID)
+{
+	bool isDelete = false;
+	for each (Service * service in this->listOfService)
+	{
+		if (service->getID() == ID)
+		{
+			listOfService.remove(service);
+			isDelete = true;
+			return isDelete;
+		}
+	}
+	return isDelete;
+}
+
+bool MockDatabase::deleteSpecificServiceOrder(int ID)
+{
+	bool isDelete = false;
+	for each (ServiceOrder * serviceOrder in this->listOfServiceOrders)
+	{
+		if (serviceOrder->getID() == ID)
+		{
+			listOfServiceOrders.remove(serviceOrder);
+			isDelete = true;
+			return isDelete;
+		}
+	}
+	return isDelete;
+}
+
 std::list<int> MockDatabase::getOrdersID(Employee* employee)
 {
 	std::list<int> orders;
@@ -548,7 +578,7 @@ void MockDatabase::readServicesFromFile()
 			{
 				continue;
 			}
-			std::vector <std::string> elems = split(buffString, ';');
+			std::vector <std::string> elems = split_to_elem(buffString, ';');
 			if (elems.size() >= 3)
 			{
 				isReadSuccessful = readDataAboutService(elems);
@@ -641,7 +671,6 @@ int MockDatabase::getOrdersCount(std::string date)
 	return ordersInDay;
 }
 
-
 #pragma endregion
 
 #pragma region Work with database
@@ -711,7 +740,7 @@ void MockDatabase::readDatabaseFromFile()
 				{
 					continue;
 				}
-				std::vector <std::string> elems = split(buffString, ';');
+				std::vector <std::string> elems = split_to_elem(buffString, ';');
 				if (elems.size() >= 7)
 				{
 					if (path == "employeeData.txt")
@@ -786,7 +815,7 @@ void MockDatabase::readServicesOrdersFromFile()
 			{
 				continue;
 			}
-			std::vector <std::string> elems = split(buffString, ';');
+			std::vector <std::string> elems = split_to_elem(buffString, ';');
 			if (elems.size() >= 3)
 			{
 				isReadSuccessful = readDataAboutServiceOrder(elems);

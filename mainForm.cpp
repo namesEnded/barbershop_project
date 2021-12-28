@@ -13,6 +13,7 @@ MockDatabase* db3 = MockDatabase::getInstance();
 
 [STAThreadAttribute]
 void main(array<String^>^ args) {
+	std::setlocale(LC_ALL, "Russian_Russia.1251");
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	bshop::mainForm form;

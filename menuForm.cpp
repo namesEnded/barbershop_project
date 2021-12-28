@@ -3,20 +3,69 @@
 #include "checkFunctions.h"
 #include "MockDatabase.h"
 #include "status.h"
+#include <time.h>
+#include <ctime>
+#include <sstream>
+#include <vector>
+#include <fstream>
+#include <iomanip>
+
 MockDatabase* db2 = MockDatabase::getInstance();
 Employee* currentEmployee;
 std::list<ServiceOrder*> curOrders;
 static std::map<int, int> indexOfEmployeesMenu;
 static std::map<int, int> indexOfClientsMenu;
+
+System::Void bshop::menuForm::clearAllGrids()
+{
+	usersDataGrid->Rows->Clear();
+	servicesDataGrid->Rows->Clear();
+	ordersDataGrid->Rows->Clear();
+}
+
+std::vector<std::string> split(const std::string& s, char delim) {
+	std::stringstream ss(s);
+	std::string item;
+	std::vector<std::string> elems;
+	while (std::getline(ss, item, delim)) {
+		elems.push_back(item);
+	}
+	return elems;
+}
+
+System::Void bshop::menuForm::closeAllPanels(System::Object^ sender, System::EventArgs^ e)
+{
+	reportPanel->Visible = false;
+	reportPanel->Enabled = false;
+	adminPanel->Visible = false;
+	adminPanel->Enabled = false;
+	employeePanel->Visible = false;
+	employeePanel->Enabled = false;
+	clientPanel->Visible = false;
+	clientPanel->Enabled = false;
+	changeUserPanel->Visible = false;
+	changeUserPanel->Enabled = false;
+	addUserPanel->Visible = false;
+	addUserPanel->Enabled = false;
+	changeServicePanel->Visible = false;
+	changeServicePanel->Enabled = false;
+	addServicePanel->Visible = false;
+	addServicePanel->Enabled = false;
+}
+
 System::Void bshop::menuForm::menuForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	closeAllPanels(sender, e);
 	switch (userStatus) {
 	case ADMIN:
+		adminPanel->Visible = true;
+		adminPanel->Enabled = true;
 		//outputRTB->Text = "ADMIN";
 		break;
 	case CLIENT:
 		//outputRTB->Text = "CLIENT";
 		clientPanel->Visible = true;
+		clientPanel->Enabled = true;
 		Calendar->SetDate(employeeCalendar->TodayDate);
 		updateServiceOrderBtn_Click(sender, e);
 		ClientNameLbl->Text = msclr::interop::marshal_as<System::String^>(db2->getUser(ID)->getName());
@@ -24,6 +73,7 @@ System::Void bshop::menuForm::menuForm_Load(System::Object^ sender, System::Even
 	case EMPLOYEE:
 		//outputRTB->Text = "EMPLOYEE";
 		employeePanel->Visible = true;
+		employeePanel->Enabled = true;
 		employeeCalendar->SetDate(employeeCalendar->TodayDate);
 		updateTimetable(employeeCalendar, selectedDateEmployeeTB);
 		updateOrdersGrid(curOrders);
@@ -344,7 +394,6 @@ System::Void bshop::menuForm::updateServiceOrderBtn_Click(System::Object^ sender
 }
 #pragma endregion
 
-
 #pragma region Работа с панелью рабочего
 System::Void bshop::menuForm::exitFromEmployeePanelBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -462,11 +511,20 @@ System::Void bshop::menuForm::employeeCalendar_DateChanged(System::Object^ sende
 #pragma endregion
 
 
-#pragma region Добавить нового пользователя из панели админа 
+#pragma region Работа с пользователями из панели админа 
 System::Void bshop::menuForm::addUserBtn_Click_1(System::Object^ sender, System::EventArgs^ e)
 {
-	addUserPanel->Visible = true;
-	if (addUserPanel->Visible == true) addUserPanel->Visible = false;
+
+	if (!addUserPanel->Visible)
+	{
+		addUserPanel->Visible = true;
+		addUserPanel->Enabled = true;
+	}
+	else
+	{
+		addUserPanel->Visible = false;
+		addUserPanel->Enabled = false;
+	}
 }
 
 System::Void bshop::menuForm::addUserTypeCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
@@ -536,13 +594,18 @@ System::Void bshop::menuForm::addUserFormBtn_Click(System::Object^ sender, Syste
 
 System::Void bshop::menuForm::addUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
 {
-	if (addUserTypeCB->Text == "EMPLOYEE") specialityPanel->Visible = true;
-	else specialityPanel->Visible = false;
+	if (addUserTypeCB->Text == "EMPLOYEE")
+	{
+		specialityPanel->Visible = true;
+		specialityPanel->Enabled = true;
+	}
+	else
+	{
+		specialityPanel->Visible = false;
+		specialityPanel->Enabled = false;
+	}
 }
-#pragma endregion
 
-
-#pragma region Изменить пользователя из панели админа 
 System::Void bshop::menuForm::changeUserPanel_VisibleChanged(System::Object^ sender, System::EventArgs^ e)
 {
 	if (changeUserPanel->Visible == true)
@@ -579,6 +642,7 @@ System::Void bshop::menuForm::changeUserIdCB_SelectionChangeCommitted(System::Ob
 	else
 	{
 		changeUserSpecialityPanel->Visible = false;
+		changeUserSpecialityPanel->Enabled = false;
 	}
 
 }
@@ -614,6 +678,7 @@ System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, Sy
 		selectEmployee->setSpeciality(checkSelectedSpeciality(msclr::interop::marshal_as<std::string>(changeUserSpecialityCB->Text)));
 		selectEmployee->setExperience(std::stoi(msclr::interop::marshal_as<std::string>(changeUserExperienceTB->Text)));
 		selectEmployee->setPersonalAchievements(msclr::interop::marshal_as<std::string>(changePersonalAchievementsTB->Text));
+		db2->writeDatabaseToFile();
 	}
 
 
@@ -621,7 +686,453 @@ System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, Sy
 
 System::Void bshop::menuForm::changeUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
 {
-	if (changeUserTypeCB->Text == "EMPLOYEE") changeUserSpecialityPanel->Visible = true;
-	else changeUserSpecialityPanel->Visible = false;
+	if (changeUserTypeCB->Text == "EMPLOYEE") 
+	{
+		changeUserSpecialityPanel->Visible = true;
+		changeUserSpecialityPanel->Enabled = true;
+	} 
+	else
+	{
+		changeUserSpecialityPanel->Visible = false;
+		changeUserSpecialityPanel->Enabled = false;
+	}
 }
+
+System::Void bshop::menuForm::changeUserBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (!changeUserPanel->Visible)
+	{
+		changeUserPanel->Visible = true;
+		changeUserPanel->Enabled = true;
+	}
+	else
+	{
+		changeUserPanel->Visible = false;
+		changeUserPanel->Enabled = false;
+	}
+}
+
+System::Void bshop::menuForm::deleteSpecificUser_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	bool isDel = false;
+	for (int i = 0; i < usersDataGrid->Rows->Count; i++)
+	{
+		if (usersDataGrid->Rows[i]->Selected == true)
+		{
+			int userID = std::stoi(msclr::interop::marshal_as<std::string>(usersDataGrid->Rows[i]->Cells[0]->Value->ToString()));
+			try
+			{
+				isDel = db2->deleteSpecificUser(userID);
+			}
+			catch (std::exception ex)
+			{
+				String^ exception = msclr::interop::marshal_as<System::String^>(ex.what());
+				System::Windows::Forms::MessageBox::Show(exception);
+			}
+		}
+	}
+	if (isDel)
+	{
+		System::Windows::Forms::MessageBox::Show("Удаление прошло успешно!");
+		db2->writeDatabaseToFile();
+	}
+}
+
 #pragma endregion
+
+#pragma region Работа с услугами из панели админа 
+System::Void bshop::menuForm::addServiceBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	std::string name = msclr::interop::marshal_as<std::string>(serviceNameTB->Text);
+	int price = std::stoi(msclr::interop::marshal_as<std::string>(servicePriceTB->Text));
+	try
+	{
+		db2->addService(name, price);
+		db2->writeServicesToFile();
+	}
+	catch (std::exception ex)
+	{
+		String^ exception = msclr::interop::marshal_as<System::String^>(ex.what());
+		System::Windows::Forms::MessageBox::Show(exception);
+	}
+}
+
+System::Void bshop::menuForm::saveServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	db2->writeServicesToFile();
+}
+
+System::Void bshop::menuForm::loadServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	db2->clearListOfServices();
+	db2->readServicesFromFile();
+}
+
+System::Void bshop::menuForm::updateServicesBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	servicesRTB->Clear();
+	try
+	{
+		String^ info = msclr::interop::marshal_as<System::String^>(db2->getServices());
+		servicesRTB->AppendText(info);
+	}
+	catch (std::exception ex)
+	{
+		String^ exception = msclr::interop::marshal_as<System::String^>(ex.what());
+		System::Windows::Forms::MessageBox::Show(exception);
+	}
+}
+
+System::Void bshop::menuForm::changeServiceBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (!changeServicePanel->Visible)
+	{
+		changeServicePanel->Visible = true;
+		changeServicePanel->Enabled = true;
+	}
+	else 
+	{
+		changeServicePanel->Visible = false;
+		changeServicePanel->Enabled = false;
+	}
+}
+
+System::Void bshop::menuForm::changeServiceFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	for (int i = 0; i < servicesDataGrid->Rows->Count; i++)
+	{
+		if (servicesDataGrid->Rows[i]->Selected == true)
+		{
+			std::string name = msclr::interop::marshal_as<std::string>(changeServiceNameTB->Text);
+			int price = std::stoi(msclr::interop::marshal_as<std::string>(changeServicePriceTB->Text));
+			int serviseID = std::stoi(msclr::interop::marshal_as<std::string>(servicesDataGrid->Rows[i]->Cells[0]->ToString()));
+			try
+			{
+				Service* buffService = db2->getService(serviseID);
+				buffService->setName(name);
+				buffService->setPrice(price);
+				db2->writeServicesToFile();
+			}
+			catch (std::exception ex)
+			{
+				String^ exception = msclr::interop::marshal_as<System::String^>(ex.what());
+				System::Windows::Forms::MessageBox::Show(exception);
+			}
+		}
+	}
+	changeServicePanel->Visible = false;
+	changeServicePanel->Enabled = false;
+}
+
+System::Void bshop::menuForm::delOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	bool isDel = false;
+	for (int i = 0; i < servicesDataGrid->Rows->Count; i++)
+	{
+		if (servicesDataGrid->Rows[i]->Selected == true)
+		{
+			int serviseID = std::stoi(msclr::interop::marshal_as<std::string>(servicesDataGrid->Rows[i]->Cells[0]->Value->ToString()));
+			try
+			{
+				isDel = db2->deleteSpecificService(serviseID);
+			}
+			catch (std::exception ex)
+			{
+				String^ exception = msclr::interop::marshal_as<System::String^>(ex.what());
+				System::Windows::Forms::MessageBox::Show(exception);
+			}
+		}
+	}
+	if (isDel)
+	{
+		System::Windows::Forms::MessageBox::Show("Удаление прошло успешно!");
+		db2->writeServicesToFile();
+	}
+}
+
+System::Void bshop::menuForm::addServiceBtnFromAdminPanel_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (!addServicePanel->Visible)
+	{
+		addServicePanel->Visible = true;
+		addServicePanel->Enabled = true;
+	}
+	else
+	{
+		addServicePanel->Visible = false;
+		addServicePanel->Enabled = false;
+	}
+}
+
+#pragma endregion
+
+
+System::Void bshop::menuForm::updateGridsBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	clearAllGrids();
+	std::list<ServiceOrder*> ServicesOrders = db2->getServiceOrdersList();
+	std::list<Service*> Services = db2->getServiceList();
+	std::list<User*> Users = db2->getUsersList();
+	for each (User * user in Users)
+	{
+		std::string ID = std::to_string(user->getID());
+		std::string Name = user->getName();
+		std::string status = statusToString(user->getStatus());
+
+		std::vector<std::string> v = { ID, Name, status };
+		usersDataGrid->Rows->Add();
+		int i = usersDataGrid->Rows->Count;
+		int k = usersDataGrid->ColumnCount;
+		for (int j = 0; j < k; j++)
+		{
+			usersDataGrid->Rows[i - 1]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j]);
+		}
+	}
+
+	for each (Service * service in Services)
+	{
+		std::string ID = std::to_string(service->getID());
+		std::string Name = service->getName();
+
+		std::vector<std::string> v = { ID, Name };
+		servicesDataGrid->Rows->Add();
+		int i = servicesDataGrid->Rows->Count;
+		int k = servicesDataGrid->ColumnCount;
+		for (int j = 0; j < k; j++)
+		{
+			servicesDataGrid->Rows[i - 1]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j]);
+		}
+	}
+
+	for each (ServiceOrder * serviceOrder in ServicesOrders)
+	{
+		std::string ID = std::to_string(serviceOrder->getID());
+		std::string employeeName = db2->getUser(serviceOrder->getEmployeeID())->getName();
+		std::string clientName = db2->getUser(serviceOrder->getClientID())->getName();
+		std::string status = serviceOrder->getStatus().Equals(true) ? "Проведён" : "Не проведён";
+		std::vector<std::string> v = { ID, employeeName, clientName, status };
+		ordersDataGrid->Rows->Add();
+		int i = ordersDataGrid->Rows->Count;
+		int k = ordersDataGrid->ColumnCount;
+		for (int j = 0; j < k; j++)
+		{
+			ordersDataGrid->Rows[i - 1]->Cells[j]->Value = msclr::interop::marshal_as<System::String^>(v[j]);
+		}
+	}
+}
+
+System::Void bshop::menuForm::deleteSpecidicServiceOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	bool isDel = false;
+	for (int i = 0; i < ordersDataGrid->Rows->Count; i++)
+	{
+		if (ordersDataGrid->Rows[i]->Selected == true)
+		{
+			int serviseOrderID = std::stoi(msclr::interop::marshal_as<std::string>(ordersDataGrid->Rows[i]->Cells[0]->Value->ToString()));
+			try
+			{
+				isDel = db2->deleteSpecificServiceOrder(serviseOrderID);
+			}
+			catch (std::exception ex)
+			{
+				String^ exception = msclr::interop::marshal_as<System::String^>(ex.what());
+				System::Windows::Forms::MessageBox::Show(exception);
+			}
+		}
+	}
+	if (isDel)
+	{
+		System::Windows::Forms::MessageBox::Show("Удаление прошло успешно!");
+		db2->writeServicesOrdersToFile();
+	}
+}
+
+System::Void bshop::menuForm::showReportBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	if (!reportPanel->Visible)
+	{
+		reportPanel->Visible = true;
+		reportPanel->Enabled= true;
+	}
+	else
+	{
+		reportPanel->Visible = false;
+		reportPanel->Enabled = false;
+	}
+}
+
+System::Void bshop::menuForm::makeReportBtn_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	tm Tm;
+	time_t t = std::time(nullptr);
+	errno_t err = localtime_s(&Tm, &t);
+	int curYear = Tm.tm_year + 1900;
+	int curMonth = Tm.tm_mon+1;
+	int curDay = Tm.tm_mday;
+	int clientsNumber = 0;
+	float salary = 0;
+	float proceeds = 0;
+	float Profit = 0;
+	float averageСheck = 0;
+	if (reportPeriodCB->Text == "Год")
+	{
+		for each (ServiceOrder* serviceOrder in db2->getServiceOrdersList())
+		{
+			std::string date = serviceOrder->getDate();
+			std::vector <std::string> elems = split(date, '-');
+			int buffYear = std::stoi(elems[0]);
+			int buffMonth = std::stoi(elems[1]);
+			int buffDay = std::stoi(elems[2]);
+
+			if ((buffYear == curYear && buffMonth <= curMonth && buffDay <= curDay) ||
+				(buffYear == curYear - 1 && buffMonth >= curMonth && buffDay >= buffDay))
+			{
+				clientsNumber++;
+				proceeds += serviceOrder->getCost();
+
+			}
+		}
+		for each (User * user in db2->getUsersList())
+		{
+			if (user->getStatus() == EMPLOYEE) 
+			{
+				Employee* buffEmployee = (Employee*)user;
+				salary += buffEmployee->getSalary() * 12;
+			}
+		}
+		Profit = proceeds - salary;
+		averageСheck = proceeds / clientsNumber;
+		String^ yearInfo = "";
+		if (ExpensesCB->Checked == true) 
+		{
+			yearInfo += "Затраты за год составили: " + salary.ToString() + "\n";
+
+		};
+		if (proceedsCB->Checked == true)
+		{
+			yearInfo += "Выручка за год составила: " + proceeds.ToString() + "\n";
+		};
+		if (profitCB->Checked == true)
+		{
+			yearInfo += "Прибыль за год составила: " + Profit.ToString() + "\n";
+		};
+		if (clientsNumberCB->Checked == true)
+		{
+			yearInfo += "Количество клиентов за год составило: " + clientsNumber.ToString() + "\n";
+		};
+		if (averageСheckCB->Checked == true)
+		{
+			yearInfo += "Средний чек за год составил: " + averageСheck.ToString() + "\n";
+		};
+		makeReportRTB->Text = yearInfo;
+	}
+	if (reportPeriodCB->Text == "Месяц")
+	{
+		String^ monthInfo = "";
+		for each (ServiceOrder * serviceOrder in db2->getServiceOrdersList())
+		{
+			std::string date = serviceOrder->getDate();
+			std::vector <std::string> elems = split(date, '-');
+			int buffYear = std::stoi(elems[0]);
+			int buffMonth = std::stoi(elems[1]);
+			int buffDay = std::stoi(elems[2]);
+
+			if ((buffYear == curYear && buffMonth == curMonth-1 && buffDay >= curDay) ||
+				(buffYear == curYear && buffMonth == curMonth  && buffDay <= curDay))
+
+			{
+				clientsNumber++;
+				proceeds += serviceOrder->getCost();
+
+			}
+		}
+		for each (User * user in db2->getUsersList())
+		{
+			if (user->getStatus() == EMPLOYEE)
+			{
+				Employee* buffEmployee = (Employee*)user;
+				salary += buffEmployee->getSalary()*1;
+			}
+		}
+		Profit = proceeds - salary;
+		averageСheck = proceeds / clientsNumber;
+
+
+		if (ExpensesCB->Checked == true)
+		{
+
+			monthInfo += "Затраты за месяц составили: " + salary.ToString() + "\n";
+
+		};
+		if (proceedsCB->Checked == true)
+		{
+			monthInfo += "Выручка за месяц составила: " + proceeds.ToString() + "\n";
+		};
+		if (profitCB->Checked == true)
+		{
+			monthInfo += "Прибыль за месяц составила: " + Profit.ToString() + "\n";
+		};
+		if (clientsNumberCB->Checked == true)
+		{
+			monthInfo += "Количество клиентов за месяц составило: " + clientsNumber.ToString() + "\n";
+		};
+		if (averageСheckCB->Checked == true)
+		{
+			monthInfo +=  "Средний чек за месяц составил: " + averageСheck.ToString() + "\n";
+		};
+		makeReportRTB->Text = monthInfo;
+	}
+	if (reportPeriodCB->Text == "День")
+	{
+		String^ dayInfo = "";
+		for each (ServiceOrder * serviceOrder in db2->getServiceOrdersList())
+		{
+			std::string date = serviceOrder->getDate();
+			std::vector <std::string> elems = split(date, '-');
+			int buffYear = std::stoi(elems[0]);
+			int buffMonth = std::stoi(elems[1]);
+			int buffDay = std::stoi(elems[2]);
+
+			if (buffDay == curDay)
+			{
+				clientsNumber++;
+				proceeds += serviceOrder->getCost();
+
+			}
+		}
+		for each (User * user in db2->getUsersList())
+		{
+			if (user->getStatus() == EMPLOYEE)
+			{
+				Employee* buffEmployee = (Employee*)user;
+				salary += buffEmployee->getSalary()/12;
+			}
+		}
+		Profit = proceeds - salary;
+		averageСheck = proceeds / clientsNumber;
+
+		if (ExpensesCB->Checked == true)
+		{
+
+			dayInfo += "Затраты за текущий день составили: неизвестно""\n";
+
+		};
+		if (proceedsCB->Checked == true)
+		{
+			dayInfo += "Выручка за текущий день составила: " + proceeds.ToString() + "\n";
+		};
+		if (profitCB->Checked == true)
+		{
+			dayInfo += "Прибыль за текущий день составила: неизвестно" + "\n";
+		};
+		if (clientsNumberCB->Checked == true)
+		{
+			dayInfo += "Количество клиентов за текущий день составило: " + clientsNumber.ToString() + "\n";
+		};
+		if (averageСheckCB->Checked == true)
+		{
+			dayInfo += "Средний чек за текущий день составил: " + averageСheck.ToString() + "\n";
+		};
+		makeReportRTB->Text = dayInfo;
+	}
+}
