@@ -155,8 +155,12 @@ private: System::Windows::Forms::Panel^ changeUserPanel;
 private: System::Windows::Forms::Label^ label9;
 private: System::Windows::Forms::Label^ label8;
 private: System::Windows::Forms::Label^ UserIdLbl;
-
 private: System::Windows::Forms::ComboBox^ changeUserTypeCB;
+
+
+
+
+
 private: System::Windows::Forms::Label^ changeUserTypeLbl;
 private: System::Windows::Forms::Button^ changeUserFormBtn;
 
@@ -257,7 +261,10 @@ private: System::Windows::Forms::MaskedTextBox^ changeUserDateTB;
 private: System::Windows::Forms::Panel^ changeUserSpecialityPanel;
 
 private: System::Windows::Forms::Label^ label4;
-private: System::Windows::Forms::ComboBox^ changeUserStatusCB;
+private: System::Windows::Forms::ComboBox^ changeUserSpecialityCB;
+
+
+
 private: System::Windows::Forms::TextBox^ changeUserNameTB;
 
 
@@ -274,7 +281,8 @@ private: System::Windows::Forms::TextBox^ changeUserNameTB;
 
 
 private: System::Windows::Forms::Label^ addStatusLbl;
-private: System::Windows::Forms::ComboBox^ addUserStatusCB;
+private: System::Windows::Forms::ComboBox^ addUserSpecialityCB;
+
 private: System::Windows::Forms::ComboBox^ addUserTypeCB;
 private: System::Windows::Forms::Label^ label10;
 private: System::Windows::Forms::TextBox^ changePersonalAchievementsTB;
@@ -383,8 +391,12 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->changeUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->changeUserDateTB = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->changeUserSpecialityPanel = (gcnew System::Windows::Forms::Panel());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->changePersonalAchievementsTB = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->changeUserExperienceTB = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->changeUserStatusCB = (gcnew System::Windows::Forms::ComboBox());
+			this->changeUserSpecialityCB = (gcnew System::Windows::Forms::ComboBox());
 			this->changeUserSexGP = (gcnew System::Windows::Forms::GroupBox());
 			this->changeUserFemaleRB = (gcnew System::Windows::Forms::RadioButton());
 			this->changeUserMaleRB = (gcnew System::Windows::Forms::RadioButton());
@@ -448,15 +460,11 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->addUserTypeCB = (gcnew System::Windows::Forms::ComboBox());
 			this->addUser = (gcnew System::Windows::Forms::Label());
 			this->specialityPanel = (gcnew System::Windows::Forms::Panel());
+			this->addStatusLbl = (gcnew System::Windows::Forms::Label());
+			this->addUserSpecialityCB = (gcnew System::Windows::Forms::ComboBox());
 			this->addUserPanel = (gcnew System::Windows::Forms::Panel());
 			this->addUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->addUserDateTB = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->addUserStatusCB = (gcnew System::Windows::Forms::ComboBox());
-			this->addStatusLbl = (gcnew System::Windows::Forms::Label());
-			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->changePersonalAchievementsTB = (gcnew System::Windows::Forms::TextBox());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->changeUserExperienceTB = (gcnew System::Windows::Forms::TextBox());
 			acceptOrderBtn = (gcnew System::Windows::Forms::Button());
 			changeNameLbl = (gcnew System::Windows::Forms::Label());
 			addNameLbl = (gcnew System::Windows::Forms::Label());
@@ -1309,12 +1317,45 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->changeUserSpecialityPanel->Controls->Add(this->label7);
 			this->changeUserSpecialityPanel->Controls->Add(this->changeUserExperienceTB);
 			this->changeUserSpecialityPanel->Controls->Add(this->label4);
-			this->changeUserSpecialityPanel->Controls->Add(this->changeUserStatusCB);
+			this->changeUserSpecialityPanel->Controls->Add(this->changeUserSpecialityCB);
 			this->changeUserSpecialityPanel->Location = System::Drawing::Point(130, 310);
 			this->changeUserSpecialityPanel->Name = L"changeUserSpecialityPanel";
 			this->changeUserSpecialityPanel->Size = System::Drawing::Size(287, 192);
 			this->changeUserSpecialityPanel->TabIndex = 61;
 			this->changeUserSpecialityPanel->Visible = false;
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(13, 59);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(110, 13);
+			this->label10->TabIndex = 43;
+			this->label10->Text = L"Личные достижения";
+			// 
+			// changePersonalAchievementsTB
+			// 
+			this->changePersonalAchievementsTB->Location = System::Drawing::Point(140, 56);
+			this->changePersonalAchievementsTB->Multiline = true;
+			this->changePersonalAchievementsTB->Name = L"changePersonalAchievementsTB";
+			this->changePersonalAchievementsTB->Size = System::Drawing::Size(122, 75);
+			this->changePersonalAchievementsTB->TabIndex = 42;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(87, 33);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(33, 13);
+			this->label7->TabIndex = 41;
+			this->label7->Text = L"Стаж";
+			// 
+			// changeUserExperienceTB
+			// 
+			this->changeUserExperienceTB->Location = System::Drawing::Point(140, 30);
+			this->changeUserExperienceTB->Name = L"changeUserExperienceTB";
+			this->changeUserExperienceTB->Size = System::Drawing::Size(122, 20);
+			this->changeUserExperienceTB->TabIndex = 40;
 			// 
 			// label4
 			// 
@@ -1326,15 +1367,18 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->label4->TabIndex = 33;
 			this->label4->Text = L"Должность";
 			// 
-			// changeUserStatusCB
+			// changeUserSpecialityCB
 			// 
-			this->changeUserStatusCB->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->changeUserStatusCB->FormattingEnabled = true;
-			this->changeUserStatusCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"ADMIN", L"EMPLOYEE", L"CLIENT" });
-			this->changeUserStatusCB->Location = System::Drawing::Point(140, 6);
-			this->changeUserStatusCB->Name = L"changeUserStatusCB";
-			this->changeUserStatusCB->Size = System::Drawing::Size(122, 21);
-			this->changeUserStatusCB->TabIndex = 26;
+			this->changeUserSpecialityCB->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->changeUserSpecialityCB->FormattingEnabled = true;
+			this->changeUserSpecialityCB->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"BARBER", L"ADMINISTRATOR", L"CLEANER",
+					L"DIRECTOR"
+			});
+			this->changeUserSpecialityCB->Location = System::Drawing::Point(140, 6);
+			this->changeUserSpecialityCB->Name = L"changeUserSpecialityCB";
+			this->changeUserSpecialityCB->Size = System::Drawing::Size(122, 21);
+			this->changeUserSpecialityCB->TabIndex = 26;
 			// 
 			// changeUserSexGP
 			// 
@@ -1376,7 +1420,6 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->changeUserIdCB->Name = L"changeUserIdCB";
 			this->changeUserIdCB->Size = System::Drawing::Size(76, 21);
 			this->changeUserIdCB->TabIndex = 59;
-			this->changeUserIdCB->SelectedIndexChanged += gcnew System::EventHandler(this, &menuForm::changeUserIdCB_SelectedIndexChanged);
 			this->changeUserIdCB->SelectionChangeCommitted += gcnew System::EventHandler(this, &menuForm::changeUserIdCB_SelectionChangeCommitted);
 			// 
 			// label9
@@ -1388,7 +1431,6 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->label9->Size = System::Drawing::Size(132, 28);
 			this->label9->TabIndex = 58;
 			this->label9->Text = L"         Введите id\r\n  для изменения данных";
-			this->label9->Click += gcnew System::EventHandler(this, &menuForm::label9_Click);
 			// 
 			// label8
 			// 
@@ -1411,19 +1453,16 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->UserIdLbl->Size = System::Drawing::Size(20, 13);
 			this->UserIdLbl->TabIndex = 56;
 			this->UserIdLbl->Text = L"ID";
-			this->UserIdLbl->Click += gcnew System::EventHandler(this, &menuForm::UserIdLbl_Click);
 			// 
 			// changeUserTypeCB
 			// 
 			this->changeUserTypeCB->FormattingEnabled = true;
-			this->changeUserTypeCB->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
-				L"BARBER", L"ADMINISTRATOR", L"CLEANER",
-					L"DIRECTOR"
-			});
+			this->changeUserTypeCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"ADMIN", L"EMPLOYEE", L"CLIENT" });
 			this->changeUserTypeCB->Location = System::Drawing::Point(271, 283);
 			this->changeUserTypeCB->Name = L"changeUserTypeCB";
 			this->changeUserTypeCB->Size = System::Drawing::Size(121, 21);
 			this->changeUserTypeCB->TabIndex = 54;
+			this->changeUserTypeCB->SelectedIndexChanged += gcnew System::EventHandler(this, &menuForm::changeUserTypeCB_SelectedIndexChanged);
 			// 
 			// changeUserTypeLbl
 			// 
@@ -1828,7 +1867,6 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->addUserMaleRB->TabStop = true;
 			this->addUserMaleRB->Text = L"Мужской";
 			this->addUserMaleRB->UseVisualStyleBackColor = true;
-			this->addUserMaleRB->CheckedChanged += gcnew System::EventHandler(this, &menuForm::addUserMaleRB_CheckedChanged);
 			// 
 			// addUserFemaleRB
 			// 
@@ -1840,7 +1878,6 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->addUserFemaleRB->TabStop = true;
 			this->addUserFemaleRB->Text = L"Женский";
 			this->addUserFemaleRB->UseVisualStyleBackColor = true;
-			this->addUserFemaleRB->CheckedChanged += gcnew System::EventHandler(this, &menuForm::addUserFemaleRB_CheckedChanged);
 			// 
 			// addUserSexGP
 			// 
@@ -1933,11 +1970,12 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			// addUserTypeCB
 			// 
 			this->addUserTypeCB->FormattingEnabled = true;
-			this->addUserTypeCB->Items->AddRange(gcnew cli::array< System::Object^  >(4) { L"BARBER", L"ADMINISTRATOR", L"CLEANER", L"DIRECTOR" });
+			this->addUserTypeCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"ADMIN", L"EMPLOYEE", L"CLIENT" });
 			this->addUserTypeCB->Location = System::Drawing::Point(141, 149);
 			this->addUserTypeCB->Name = L"addUserTypeCB";
 			this->addUserTypeCB->Size = System::Drawing::Size(121, 21);
 			this->addUserTypeCB->TabIndex = 36;
+			this->addUserTypeCB->SelectedIndexChanged += gcnew System::EventHandler(this, &menuForm::addUserTypeCB_SelectedIndexChanged);
 			this->addUserTypeCB->SelectionChangeCommitted += gcnew System::EventHandler(this, &menuForm::addUserTypeCB_SelectionChangeCommitted);
 			// 
 			// addUser
@@ -1954,12 +1992,35 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			// specialityPanel
 			// 
 			this->specialityPanel->Controls->Add(this->addStatusLbl);
-			this->specialityPanel->Controls->Add(this->addUserStatusCB);
+			this->specialityPanel->Controls->Add(this->addUserSpecialityCB);
 			this->specialityPanel->Location = System::Drawing::Point(42, 286);
 			this->specialityPanel->Name = L"specialityPanel";
 			this->specialityPanel->Size = System::Drawing::Size(242, 38);
 			this->specialityPanel->TabIndex = 38;
 			this->specialityPanel->Visible = false;
+			// 
+			// addStatusLbl
+			// 
+			this->addStatusLbl->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->addStatusLbl->AutoSize = true;
+			this->addStatusLbl->Location = System::Drawing::Point(18, 13);
+			this->addStatusLbl->Name = L"addStatusLbl";
+			this->addStatusLbl->Size = System::Drawing::Size(65, 13);
+			this->addStatusLbl->TabIndex = 33;
+			this->addStatusLbl->Text = L"Должность";
+			// 
+			// addUserSpecialityCB
+			// 
+			this->addUserSpecialityCB->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->addUserSpecialityCB->FormattingEnabled = true;
+			this->addUserSpecialityCB->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"BARBER", L"ADMINISTRATOR", L"CLEANER",
+					L"DIRECTOR"
+			});
+			this->addUserSpecialityCB->Location = System::Drawing::Point(99, 10);
+			this->addUserSpecialityCB->Name = L"addUserSpecialityCB";
+			this->addUserSpecialityCB->Size = System::Drawing::Size(122, 21);
+			this->addUserSpecialityCB->TabIndex = 26;
 			// 
 			// addUserPanel
 			// 
@@ -2001,58 +2062,6 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 			this->addUserDateTB->Size = System::Drawing::Size(124, 20);
 			this->addUserDateTB->TabIndex = 28;
 			this->addUserDateTB->ValidatingType = System::DateTime::typeid;
-			// 
-			// addUserStatusCB
-			// 
-			this->addUserStatusCB->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->addUserStatusCB->FormattingEnabled = true;
-			this->addUserStatusCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"ADMIN", L"EMPLOYEE", L"CLIENT" });
-			this->addUserStatusCB->Location = System::Drawing::Point(99, 10);
-			this->addUserStatusCB->Name = L"addUserStatusCB";
-			this->addUserStatusCB->Size = System::Drawing::Size(122, 21);
-			this->addUserStatusCB->TabIndex = 26;
-			// 
-			// addStatusLbl
-			// 
-			this->addStatusLbl->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->addStatusLbl->AutoSize = true;
-			this->addStatusLbl->Location = System::Drawing::Point(18, 13);
-			this->addStatusLbl->Name = L"addStatusLbl";
-			this->addStatusLbl->Size = System::Drawing::Size(65, 13);
-			this->addStatusLbl->TabIndex = 33;
-			this->addStatusLbl->Text = L"Должность";
-			// 
-			// label10
-			// 
-			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(13, 59);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(110, 13);
-			this->label10->TabIndex = 43;
-			this->label10->Text = L"Личные достижения";
-			// 
-			// changePersonalAchievementsTB
-			// 
-			this->changePersonalAchievementsTB->Location = System::Drawing::Point(140, 56);
-			this->changePersonalAchievementsTB->Name = L"changePersonalAchievementsTB";
-			this->changePersonalAchievementsTB->Size = System::Drawing::Size(122, 20);
-			this->changePersonalAchievementsTB->TabIndex = 42;
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(87, 33);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(33, 13);
-			this->label7->TabIndex = 41;
-			this->label7->Text = L"Стаж";
-			// 
-			// changeUserExperienceTB
-			// 
-			this->changeUserExperienceTB->Location = System::Drawing::Point(140, 30);
-			this->changeUserExperienceTB->Name = L"changeUserExperienceTB";
-			this->changeUserExperienceTB->Size = System::Drawing::Size(122, 20);
-			this->changeUserExperienceTB->TabIndex = 40;
 			// 
 			// menuForm
 			// 
@@ -2133,6 +2142,8 @@ private: System::Windows::Forms::TextBox^ changeUserExperienceTB;
 	private: System::Void changeUserPanel_VisibleChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void changeUserIdCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void changeUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void changeUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void addUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
 };
 }
  

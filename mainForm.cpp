@@ -363,8 +363,8 @@ System::Void bshop::mainForm::regBtn_Click(System::Object^ sender, System::Event
 	std::string phonenumber = msclr::interop::marshal_as<std::string>(phinenumberTB->Text);
 	std::string email = msclr::interop::marshal_as<std::string>(emailTB->Text);
 	std::string password = msclr::interop::marshal_as<std::string>(passwordTB->Text);
-	std::string statusString = msclr::interop::marshal_as<std::string>(statusCB->Text);
-	std::string selectedSpeciality = msclr::interop::marshal_as<std::string>(userTypeCB->Text);
+	std::string statusString = msclr::interop::marshal_as<std::string>(userTypeCB->Text);
+	std::string selectedSpeciality = msclr::interop::marshal_as<std::string>(specialityCB->Text);
 	//short status = std::stoi(statusString);
 	userType status = checkSelectedStatus(statusString);
 	userSpeciality speciality = checkSelectedSpeciality(selectedSpeciality);

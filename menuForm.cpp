@@ -207,10 +207,6 @@ System::Void bshop::menuForm::addUserBtn_Click_1(System::Object^ sender, System:
 
 System::Void bshop::menuForm::addUserTypeCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
-	if (addUserTypeCB->Text == "EMPLOYEE")
-	{
-		specialityPanel->Visible = true;
-	}
 }
 
 System::Void bshop::menuForm::addUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
@@ -232,11 +228,15 @@ System::Void bshop::menuForm::addUserFormBtn_Click(System::Object^ sender, Syste
 	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);
 	std::string email = msclr::interop::marshal_as<std::string>(addUserMailTB->Text);
 	std::string password = msclr::interop::marshal_as<std::string>(addUserPasswordTB->Text);
-	std::string statusString = msclr::interop::marshal_as<std::string>(addUserStatusCB->Text);
+	std::string statusString = msclr::interop::marshal_as<std::string>(addUserTypeCB->Text);
 	std::string selectedSpeciality;
 	if (addUserTypeCB->Text == "EMPLOYEE")
 	{
-		std::string selectedSpeciality = msclr::interop::marshal_as<std::string>(addUserTypeCB->Text);
+		std::string selectedSpeciality = msclr::interop::marshal_as<std::string>(addUserSpecialityCB->Text);
+	}
+	else
+	{
+		specialityPanel->Visible = false;
 	}
 	userType status = checkSelectedStatus(statusString);
 	userSpeciality speciality = checkSelectedSpeciality(selectedSpeciality);
@@ -277,7 +277,7 @@ System::Void bshop::menuForm::changeUserPanel_VisibleChanged(System::Object^ sen
 
 System::Void bshop::menuForm::changeUserIdCB_SelectionChangeCommitted(System::Object^ sender, System::EventArgs^ e)
 {
-	int selectID =std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->Text));
+	int selectID =std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->SelectedItem->ToString()));
 	User* selectUser = db2->getUser(selectID);
 	changeUserNameTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getName());
 
@@ -288,14 +288,18 @@ System::Void bshop::menuForm::changeUserIdCB_SelectionChangeCommitted(System::Ob
 	changeUserMailTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getEmail());
 	changeUserPasswordTB->Text = "¬ведите новый пароль!";
 	userType status = selectUser->getStatus();
-	changeUserStatusCB->Text = msclr::interop::marshal_as<System::String^>(statusToString(selectUser->getStatus()));
+	changeUserTypeCB->Text = msclr::interop::marshal_as<System::String^>(statusToString(status));
 	if (status == EMPLOYEE)
 	{
 		changeUserSpecialityPanel->Visible = true;
 		Employee* selectEmployee = (Employee*)selectUser;
-		changeUserTypeCB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getSpeciality());
-		
-		
+		changeUserSpecialityCB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getSpeciality());
+		changeUserExperienceTB->Text = msclr::interop::marshal_as<System::String^>(std::to_string(selectEmployee->getExperience()));
+		changePersonalAchievementsTB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getPersonalAchievements());
+	}
+	else
+	{
+		changeUserSpecialityPanel->Visible = false;
 	}
 
 }
@@ -304,24 +308,37 @@ System::Void bshop::menuForm::changeUserFormBtn_Click(System::Object^ sender, Sy
 {
 	int selectID = std::stoi(msclr::interop::marshal_as<std::string>(changeUserIdCB->Text));
 	User* selectUser = db2->getUser(selectID);
-	selectUser.s
-	changeUserNameTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getName());
-
-	changeUserMaleRB->Checked = (selectUser->getSex()) == ("true") ? true : false;
-	if (!changeUserMaleRB->Checked) changeUserFemaleRB->Checked = true;
-	changeUserDateTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getDate());
-	changeUserPhonenumberTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getPhonenumber());
-	changeUserMailTB->Text = msclr::interop::marshal_as<System::String^>(selectUser->getEmail());
-	changeUserPasswordTB->Text = "¬ведите новый пароль!";
-	userType status = selectUser->getStatus();
-	changeUserStatusCB->Text = msclr::interop::marshal_as<System::String^>(statusToString(selectUser->getStatus()));
+	selectUser->setName(msclr::interop::marshal_as<std::string>(changeUserNameTB->Text));
+	selectUser->setSex(changeUserMaleRB->Checked);
+	selectUser->setDate(msclr::interop::marshal_as<std::string>(changeUserDateTB->Text));
+	selectUser->setPhonenumber(msclr::interop::marshal_as<std::string>(changeUserPhonenumberTB->Text));
+	selectUser->setEmail(msclr::interop::marshal_as<std::string>(changeUserMailTB->Text));
+	size_t passwordHash = NULL;
+	sscanf(msclr::interop::marshal_as<std::string>(changeUserPasswordTB->Text).c_str(), "%zu", &passwordHash);
+	selectUser->setPassword(passwordHash);
+	userType status = checkSelectedStatus(msclr::interop::marshal_as<std::string>(changeUserTypeCB->Text));
+	selectUser->setStatus(status);
 	if (status == EMPLOYEE)
 	{
-		changeUserSpecialityPanel->Visible = true;
 		Employee* selectEmployee = (Employee*)selectUser;
-		changeUserTypeCB->Text = msclr::interop::marshal_as<System::String^>(selectEmployee->getSpeciality());
-
+		selectEmployee->setSpeciality(checkSelectedSpeciality(msclr::interop::marshal_as<std::string>(changeUserSpecialityCB->Text)));
+		selectEmployee->setExperience(std::stoi(msclr::interop::marshal_as<std::string>(changeUserExperienceTB->Text)));
+		selectEmployee->setPersonalAchievements(msclr::interop::marshal_as<std::string>(changePersonalAchievementsTB->Text));
 	}
+
+
+}
+
+System::Void bshop::menuForm::changeUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (changeUserTypeCB->Text == "EMPLOYEE") changeUserSpecialityPanel->Visible = true;
+	else changeUserSpecialityPanel->Visible = false;
+}
+
+System::Void bshop::menuForm::addUserTypeCB_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (addUserTypeCB->Text == "EMPLOYEE") specialityPanel->Visible = true;
+	else specialityPanel->Visible = false;
 }
 
 System::Void bshop::menuForm::acceptOrderBtn_Click(System::Object^ sender, System::EventArgs^ e)
