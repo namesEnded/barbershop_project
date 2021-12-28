@@ -566,22 +566,30 @@ void MockDatabase::readServicesFromFile()
 	}
 	else
 	{
-		while (!fin.eof())
+		if (fin.peek() == EOF)
 		{
-			std::string buffString;
-			getline(fin, buffString, delim);
-			try
+			isReadSuccessful = true;
+		}
+		else
+		{
+
+			while (!fin.eof())
 			{
-				buffString = buffString.substr(1, buffString.size() - 2);
-			}
-			catch (std::exception ex)
-			{
-				continue;
-			}
-			std::vector <std::string> elems = split_to_elem(buffString, ';');
-			if (elems.size() >= 3)
-			{
-				isReadSuccessful = readDataAboutService(elems);
+				std::string buffString;
+				getline(fin, buffString, delim);
+				try
+				{
+					buffString = buffString.substr(1, buffString.size() - 2);
+				}
+				catch (std::exception ex)
+				{
+					continue;
+				}
+				std::vector <std::string> elems = split_to_elem(buffString, ';');
+				if (elems.size() >= 3)
+				{
+					isReadSuccessful = readDataAboutService(elems);
+				}
 			}
 		}
 		if (!isReadSuccessful)
@@ -728,27 +736,34 @@ void MockDatabase::readDatabaseFromFile()
 		}
 		else
 		{
-			while (!fin.eof())
+			if (fin.peek() == EOF)
 			{
-				std::string buffString;
-				getline(fin, buffString, delim);
-				try
+				isReadSuccessful = true;
+			}
+			else
+			{
+				while (!fin.eof())
 				{
-					buffString = buffString.substr(1, buffString.size() - 2);
-				}
-				catch (std::exception ex)
-				{
-					continue;
-				}
-				std::vector <std::string> elems = split_to_elem(buffString, ';');
-				if (elems.size() >= 7)
-				{
-					if (path == "employeeData.txt")
-						isReadSuccessful = readDataAboutUser(EMPLOYEE, elems);
-					else if (path == "adminData.txt")
-						isReadSuccessful = readDataAboutUser(ADMIN, elems);
-					else if (path == "clientData.txt")
-						isReadSuccessful = readDataAboutUser(CLIENT, elems);
+					std::string buffString;
+					getline(fin, buffString, delim);
+					try
+					{
+						buffString = buffString.substr(1, buffString.size() - 2);
+					}
+					catch (std::exception ex)
+					{
+						continue;
+					}
+					std::vector <std::string> elems = split_to_elem(buffString, ';');
+					if (elems.size() >= 7)
+					{
+						if (path == "employeeData.txt")
+							isReadSuccessful = readDataAboutUser(EMPLOYEE, elems);
+						else if (path == "adminData.txt")
+							isReadSuccessful = readDataAboutUser(ADMIN, elems);
+						else if (path == "clientData.txt")
+							isReadSuccessful = readDataAboutUser(CLIENT, elems);
+					}
 				}
 			}
 			if (!isReadSuccessful)
@@ -803,22 +818,29 @@ void MockDatabase::readServicesOrdersFromFile()
 	}
 	else
 	{
-		while (!fin.eof())
+		if (fin.peek() == EOF)
 		{
-			std::string buffString;
-			getline(fin, buffString, delim);
-			try
+			isReadSuccessful = true;
+		}
+		else
+		{
+			while (!fin.eof())
 			{
-				buffString = buffString.substr(1, buffString.size() - 2);
-			}
-			catch (std::exception ex)
-			{
-				continue;
-			}
-			std::vector <std::string> elems = split_to_elem(buffString, ';');
-			if (elems.size() >= 3)
-			{
-				isReadSuccessful = readDataAboutServiceOrder(elems);
+				std::string buffString;
+				getline(fin, buffString, delim);
+				try
+				{
+					buffString = buffString.substr(1, buffString.size() - 2);
+				}
+				catch (std::exception ex)
+				{
+					continue;
+				}
+				std::vector <std::string> elems = split_to_elem(buffString, ';');
+				if (elems.size() >= 3)
+				{
+					isReadSuccessful = readDataAboutServiceOrder(elems);
+				}
 			}
 		}
 		if (!isReadSuccessful)

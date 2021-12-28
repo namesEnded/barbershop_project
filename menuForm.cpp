@@ -175,7 +175,6 @@ System::Int32 bshop::menuForm::findID(int Index, bool isEmployee)
 	return -1;
 }
 
-
 System::Void bshop::menuForm::addUserBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	std::list<ServiceOrder*> ServicesOrders = db2->getServiceOrdersList();

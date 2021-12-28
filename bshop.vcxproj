@@ -122,8 +122,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="adminForm.cpp" />
     <ClCompile Include="checkFunctions.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="clientForm.cpp" />
+    <ClCompile Include="employeeForm.cpp" />
     <ClCompile Include="menuForm.cpp" />
     <ClCompile Include="ServiceOrder.cpp" />
     <ClCompile Include="Service.cpp" />
@@ -133,8 +136,17 @@
     <ClCompile Include="Employee.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adminForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="checkFunctions.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="clientForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="employeeForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="menuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -153,6 +165,12 @@
     <ClInclude Include="Employee.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="adminForm.resx">
+      <DependentUpon>adminForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="clientForm.resx">
+      <DependentUpon>clientForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.h</DependentUpon>
       <SubType>Designer</SubType>

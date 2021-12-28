@@ -365,6 +365,40 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserBtn = (gcnew System::Windows::Forms::Button());
 			this->addUserBtn = (gcnew System::Windows::Forms::Button());
 			this->AdminLbl = (gcnew System::Windows::Forms::Label());
+			this->changeServicePanel = (gcnew System::Windows::Forms::Panel());
+			this->deleteServices = (gcnew System::Windows::Forms::Label());
+			this->changeServicePriceLbl = (gcnew System::Windows::Forms::Label());
+			this->changeServiceNameLbl = (gcnew System::Windows::Forms::Label());
+			this->changeServiceNameTB = (gcnew System::Windows::Forms::TextBox());
+			this->changeServicePriceTB = (gcnew System::Windows::Forms::TextBox());
+			this->changeServiceFormBtn = (gcnew System::Windows::Forms::Button());
+			this->changeUserPanel = (gcnew System::Windows::Forms::Panel());
+			this->changeUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->changeUserDateTB = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->changeUserSpecialityPanel = (gcnew System::Windows::Forms::Panel());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->changePersonalAchievementsTB = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->changeUserExperienceTB = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->changeUserSpecialityCB = (gcnew System::Windows::Forms::ComboBox());
+			this->changeUserSexGP = (gcnew System::Windows::Forms::GroupBox());
+			this->changeUserFemaleRB = (gcnew System::Windows::Forms::RadioButton());
+			this->changeUserMaleRB = (gcnew System::Windows::Forms::RadioButton());
+			this->changeUserIdCB = (gcnew System::Windows::Forms::ComboBox());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->UserIdLbl = (gcnew System::Windows::Forms::Label());
+			this->changeUserTypeCB = (gcnew System::Windows::Forms::ComboBox());
+			this->changeUserTypeLbl = (gcnew System::Windows::Forms::Label());
+			this->changeUserFormBtn = (gcnew System::Windows::Forms::Button());
+			this->changePassLbl = (gcnew System::Windows::Forms::Label());
+			this->changeEmailLbl = (gcnew System::Windows::Forms::Label());
+			this->changePhonenumberLbl = (gcnew System::Windows::Forms::Label());
+			this->changeDateLbl = (gcnew System::Windows::Forms::Label());
+			this->changeUserPasswordTB = (gcnew System::Windows::Forms::TextBox());
+			this->changeUserMailTB = (gcnew System::Windows::Forms::TextBox());
+			this->changeUserNameTB = (gcnew System::Windows::Forms::TextBox());
 			this->addUserPanel = (gcnew System::Windows::Forms::Panel());
 			this->addUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->addUserDateTB = (gcnew System::Windows::Forms::MaskedTextBox());
@@ -425,40 +459,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->updateGridsBtn = (gcnew System::Windows::Forms::Button());
-			this->changeServicePanel = (gcnew System::Windows::Forms::Panel());
-			this->deleteServices = (gcnew System::Windows::Forms::Label());
-			this->changeServicePriceLbl = (gcnew System::Windows::Forms::Label());
-			this->changeServiceNameLbl = (gcnew System::Windows::Forms::Label());
-			this->changeServiceNameTB = (gcnew System::Windows::Forms::TextBox());
-			this->changeServicePriceTB = (gcnew System::Windows::Forms::TextBox());
-			this->changeServiceFormBtn = (gcnew System::Windows::Forms::Button());
-			this->changeUserPanel = (gcnew System::Windows::Forms::Panel());
-			this->changeUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->changeUserDateTB = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->changeUserSpecialityPanel = (gcnew System::Windows::Forms::Panel());
-			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->changePersonalAchievementsTB = (gcnew System::Windows::Forms::TextBox());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->changeUserExperienceTB = (gcnew System::Windows::Forms::TextBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->changeUserSpecialityCB = (gcnew System::Windows::Forms::ComboBox());
-			this->changeUserSexGP = (gcnew System::Windows::Forms::GroupBox());
-			this->changeUserFemaleRB = (gcnew System::Windows::Forms::RadioButton());
-			this->changeUserMaleRB = (gcnew System::Windows::Forms::RadioButton());
-			this->changeUserIdCB = (gcnew System::Windows::Forms::ComboBox());
-			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->UserIdLbl = (gcnew System::Windows::Forms::Label());
-			this->changeUserTypeCB = (gcnew System::Windows::Forms::ComboBox());
-			this->changeUserTypeLbl = (gcnew System::Windows::Forms::Label());
-			this->changeUserFormBtn = (gcnew System::Windows::Forms::Button());
-			this->changePassLbl = (gcnew System::Windows::Forms::Label());
-			this->changeEmailLbl = (gcnew System::Windows::Forms::Label());
-			this->changePhonenumberLbl = (gcnew System::Windows::Forms::Label());
-			this->changeDateLbl = (gcnew System::Windows::Forms::Label());
-			this->changeUserPasswordTB = (gcnew System::Windows::Forms::TextBox());
-			this->changeUserMailTB = (gcnew System::Windows::Forms::TextBox());
-			this->changeUserNameTB = (gcnew System::Windows::Forms::TextBox());
 			this->clientPanel = (gcnew System::Windows::Forms::Panel());
 			this->ClientNameLbl = (gcnew System::Windows::Forms::Label());
 			this->ordersList = (gcnew System::Windows::Forms::Label());
@@ -513,6 +513,10 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			changeNameLbl = (gcnew System::Windows::Forms::Label());
 			addNameLbl = (gcnew System::Windows::Forms::Label());
 			this->adminPanel->SuspendLayout();
+			this->changeServicePanel->SuspendLayout();
+			this->changeUserPanel->SuspendLayout();
+			this->changeUserSpecialityPanel->SuspendLayout();
+			this->changeUserSexGP->SuspendLayout();
 			this->addUserPanel->SuspendLayout();
 			this->addUserSexGP->SuspendLayout();
 			this->specialityPanel->SuspendLayout();
@@ -521,10 +525,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ordersDataGrid))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->servicesDataGrid))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersDataGrid))->BeginInit();
-			this->changeServicePanel->SuspendLayout();
-			this->changeUserPanel->SuspendLayout();
-			this->changeUserSpecialityPanel->SuspendLayout();
-			this->changeUserSexGP->SuspendLayout();
 			this->clientPanel->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->orderInitGrid))->BeginInit();
 			this->employeePanel->SuspendLayout();
@@ -570,11 +570,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->adminPanel->Controls->Add(this->changeUserBtn);
 			this->adminPanel->Controls->Add(this->addUserBtn);
 			this->adminPanel->Controls->Add(this->AdminLbl);
-			this->adminPanel->Controls->Add(this->changeServicePanel);
-			this->adminPanel->Controls->Add(this->changeUserPanel);
-			this->adminPanel->Controls->Add(this->addUserPanel);
-			this->adminPanel->Controls->Add(this->reportPanel);
-			this->adminPanel->Controls->Add(this->addServicePanel);
 			this->adminPanel->Controls->Add(this->ordersDataGrid);
 			this->adminPanel->Controls->Add(this->servicesDataGrid);
 			this->adminPanel->Controls->Add(this->usersDataGrid);
@@ -582,9 +577,9 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->adminPanel->Controls->Add(this->label2);
 			this->adminPanel->Controls->Add(this->label1);
 			this->adminPanel->Controls->Add(this->updateGridsBtn);
-			this->adminPanel->Location = System::Drawing::Point(12, 12);
+			this->adminPanel->Location = System::Drawing::Point(990, 168);
 			this->adminPanel->Name = L"adminPanel";
-			this->adminPanel->Size = System::Drawing::Size(904, 709);
+			this->adminPanel->Size = System::Drawing::Size(651, 709);
 			this->adminPanel->TabIndex = 1;
 			// 
 			// deleteSpecidicServiceOrderBtn
@@ -676,593 +671,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->AdminLbl->TabIndex = 0;
 			this->AdminLbl->Text = L"Admin";
 			// 
-			// addUserPanel
-			// 
-			this->addUserPanel->Controls->Add(this->addUserPhonenumberTB);
-			this->addUserPanel->Controls->Add(this->addUserDateTB);
-			this->addUserPanel->Controls->Add(this->addUserSexGP);
-			this->addUserPanel->Controls->Add(this->specialityPanel);
-			this->addUserPanel->Controls->Add(this->addUserTypeCB);
-			this->addUserPanel->Controls->Add(this->addUserTypeLbl);
-			this->addUserPanel->Controls->Add(this->addUserFormBtn);
-			this->addUserPanel->Controls->Add(this->addPassLbl);
-			this->addUserPanel->Controls->Add(this->addEmailLbl);
-			this->addUserPanel->Controls->Add(this->addPhonenumberLbl);
-			this->addUserPanel->Controls->Add(this->addDateLbl);
-			this->addUserPanel->Controls->Add(addNameLbl);
-			this->addUserPanel->Controls->Add(this->addUserPasswordTB);
-			this->addUserPanel->Controls->Add(this->addUserMailTB);
-			this->addUserPanel->Controls->Add(this->addUserNameTB);
-			this->addUserPanel->Controls->Add(this->addUser);
-			this->addUserPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->addUserPanel->Location = System::Drawing::Point(262, 16);
-			this->addUserPanel->Name = L"addUserPanel";
-			this->addUserPanel->Size = System::Drawing::Size(630, 686);
-			this->addUserPanel->TabIndex = 26;
-			// 
-			// addUserPhonenumberTB
-			// 
-			this->addUserPhonenumberTB->Location = System::Drawing::Point(141, 201);
-			this->addUserPhonenumberTB->Mask = L"(999) 000-0000";
-			this->addUserPhonenumberTB->Name = L"addUserPhonenumberTB";
-			this->addUserPhonenumberTB->Size = System::Drawing::Size(124, 24);
-			this->addUserPhonenumberTB->TabIndex = 28;
-			// 
-			// addUserDateTB
-			// 
-			this->addUserDateTB->Location = System::Drawing::Point(141, 171);
-			this->addUserDateTB->Mask = L"00/00/0000";
-			this->addUserDateTB->Name = L"addUserDateTB";
-			this->addUserDateTB->Size = System::Drawing::Size(124, 24);
-			this->addUserDateTB->TabIndex = 28;
-			this->addUserDateTB->ValidatingType = System::DateTime::typeid;
-			// 
-			// addUserSexGP
-			// 
-			this->addUserSexGP->Controls->Add(this->addUserFemaleRB);
-			this->addUserSexGP->Controls->Add(this->addUserMaleRB);
-			this->addUserSexGP->Location = System::Drawing::Point(88, 78);
-			this->addUserSexGP->Name = L"addUserSexGP";
-			this->addUserSexGP->Size = System::Drawing::Size(175, 58);
-			this->addUserSexGP->TabIndex = 41;
-			this->addUserSexGP->TabStop = false;
-			this->addUserSexGP->Text = L"Ïîë";
-			// 
-			// addUserFemaleRB
-			// 
-			this->addUserFemaleRB->AutoSize = true;
-			this->addUserFemaleRB->Location = System::Drawing::Point(69, 33);
-			this->addUserFemaleRB->Name = L"addUserFemaleRB";
-			this->addUserFemaleRB->Size = System::Drawing::Size(82, 21);
-			this->addUserFemaleRB->TabIndex = 40;
-			this->addUserFemaleRB->TabStop = true;
-			this->addUserFemaleRB->Text = L"Æåíñêèé";
-			this->addUserFemaleRB->UseVisualStyleBackColor = true;
-			// 
-			// addUserMaleRB
-			// 
-			this->addUserMaleRB->AutoSize = true;
-			this->addUserMaleRB->Location = System::Drawing::Point(69, 13);
-			this->addUserMaleRB->Name = L"addUserMaleRB";
-			this->addUserMaleRB->Size = System::Drawing::Size(84, 21);
-			this->addUserMaleRB->TabIndex = 39;
-			this->addUserMaleRB->TabStop = true;
-			this->addUserMaleRB->Text = L"Ìóæñêîé";
-			this->addUserMaleRB->UseVisualStyleBackColor = true;
-			// 
-			// specialityPanel
-			// 
-			this->specialityPanel->Controls->Add(this->addStatusLbl);
-			this->specialityPanel->Controls->Add(this->addUserSpecialityCB);
-			this->specialityPanel->Location = System::Drawing::Point(42, 287);
-			this->specialityPanel->Name = L"specialityPanel";
-			this->specialityPanel->Size = System::Drawing::Size(242, 38);
-			this->specialityPanel->TabIndex = 38;
-			this->specialityPanel->Visible = false;
-			// 
-			// addStatusLbl
-			// 
-			this->addStatusLbl->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->addStatusLbl->AutoSize = true;
-			this->addStatusLbl->Location = System::Drawing::Point(16, 11);
-			this->addStatusLbl->Name = L"addStatusLbl";
-			this->addStatusLbl->Size = System::Drawing::Size(77, 17);
-			this->addStatusLbl->TabIndex = 33;
-			this->addStatusLbl->Text = L"Äîëæíîñòü";
-			// 
-			// addUserSpecialityCB
-			// 
-			this->addUserSpecialityCB->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->addUserSpecialityCB->FormattingEnabled = true;
-			this->addUserSpecialityCB->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
-				L"BARBER", L"ADMINISTRATOR", L"CLEANER",
-					L"DIRECTOR"
-			});
-			this->addUserSpecialityCB->Location = System::Drawing::Point(99, 10);
-			this->addUserSpecialityCB->Name = L"addUserSpecialityCB";
-			this->addUserSpecialityCB->Size = System::Drawing::Size(124, 23);
-			this->addUserSpecialityCB->TabIndex = 26;
-			// 
-			// addUserTypeCB
-			// 
-			this->addUserTypeCB->FormattingEnabled = true;
-			this->addUserTypeCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"ADMIN", L"EMPLOYEE", L"CLIENT" });
-			this->addUserTypeCB->Location = System::Drawing::Point(141, 142);
-			this->addUserTypeCB->Name = L"addUserTypeCB";
-			this->addUserTypeCB->Size = System::Drawing::Size(124, 23);
-			this->addUserTypeCB->TabIndex = 36;
-			this->addUserTypeCB->SelectedIndexChanged += gcnew System::EventHandler(this, &menuForm::addUserTypeCB_SelectedIndexChanged);
-			this->addUserTypeCB->SelectionChangeCommitted += gcnew System::EventHandler(this, &menuForm::addUserTypeCB_SelectionChangeCommitted);
-			// 
-			// addUserTypeLbl
-			// 
-			this->addUserTypeLbl->AutoSize = true;
-			this->addUserTypeLbl->Location = System::Drawing::Point(14, 145);
-			this->addUserTypeLbl->Name = L"addUserTypeLbl";
-			this->addUserTypeLbl->Size = System::Drawing::Size(120, 17);
-			this->addUserTypeLbl->TabIndex = 35;
-			this->addUserTypeLbl->Text = L"Òèï ïîëüçîâàòåëÿ";
-			// 
-			// addUserFormBtn
-			// 
-			this->addUserFormBtn->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->addUserFormBtn->Location = System::Drawing::Point(141, 331);
-			this->addUserFormBtn->Name = L"addUserFormBtn";
-			this->addUserFormBtn->Size = System::Drawing::Size(124, 23);
-			this->addUserFormBtn->TabIndex = 34;
-			this->addUserFormBtn->Text = L"Äîáàâèòü";
-			this->addUserFormBtn->UseVisualStyleBackColor = true;
-			this->addUserFormBtn->Click += gcnew System::EventHandler(this, &menuForm::addUserFormBtn_Click);
-			// 
-			// addPassLbl
-			// 
-			this->addPassLbl->AutoSize = true;
-			this->addPassLbl->Location = System::Drawing::Point(80, 264);
-			this->addPassLbl->Name = L"addPassLbl";
-			this->addPassLbl->Size = System::Drawing::Size(55, 17);
-			this->addPassLbl->TabIndex = 32;
-			this->addPassLbl->Text = L"Ïàðîëü";
-			// 
-			// addEmailLbl
-			// 
-			this->addEmailLbl->AutoSize = true;
-			this->addEmailLbl->Location = System::Drawing::Point(88, 234);
-			this->addEmailLbl->Name = L"addEmailLbl";
-			this->addEmailLbl->Size = System::Drawing::Size(45, 17);
-			this->addEmailLbl->TabIndex = 31;
-			this->addEmailLbl->Text = L"e-mail";
-			// 
-			// addPhonenumberLbl
-			// 
-			this->addPhonenumberLbl->AutoSize = true;
-			this->addPhonenumberLbl->Location = System::Drawing::Point(21, 204);
-			this->addPhonenumberLbl->Name = L"addPhonenumberLbl";
-			this->addPhonenumberLbl->Size = System::Drawing::Size(114, 17);
-			this->addPhonenumberLbl->TabIndex = 30;
-			this->addPhonenumberLbl->Text = L"Íîìåð òåëåôîíà";
-			// 
-			// addDateLbl
-			// 
-			this->addDateLbl->AutoSize = true;
-			this->addDateLbl->Location = System::Drawing::Point(30, 174);
-			this->addDateLbl->Name = L"addDateLbl";
-			this->addDateLbl->Size = System::Drawing::Size(105, 17);
-			this->addDateLbl->TabIndex = 29;
-			this->addDateLbl->Text = L"Äàòà ðîæäåíèÿ";
-			// 
-			// addUserPasswordTB
-			// 
-			this->addUserPasswordTB->Location = System::Drawing::Point(141, 261);
-			this->addUserPasswordTB->Name = L"addUserPasswordTB";
-			this->addUserPasswordTB->Size = System::Drawing::Size(124, 24);
-			this->addUserPasswordTB->TabIndex = 25;
-			// 
-			// addUserMailTB
-			// 
-			this->addUserMailTB->Location = System::Drawing::Point(141, 231);
-			this->addUserMailTB->Name = L"addUserMailTB";
-			this->addUserMailTB->Size = System::Drawing::Size(124, 24);
-			this->addUserMailTB->TabIndex = 24;
-			// 
-			// addUserNameTB
-			// 
-			this->addUserNameTB->Location = System::Drawing::Point(141, 48);
-			this->addUserNameTB->Name = L"addUserNameTB";
-			this->addUserNameTB->Size = System::Drawing::Size(124, 24);
-			this->addUserNameTB->TabIndex = 19;
-			// 
-			// addUser
-			// 
-			this->addUser->AutoSize = true;
-			this->addUser->Font = (gcnew System::Drawing::Font(L"Agency FB", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->addUser->Location = System::Drawing::Point(30, 11);
-			this->addUser->Name = L"addUser";
-			this->addUser->Size = System::Drawing::Size(321, 25);
-			this->addUser->TabIndex = 37;
-			this->addUser->Text = L"Äîáàâèòü íîâîãî ïîëüçîâàòåëÿ";
-			// 
-			// reportPanel
-			// 
-			this->reportPanel->Controls->Add(this->averageÑheckCB);
-			this->reportPanel->Controls->Add(this->clientsNumberCB);
-			this->reportPanel->Controls->Add(this->profitCB);
-			this->reportPanel->Controls->Add(this->proceedsCB);
-			this->reportPanel->Controls->Add(this->ExpensesCB);
-			this->reportPanel->Controls->Add(this->updateReportBtn);
-			this->reportPanel->Controls->Add(this->makeReportRTB);
-			this->reportPanel->Controls->Add(this->makeReportBtn);
-			this->reportPanel->Controls->Add(this->reportPeriodCB);
-			this->reportPanel->Controls->Add(this->reportPeriodLbl);
-			this->reportPanel->Controls->Add(this->saveReportBtn);
-			this->reportPanel->Controls->Add(this->financialStatementsLbl);
-			this->reportPanel->Location = System::Drawing::Point(264, 22);
-			this->reportPanel->Name = L"reportPanel";
-			this->reportPanel->Size = System::Drawing::Size(626, 676);
-			this->reportPanel->TabIndex = 24;
-			// 
-			// averageÑheckCB
-			// 
-			this->averageÑheckCB->AutoSize = true;
-			this->averageÑheckCB->Location = System::Drawing::Point(288, 158);
-			this->averageÑheckCB->Name = L"averageÑheckCB";
-			this->averageÑheckCB->Size = System::Drawing::Size(89, 17);
-			this->averageÑheckCB->TabIndex = 28;
-			this->averageÑheckCB->Text = L"Ñðåäíèé ÷åê";
-			this->averageÑheckCB->UseVisualStyleBackColor = true;
-			// 
-			// clientsNumberCB
-			// 
-			this->clientsNumberCB->AutoSize = true;
-			this->clientsNumberCB->Location = System::Drawing::Point(288, 138);
-			this->clientsNumberCB->Name = L"clientsNumberCB";
-			this->clientsNumberCB->Size = System::Drawing::Size(135, 17);
-			this->clientsNumberCB->TabIndex = 27;
-			this->clientsNumberCB->Text = L"Êîëè÷åñòâî êëèåíòîâ";
-			this->clientsNumberCB->UseVisualStyleBackColor = true;
-			// 
-			// profitCB
-			// 
-			this->profitCB->AutoSize = true;
-			this->profitCB->Location = System::Drawing::Point(288, 120);
-			this->profitCB->Name = L"profitCB";
-			this->profitCB->Size = System::Drawing::Size(72, 17);
-			this->profitCB->TabIndex = 26;
-			this->profitCB->Text = L"Ïðèáûëü";
-			this->profitCB->UseVisualStyleBackColor = true;
-			// 
-			// proceedsCB
-			// 
-			this->proceedsCB->AutoSize = true;
-			this->proceedsCB->Location = System::Drawing::Point(288, 101);
-			this->proceedsCB->Name = L"proceedsCB";
-			this->proceedsCB->Size = System::Drawing::Size(69, 17);
-			this->proceedsCB->TabIndex = 25;
-			this->proceedsCB->Text = L"Âûðó÷êà";
-			this->proceedsCB->UseVisualStyleBackColor = true;
-			// 
-			// ExpensesCB
-			// 
-			this->ExpensesCB->AutoSize = true;
-			this->ExpensesCB->Location = System::Drawing::Point(288, 80);
-			this->ExpensesCB->Name = L"ExpensesCB";
-			this->ExpensesCB->Size = System::Drawing::Size(69, 17);
-			this->ExpensesCB->TabIndex = 24;
-			this->ExpensesCB->Text = L"Çàòðàòû";
-			this->ExpensesCB->UseVisualStyleBackColor = true;
-			// 
-			// updateReportBtn
-			// 
-			this->updateReportBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateReportBtn.BackgroundImage")));
-			this->updateReportBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->updateReportBtn->Location = System::Drawing::Point(368, 193);
-			this->updateReportBtn->Name = L"updateReportBtn";
-			this->updateReportBtn->Size = System::Drawing::Size(40, 40);
-			this->updateReportBtn->TabIndex = 18;
-			this->updateReportBtn->UseVisualStyleBackColor = true;
-			// 
-			// makeReportRTB
-			// 
-			this->makeReportRTB->Location = System::Drawing::Point(23, 241);
-			this->makeReportRTB->Name = L"makeReportRTB";
-			this->makeReportRTB->Size = System::Drawing::Size(385, 265);
-			this->makeReportRTB->TabIndex = 23;
-			this->makeReportRTB->Text = L"";
-			// 
-			// makeReportBtn
-			// 
-			this->makeReportBtn->Location = System::Drawing::Point(70, 123);
-			this->makeReportBtn->Name = L"makeReportBtn";
-			this->makeReportBtn->Size = System::Drawing::Size(121, 34);
-			this->makeReportBtn->TabIndex = 22;
-			this->makeReportBtn->Text = L"Ñîñòàâèòü îò÷¸ò";
-			this->makeReportBtn->UseVisualStyleBackColor = true;
-			this->makeReportBtn->Click += gcnew System::EventHandler(this, &menuForm::makeReportBtn_Click);
-			// 
-			// reportPeriodCB
-			// 
-			this->reportPeriodCB->FormattingEnabled = true;
-			this->reportPeriodCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Äåíü", L"Ìåñÿö", L"Ãîä" });
-			this->reportPeriodCB->Location = System::Drawing::Point(70, 83);
-			this->reportPeriodCB->Name = L"reportPeriodCB";
-			this->reportPeriodCB->Size = System::Drawing::Size(121, 21);
-			this->reportPeriodCB->TabIndex = 19;
-			// 
-			// reportPeriodLbl
-			// 
-			this->reportPeriodLbl->AutoSize = true;
-			this->reportPeriodLbl->Location = System::Drawing::Point(20, 88);
-			this->reportPeriodLbl->Name = L"reportPeriodLbl";
-			this->reportPeriodLbl->Size = System::Drawing::Size(45, 13);
-			this->reportPeriodLbl->TabIndex = 18;
-			this->reportPeriodLbl->Text = L"Ïåðèîä";
-			// 
-			// saveReportBtn
-			// 
-			this->saveReportBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saveReportBtn.BackgroundImage")));
-			this->saveReportBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->saveReportBtn->Location = System::Drawing::Point(317, 193);
-			this->saveReportBtn->Name = L"saveReportBtn";
-			this->saveReportBtn->Size = System::Drawing::Size(40, 40);
-			this->saveReportBtn->TabIndex = 17;
-			this->saveReportBtn->UseVisualStyleBackColor = true;
-			// 
-			// financialStatementsLbl
-			// 
-			this->financialStatementsLbl->AutoSize = true;
-			this->financialStatementsLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->financialStatementsLbl->Location = System::Drawing::Point(90, 20);
-			this->financialStatementsLbl->Name = L"financialStatementsLbl";
-			this->financialStatementsLbl->Size = System::Drawing::Size(252, 25);
-			this->financialStatementsLbl->TabIndex = 0;
-			this->financialStatementsLbl->Text = L"Ôèíàíñîâàÿ îò÷¸òíîñòü";
-			// 
-			// addServicePanel
-			// 
-			this->addServicePanel->Controls->Add(this->loadServicesBtn);
-			this->addServicePanel->Controls->Add(this->updateServicesBtn);
-			this->addServicePanel->Controls->Add(this->saveServicesBtn);
-			this->addServicePanel->Controls->Add(this->servicesRTB);
-			this->addServicePanel->Controls->Add(this->addServicePriceLbl);
-			this->addServicePanel->Controls->Add(this->addServices);
-			this->addServicePanel->Controls->Add(this->addServiceNameLbl);
-			this->addServicePanel->Controls->Add(this->serviceNameTB);
-			this->addServicePanel->Controls->Add(this->servicePriceTB);
-			this->addServicePanel->Controls->Add(this->addServiceBtn);
-			this->addServicePanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->addServicePanel->Location = System::Drawing::Point(233, 6);
-			this->addServicePanel->Name = L"addServicePanel";
-			this->addServicePanel->Size = System::Drawing::Size(660, 698);
-			this->addServicePanel->TabIndex = 27;
-			// 
-			// loadServicesBtn
-			// 
-			this->loadServicesBtn->Location = System::Drawing::Point(305, 278);
-			this->loadServicesBtn->Name = L"loadServicesBtn";
-			this->loadServicesBtn->Size = System::Drawing::Size(58, 40);
-			this->loadServicesBtn->TabIndex = 17;
-			this->loadServicesBtn->Text = L"load";
-			this->loadServicesBtn->UseVisualStyleBackColor = true;
-			this->loadServicesBtn->Click += gcnew System::EventHandler(this, &menuForm::loadServicesBtn_Click);
-			// 
-			// updateServicesBtn
-			// 
-			this->updateServicesBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateServicesBtn.BackgroundImage")));
-			this->updateServicesBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->updateServicesBtn->Location = System::Drawing::Point(213, 278);
-			this->updateServicesBtn->Name = L"updateServicesBtn";
-			this->updateServicesBtn->Size = System::Drawing::Size(40, 40);
-			this->updateServicesBtn->TabIndex = 16;
-			this->updateServicesBtn->UseVisualStyleBackColor = true;
-			this->updateServicesBtn->Click += gcnew System::EventHandler(this, &menuForm::updateServicesBtn_Click);
-			// 
-			// saveServicesBtn
-			// 
-			this->saveServicesBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saveServicesBtn.BackgroundImage")));
-			this->saveServicesBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->saveServicesBtn->Location = System::Drawing::Point(259, 278);
-			this->saveServicesBtn->Name = L"saveServicesBtn";
-			this->saveServicesBtn->Size = System::Drawing::Size(40, 40);
-			this->saveServicesBtn->TabIndex = 16;
-			this->saveServicesBtn->UseVisualStyleBackColor = true;
-			this->saveServicesBtn->Click += gcnew System::EventHandler(this, &menuForm::saveServicesBtn_Click);
-			// 
-			// servicesRTB
-			// 
-			this->servicesRTB->Location = System::Drawing::Point(13, 189);
-			this->servicesRTB->Name = L"servicesRTB";
-			this->servicesRTB->Size = System::Drawing::Size(350, 83);
-			this->servicesRTB->TabIndex = 12;
-			this->servicesRTB->Text = L"";
-			// 
-			// addServicePriceLbl
-			// 
-			this->addServicePriceLbl->AutoSize = true;
-			this->addServicePriceLbl->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->addServicePriceLbl->Location = System::Drawing::Point(31, 112);
-			this->addServicePriceLbl->Name = L"addServicePriceLbl";
-			this->addServicePriceLbl->Size = System::Drawing::Size(40, 17);
-			this->addServicePriceLbl->TabIndex = 11;
-			this->addServicePriceLbl->Text = L"Öåíà";
-			this->addServicePriceLbl->TextAlign = System::Drawing::ContentAlignment::TopCenter;
-			// 
-			// addServices
-			// 
-			this->addServices->AutoSize = true;
-			this->addServices->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 15.25F, System::Drawing::FontStyle::Bold));
-			this->addServices->Location = System::Drawing::Point(8, 28);
-			this->addServices->Name = L"addServices";
-			this->addServices->Size = System::Drawing::Size(178, 30);
-			this->addServices->TabIndex = 9;
-			this->addServices->Text = L"Äîáàâèòü óñëóãó";
-			// 
-			// addServiceNameLbl
-			// 
-			this->addServiceNameLbl->AutoSize = true;
-			this->addServiceNameLbl->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->addServiceNameLbl->Location = System::Drawing::Point(8, 79);
-			this->addServiceNameLbl->Name = L"addServiceNameLbl";
-			this->addServiceNameLbl->Size = System::Drawing::Size(68, 17);
-			this->addServiceNameLbl->TabIndex = 10;
-			this->addServiceNameLbl->Text = L"Íàçâàíèå";
-			// 
-			// serviceNameTB
-			// 
-			this->serviceNameTB->Location = System::Drawing::Point(87, 76);
-			this->serviceNameTB->Name = L"serviceNameTB";
-			this->serviceNameTB->Size = System::Drawing::Size(204, 24);
-			this->serviceNameTB->TabIndex = 6;
-			// 
-			// servicePriceTB
-			// 
-			this->servicePriceTB->Location = System::Drawing::Point(87, 110);
-			this->servicePriceTB->Name = L"servicePriceTB";
-			this->servicePriceTB->Size = System::Drawing::Size(204, 24);
-			this->servicePriceTB->TabIndex = 7;
-			// 
-			// addServiceBtn
-			// 
-			this->addServiceBtn->Location = System::Drawing::Point(191, 142);
-			this->addServiceBtn->Name = L"addServiceBtn";
-			this->addServiceBtn->Size = System::Drawing::Size(100, 31);
-			this->addServiceBtn->TabIndex = 8;
-			this->addServiceBtn->Text = L"Äîáàâèòü";
-			this->addServiceBtn->UseVisualStyleBackColor = true;
-			this->addServiceBtn->Click += gcnew System::EventHandler(this, &menuForm::addServiceBtn_Click);
-			// 
-			// ordersDataGrid
-			// 
-			this->ordersDataGrid->AllowUserToAddRows = false;
-			this->ordersDataGrid->AllowUserToDeleteRows = false;
-			this->ordersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->ordersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ordersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
-				this->orderID,
-					this->employeeID, this->clientID, this->orderStatus
-			});
-			this->ordersDataGrid->Location = System::Drawing::Point(292, 498);
-			this->ordersDataGrid->MultiSelect = false;
-			this->ordersDataGrid->Name = L"ordersDataGrid";
-			this->ordersDataGrid->Size = System::Drawing::Size(543, 176);
-			this->ordersDataGrid->TabIndex = 9;
-			// 
-			// orderID
-			// 
-			this->orderID->HeaderText = L"ID";
-			this->orderID->Name = L"orderID";
-			// 
-			// employeeID
-			// 
-			this->employeeID->HeaderText = L"employee";
-			this->employeeID->Name = L"employeeID";
-			// 
-			// clientID
-			// 
-			this->clientID->HeaderText = L"client";
-			this->clientID->Name = L"clientID";
-			// 
-			// orderStatus
-			// 
-			this->orderStatus->HeaderText = L"status";
-			this->orderStatus->Name = L"orderStatus";
-			// 
-			// servicesDataGrid
-			// 
-			this->servicesDataGrid->AllowUserToAddRows = false;
-			this->servicesDataGrid->AllowUserToDeleteRows = false;
-			this->servicesDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->servicesDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->servicesDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
-				this->servicesID,
-					this->serviceName
-			});
-			this->servicesDataGrid->Location = System::Drawing::Point(292, 290);
-			this->servicesDataGrid->MultiSelect = false;
-			this->servicesDataGrid->Name = L"servicesDataGrid";
-			this->servicesDataGrid->Size = System::Drawing::Size(543, 178);
-			this->servicesDataGrid->TabIndex = 8;
-			// 
-			// servicesID
-			// 
-			this->servicesID->HeaderText = L"ID";
-			this->servicesID->Name = L"servicesID";
-			// 
-			// serviceName
-			// 
-			this->serviceName->HeaderText = L"Name";
-			this->serviceName->Name = L"serviceName";
-			// 
-			// usersDataGrid
-			// 
-			this->usersDataGrid->AllowUserToAddRows = false;
-			this->usersDataGrid->AllowUserToDeleteRows = false;
-			this->usersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->usersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->usersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->userID,
-					this->userName, this->userCurrentStatus
-			});
-			this->usersDataGrid->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
-			this->usersDataGrid->Location = System::Drawing::Point(292, 92);
-			this->usersDataGrid->MultiSelect = false;
-			this->usersDataGrid->Name = L"usersDataGrid";
-			this->usersDataGrid->Size = System::Drawing::Size(543, 168);
-			this->usersDataGrid->TabIndex = 7;
-			// 
-			// userID
-			// 
-			this->userID->HeaderText = L"ID";
-			this->userID->Name = L"userID";
-			// 
-			// userName
-			// 
-			this->userName->HeaderText = L"Name";
-			this->userName->Name = L"userName";
-			// 
-			// userCurrentStatus
-			// 
-			this->userCurrentStatus->HeaderText = L"Status";
-			this->userCurrentStatus->Name = L"userCurrentStatus";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(292, 482);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(36, 13);
-			this->label3->TabIndex = 15;
-			this->label3->Text = L"orders";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(292, 274);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(46, 13);
-			this->label2->TabIndex = 14;
-			this->label2->Text = L"services";
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(292, 73);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(32, 13);
-			this->label1->TabIndex = 13;
-			this->label1->Text = L"users";
-			// 
-			// updateGridsBtn
-			// 
-			this->updateGridsBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateGridsBtn.BackgroundImage")));
-			this->updateGridsBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->updateGridsBtn->Location = System::Drawing::Point(795, 31);
-			this->updateGridsBtn->Name = L"updateGridsBtn";
-			this->updateGridsBtn->Size = System::Drawing::Size(40, 40);
-			this->updateGridsBtn->TabIndex = 12;
-			this->updateGridsBtn->UseVisualStyleBackColor = true;
-			this->updateGridsBtn->Click += gcnew System::EventHandler(this, &menuForm::updateGridsBtn_Click);
-			// 
 			// changeServicePanel
 			// 
 			this->changeServicePanel->Controls->Add(this->deleteServices);
@@ -1272,7 +680,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeServicePanel->Controls->Add(this->changeServicePriceTB);
 			this->changeServicePanel->Controls->Add(this->changeServiceFormBtn);
 			this->changeServicePanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->changeServicePanel->Location = System::Drawing::Point(244, 11);
+			this->changeServicePanel->Location = System::Drawing::Point(990, 304);
 			this->changeServicePanel->Name = L"changeServicePanel";
 			this->changeServicePanel->Size = System::Drawing::Size(651, 692);
 			this->changeServicePanel->TabIndex = 25;
@@ -1354,9 +762,9 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserPanel->Controls->Add(this->changeUserMailTB);
 			this->changeUserPanel->Controls->Add(this->changeUserNameTB);
 			this->changeUserPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->changeUserPanel->Location = System::Drawing::Point(259, 13);
+			this->changeUserPanel->Location = System::Drawing::Point(990, 633);
 			this->changeUserPanel->Name = L"changeUserPanel";
-			this->changeUserPanel->Size = System::Drawing::Size(642, 694);
+			this->changeUserPanel->Size = System::Drawing::Size(651, 696);
 			this->changeUserPanel->TabIndex = 22;
 			this->changeUserPanel->VisibleChanged += gcnew System::EventHandler(this, &menuForm::changeUserPanel_VisibleChanged);
 			// 
@@ -1608,6 +1016,593 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserNameTB->Size = System::Drawing::Size(121, 24);
 			this->changeUserNameTB->TabIndex = 37;
 			// 
+			// addUserPanel
+			// 
+			this->addUserPanel->Controls->Add(this->addUserPhonenumberTB);
+			this->addUserPanel->Controls->Add(this->addUserDateTB);
+			this->addUserPanel->Controls->Add(this->addUserSexGP);
+			this->addUserPanel->Controls->Add(this->specialityPanel);
+			this->addUserPanel->Controls->Add(this->addUserTypeCB);
+			this->addUserPanel->Controls->Add(this->addUserTypeLbl);
+			this->addUserPanel->Controls->Add(this->addUserFormBtn);
+			this->addUserPanel->Controls->Add(this->addPassLbl);
+			this->addUserPanel->Controls->Add(this->addEmailLbl);
+			this->addUserPanel->Controls->Add(this->addPhonenumberLbl);
+			this->addUserPanel->Controls->Add(this->addDateLbl);
+			this->addUserPanel->Controls->Add(addNameLbl);
+			this->addUserPanel->Controls->Add(this->addUserPasswordTB);
+			this->addUserPanel->Controls->Add(this->addUserMailTB);
+			this->addUserPanel->Controls->Add(this->addUserNameTB);
+			this->addUserPanel->Controls->Add(this->addUser);
+			this->addUserPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
+			this->addUserPanel->Location = System::Drawing::Point(990, 562);
+			this->addUserPanel->Name = L"addUserPanel";
+			this->addUserPanel->Size = System::Drawing::Size(651, 686);
+			this->addUserPanel->TabIndex = 26;
+			// 
+			// addUserPhonenumberTB
+			// 
+			this->addUserPhonenumberTB->Location = System::Drawing::Point(141, 201);
+			this->addUserPhonenumberTB->Mask = L"(999) 000-0000";
+			this->addUserPhonenumberTB->Name = L"addUserPhonenumberTB";
+			this->addUserPhonenumberTB->Size = System::Drawing::Size(124, 24);
+			this->addUserPhonenumberTB->TabIndex = 28;
+			// 
+			// addUserDateTB
+			// 
+			this->addUserDateTB->Location = System::Drawing::Point(141, 171);
+			this->addUserDateTB->Mask = L"00/00/0000";
+			this->addUserDateTB->Name = L"addUserDateTB";
+			this->addUserDateTB->Size = System::Drawing::Size(124, 24);
+			this->addUserDateTB->TabIndex = 28;
+			this->addUserDateTB->ValidatingType = System::DateTime::typeid;
+			// 
+			// addUserSexGP
+			// 
+			this->addUserSexGP->Controls->Add(this->addUserFemaleRB);
+			this->addUserSexGP->Controls->Add(this->addUserMaleRB);
+			this->addUserSexGP->Location = System::Drawing::Point(88, 78);
+			this->addUserSexGP->Name = L"addUserSexGP";
+			this->addUserSexGP->Size = System::Drawing::Size(175, 58);
+			this->addUserSexGP->TabIndex = 41;
+			this->addUserSexGP->TabStop = false;
+			this->addUserSexGP->Text = L"Ïîë";
+			// 
+			// addUserFemaleRB
+			// 
+			this->addUserFemaleRB->AutoSize = true;
+			this->addUserFemaleRB->Location = System::Drawing::Point(69, 33);
+			this->addUserFemaleRB->Name = L"addUserFemaleRB";
+			this->addUserFemaleRB->Size = System::Drawing::Size(82, 21);
+			this->addUserFemaleRB->TabIndex = 40;
+			this->addUserFemaleRB->TabStop = true;
+			this->addUserFemaleRB->Text = L"Æåíñêèé";
+			this->addUserFemaleRB->UseVisualStyleBackColor = true;
+			// 
+			// addUserMaleRB
+			// 
+			this->addUserMaleRB->AutoSize = true;
+			this->addUserMaleRB->Location = System::Drawing::Point(69, 13);
+			this->addUserMaleRB->Name = L"addUserMaleRB";
+			this->addUserMaleRB->Size = System::Drawing::Size(84, 21);
+			this->addUserMaleRB->TabIndex = 39;
+			this->addUserMaleRB->TabStop = true;
+			this->addUserMaleRB->Text = L"Ìóæñêîé";
+			this->addUserMaleRB->UseVisualStyleBackColor = true;
+			// 
+			// specialityPanel
+			// 
+			this->specialityPanel->Controls->Add(this->addStatusLbl);
+			this->specialityPanel->Controls->Add(this->addUserSpecialityCB);
+			this->specialityPanel->Location = System::Drawing::Point(42, 287);
+			this->specialityPanel->Name = L"specialityPanel";
+			this->specialityPanel->Size = System::Drawing::Size(242, 38);
+			this->specialityPanel->TabIndex = 38;
+			this->specialityPanel->Visible = false;
+			// 
+			// addStatusLbl
+			// 
+			this->addStatusLbl->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->addStatusLbl->AutoSize = true;
+			this->addStatusLbl->Location = System::Drawing::Point(16, 11);
+			this->addStatusLbl->Name = L"addStatusLbl";
+			this->addStatusLbl->Size = System::Drawing::Size(77, 17);
+			this->addStatusLbl->TabIndex = 33;
+			this->addStatusLbl->Text = L"Äîëæíîñòü";
+			// 
+			// addUserSpecialityCB
+			// 
+			this->addUserSpecialityCB->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->addUserSpecialityCB->FormattingEnabled = true;
+			this->addUserSpecialityCB->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"BARBER", L"ADMINISTRATOR", L"CLEANER",
+					L"DIRECTOR"
+			});
+			this->addUserSpecialityCB->Location = System::Drawing::Point(99, 10);
+			this->addUserSpecialityCB->Name = L"addUserSpecialityCB";
+			this->addUserSpecialityCB->Size = System::Drawing::Size(124, 23);
+			this->addUserSpecialityCB->TabIndex = 26;
+			// 
+			// addUserTypeCB
+			// 
+			this->addUserTypeCB->FormattingEnabled = true;
+			this->addUserTypeCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"ADMIN", L"EMPLOYEE", L"CLIENT" });
+			this->addUserTypeCB->Location = System::Drawing::Point(141, 142);
+			this->addUserTypeCB->Name = L"addUserTypeCB";
+			this->addUserTypeCB->Size = System::Drawing::Size(124, 23);
+			this->addUserTypeCB->TabIndex = 36;
+			this->addUserTypeCB->SelectedIndexChanged += gcnew System::EventHandler(this, &menuForm::addUserTypeCB_SelectedIndexChanged);
+			this->addUserTypeCB->SelectionChangeCommitted += gcnew System::EventHandler(this, &menuForm::addUserTypeCB_SelectionChangeCommitted);
+			// 
+			// addUserTypeLbl
+			// 
+			this->addUserTypeLbl->AutoSize = true;
+			this->addUserTypeLbl->Location = System::Drawing::Point(14, 145);
+			this->addUserTypeLbl->Name = L"addUserTypeLbl";
+			this->addUserTypeLbl->Size = System::Drawing::Size(120, 17);
+			this->addUserTypeLbl->TabIndex = 35;
+			this->addUserTypeLbl->Text = L"Òèï ïîëüçîâàòåëÿ";
+			// 
+			// addUserFormBtn
+			// 
+			this->addUserFormBtn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->addUserFormBtn->Location = System::Drawing::Point(141, 331);
+			this->addUserFormBtn->Name = L"addUserFormBtn";
+			this->addUserFormBtn->Size = System::Drawing::Size(124, 23);
+			this->addUserFormBtn->TabIndex = 34;
+			this->addUserFormBtn->Text = L"Äîáàâèòü";
+			this->addUserFormBtn->UseVisualStyleBackColor = true;
+			this->addUserFormBtn->Click += gcnew System::EventHandler(this, &menuForm::addUserFormBtn_Click);
+			// 
+			// addPassLbl
+			// 
+			this->addPassLbl->AutoSize = true;
+			this->addPassLbl->Location = System::Drawing::Point(80, 264);
+			this->addPassLbl->Name = L"addPassLbl";
+			this->addPassLbl->Size = System::Drawing::Size(55, 17);
+			this->addPassLbl->TabIndex = 32;
+			this->addPassLbl->Text = L"Ïàðîëü";
+			// 
+			// addEmailLbl
+			// 
+			this->addEmailLbl->AutoSize = true;
+			this->addEmailLbl->Location = System::Drawing::Point(88, 234);
+			this->addEmailLbl->Name = L"addEmailLbl";
+			this->addEmailLbl->Size = System::Drawing::Size(45, 17);
+			this->addEmailLbl->TabIndex = 31;
+			this->addEmailLbl->Text = L"e-mail";
+			// 
+			// addPhonenumberLbl
+			// 
+			this->addPhonenumberLbl->AutoSize = true;
+			this->addPhonenumberLbl->Location = System::Drawing::Point(21, 204);
+			this->addPhonenumberLbl->Name = L"addPhonenumberLbl";
+			this->addPhonenumberLbl->Size = System::Drawing::Size(114, 17);
+			this->addPhonenumberLbl->TabIndex = 30;
+			this->addPhonenumberLbl->Text = L"Íîìåð òåëåôîíà";
+			// 
+			// addDateLbl
+			// 
+			this->addDateLbl->AutoSize = true;
+			this->addDateLbl->Location = System::Drawing::Point(30, 174);
+			this->addDateLbl->Name = L"addDateLbl";
+			this->addDateLbl->Size = System::Drawing::Size(105, 17);
+			this->addDateLbl->TabIndex = 29;
+			this->addDateLbl->Text = L"Äàòà ðîæäåíèÿ";
+			// 
+			// addUserPasswordTB
+			// 
+			this->addUserPasswordTB->Location = System::Drawing::Point(141, 261);
+			this->addUserPasswordTB->Name = L"addUserPasswordTB";
+			this->addUserPasswordTB->Size = System::Drawing::Size(124, 24);
+			this->addUserPasswordTB->TabIndex = 25;
+			// 
+			// addUserMailTB
+			// 
+			this->addUserMailTB->Location = System::Drawing::Point(141, 231);
+			this->addUserMailTB->Name = L"addUserMailTB";
+			this->addUserMailTB->Size = System::Drawing::Size(124, 24);
+			this->addUserMailTB->TabIndex = 24;
+			// 
+			// addUserNameTB
+			// 
+			this->addUserNameTB->Location = System::Drawing::Point(141, 48);
+			this->addUserNameTB->Name = L"addUserNameTB";
+			this->addUserNameTB->Size = System::Drawing::Size(124, 24);
+			this->addUserNameTB->TabIndex = 19;
+			// 
+			// addUser
+			// 
+			this->addUser->AutoSize = true;
+			this->addUser->Font = (gcnew System::Drawing::Font(L"Agency FB", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->addUser->Location = System::Drawing::Point(30, 11);
+			this->addUser->Name = L"addUser";
+			this->addUser->Size = System::Drawing::Size(321, 25);
+			this->addUser->TabIndex = 37;
+			this->addUser->Text = L"Äîáàâèòü íîâîãî ïîëüçîâàòåëÿ";
+			// 
+			// reportPanel
+			// 
+			this->reportPanel->Controls->Add(this->averageÑheckCB);
+			this->reportPanel->Controls->Add(this->clientsNumberCB);
+			this->reportPanel->Controls->Add(this->profitCB);
+			this->reportPanel->Controls->Add(this->proceedsCB);
+			this->reportPanel->Controls->Add(this->ExpensesCB);
+			this->reportPanel->Controls->Add(this->updateReportBtn);
+			this->reportPanel->Controls->Add(this->makeReportRTB);
+			this->reportPanel->Controls->Add(this->makeReportBtn);
+			this->reportPanel->Controls->Add(this->reportPeriodCB);
+			this->reportPanel->Controls->Add(this->reportPeriodLbl);
+			this->reportPanel->Controls->Add(this->saveReportBtn);
+			this->reportPanel->Controls->Add(this->financialStatementsLbl);
+			this->reportPanel->Location = System::Drawing::Point(990, 484);
+			this->reportPanel->Name = L"reportPanel";
+			this->reportPanel->Size = System::Drawing::Size(651, 676);
+			this->reportPanel->TabIndex = 24;
+			// 
+			// averageÑheckCB
+			// 
+			this->averageÑheckCB->AutoSize = true;
+			this->averageÑheckCB->Location = System::Drawing::Point(288, 158);
+			this->averageÑheckCB->Name = L"averageÑheckCB";
+			this->averageÑheckCB->Size = System::Drawing::Size(89, 17);
+			this->averageÑheckCB->TabIndex = 28;
+			this->averageÑheckCB->Text = L"Ñðåäíèé ÷åê";
+			this->averageÑheckCB->UseVisualStyleBackColor = true;
+			// 
+			// clientsNumberCB
+			// 
+			this->clientsNumberCB->AutoSize = true;
+			this->clientsNumberCB->Location = System::Drawing::Point(288, 138);
+			this->clientsNumberCB->Name = L"clientsNumberCB";
+			this->clientsNumberCB->Size = System::Drawing::Size(135, 17);
+			this->clientsNumberCB->TabIndex = 27;
+			this->clientsNumberCB->Text = L"Êîëè÷åñòâî êëèåíòîâ";
+			this->clientsNumberCB->UseVisualStyleBackColor = true;
+			// 
+			// profitCB
+			// 
+			this->profitCB->AutoSize = true;
+			this->profitCB->Location = System::Drawing::Point(288, 120);
+			this->profitCB->Name = L"profitCB";
+			this->profitCB->Size = System::Drawing::Size(72, 17);
+			this->profitCB->TabIndex = 26;
+			this->profitCB->Text = L"Ïðèáûëü";
+			this->profitCB->UseVisualStyleBackColor = true;
+			// 
+			// proceedsCB
+			// 
+			this->proceedsCB->AutoSize = true;
+			this->proceedsCB->Location = System::Drawing::Point(288, 101);
+			this->proceedsCB->Name = L"proceedsCB";
+			this->proceedsCB->Size = System::Drawing::Size(69, 17);
+			this->proceedsCB->TabIndex = 25;
+			this->proceedsCB->Text = L"Âûðó÷êà";
+			this->proceedsCB->UseVisualStyleBackColor = true;
+			// 
+			// ExpensesCB
+			// 
+			this->ExpensesCB->AutoSize = true;
+			this->ExpensesCB->Location = System::Drawing::Point(288, 80);
+			this->ExpensesCB->Name = L"ExpensesCB";
+			this->ExpensesCB->Size = System::Drawing::Size(69, 17);
+			this->ExpensesCB->TabIndex = 24;
+			this->ExpensesCB->Text = L"Çàòðàòû";
+			this->ExpensesCB->UseVisualStyleBackColor = true;
+			// 
+			// updateReportBtn
+			// 
+			this->updateReportBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateReportBtn.BackgroundImage")));
+			this->updateReportBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->updateReportBtn->Location = System::Drawing::Point(368, 193);
+			this->updateReportBtn->Name = L"updateReportBtn";
+			this->updateReportBtn->Size = System::Drawing::Size(40, 40);
+			this->updateReportBtn->TabIndex = 18;
+			this->updateReportBtn->UseVisualStyleBackColor = true;
+			// 
+			// makeReportRTB
+			// 
+			this->makeReportRTB->Location = System::Drawing::Point(23, 241);
+			this->makeReportRTB->Name = L"makeReportRTB";
+			this->makeReportRTB->Size = System::Drawing::Size(385, 265);
+			this->makeReportRTB->TabIndex = 23;
+			this->makeReportRTB->Text = L"";
+			// 
+			// makeReportBtn
+			// 
+			this->makeReportBtn->Location = System::Drawing::Point(70, 123);
+			this->makeReportBtn->Name = L"makeReportBtn";
+			this->makeReportBtn->Size = System::Drawing::Size(121, 34);
+			this->makeReportBtn->TabIndex = 22;
+			this->makeReportBtn->Text = L"Ñîñòàâèòü îò÷¸ò";
+			this->makeReportBtn->UseVisualStyleBackColor = true;
+			this->makeReportBtn->Click += gcnew System::EventHandler(this, &menuForm::makeReportBtn_Click);
+			// 
+			// reportPeriodCB
+			// 
+			this->reportPeriodCB->FormattingEnabled = true;
+			this->reportPeriodCB->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"Äåíü", L"Ìåñÿö", L"Ãîä" });
+			this->reportPeriodCB->Location = System::Drawing::Point(70, 83);
+			this->reportPeriodCB->Name = L"reportPeriodCB";
+			this->reportPeriodCB->Size = System::Drawing::Size(121, 21);
+			this->reportPeriodCB->TabIndex = 19;
+			// 
+			// reportPeriodLbl
+			// 
+			this->reportPeriodLbl->AutoSize = true;
+			this->reportPeriodLbl->Location = System::Drawing::Point(20, 88);
+			this->reportPeriodLbl->Name = L"reportPeriodLbl";
+			this->reportPeriodLbl->Size = System::Drawing::Size(45, 13);
+			this->reportPeriodLbl->TabIndex = 18;
+			this->reportPeriodLbl->Text = L"Ïåðèîä";
+			// 
+			// saveReportBtn
+			// 
+			this->saveReportBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saveReportBtn.BackgroundImage")));
+			this->saveReportBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->saveReportBtn->Location = System::Drawing::Point(317, 193);
+			this->saveReportBtn->Name = L"saveReportBtn";
+			this->saveReportBtn->Size = System::Drawing::Size(40, 40);
+			this->saveReportBtn->TabIndex = 17;
+			this->saveReportBtn->UseVisualStyleBackColor = true;
+			// 
+			// financialStatementsLbl
+			// 
+			this->financialStatementsLbl->AutoSize = true;
+			this->financialStatementsLbl->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->financialStatementsLbl->Location = System::Drawing::Point(90, 20);
+			this->financialStatementsLbl->Name = L"financialStatementsLbl";
+			this->financialStatementsLbl->Size = System::Drawing::Size(252, 25);
+			this->financialStatementsLbl->TabIndex = 0;
+			this->financialStatementsLbl->Text = L"Ôèíàíñîâàÿ îò÷¸òíîñòü";
+			// 
+			// addServicePanel
+			// 
+			this->addServicePanel->Controls->Add(this->loadServicesBtn);
+			this->addServicePanel->Controls->Add(this->updateServicesBtn);
+			this->addServicePanel->Controls->Add(this->saveServicesBtn);
+			this->addServicePanel->Controls->Add(this->servicesRTB);
+			this->addServicePanel->Controls->Add(this->addServicePriceLbl);
+			this->addServicePanel->Controls->Add(this->addServices);
+			this->addServicePanel->Controls->Add(this->addServiceNameLbl);
+			this->addServicePanel->Controls->Add(this->serviceNameTB);
+			this->addServicePanel->Controls->Add(this->servicePriceTB);
+			this->addServicePanel->Controls->Add(this->addServiceBtn);
+			this->addServicePanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
+			this->addServicePanel->Location = System::Drawing::Point(990, 390);
+			this->addServicePanel->Name = L"addServicePanel";
+			this->addServicePanel->Size = System::Drawing::Size(651, 698);
+			this->addServicePanel->TabIndex = 27;
+			// 
+			// loadServicesBtn
+			// 
+			this->loadServicesBtn->Location = System::Drawing::Point(305, 278);
+			this->loadServicesBtn->Name = L"loadServicesBtn";
+			this->loadServicesBtn->Size = System::Drawing::Size(58, 40);
+			this->loadServicesBtn->TabIndex = 17;
+			this->loadServicesBtn->Text = L"load";
+			this->loadServicesBtn->UseVisualStyleBackColor = true;
+			this->loadServicesBtn->Click += gcnew System::EventHandler(this, &menuForm::loadServicesBtn_Click);
+			// 
+			// updateServicesBtn
+			// 
+			this->updateServicesBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateServicesBtn.BackgroundImage")));
+			this->updateServicesBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->updateServicesBtn->Location = System::Drawing::Point(213, 278);
+			this->updateServicesBtn->Name = L"updateServicesBtn";
+			this->updateServicesBtn->Size = System::Drawing::Size(40, 40);
+			this->updateServicesBtn->TabIndex = 16;
+			this->updateServicesBtn->UseVisualStyleBackColor = true;
+			this->updateServicesBtn->Click += gcnew System::EventHandler(this, &menuForm::updateServicesBtn_Click);
+			// 
+			// saveServicesBtn
+			// 
+			this->saveServicesBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saveServicesBtn.BackgroundImage")));
+			this->saveServicesBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->saveServicesBtn->Location = System::Drawing::Point(259, 278);
+			this->saveServicesBtn->Name = L"saveServicesBtn";
+			this->saveServicesBtn->Size = System::Drawing::Size(40, 40);
+			this->saveServicesBtn->TabIndex = 16;
+			this->saveServicesBtn->UseVisualStyleBackColor = true;
+			this->saveServicesBtn->Click += gcnew System::EventHandler(this, &menuForm::saveServicesBtn_Click);
+			// 
+			// servicesRTB
+			// 
+			this->servicesRTB->Location = System::Drawing::Point(13, 189);
+			this->servicesRTB->Name = L"servicesRTB";
+			this->servicesRTB->Size = System::Drawing::Size(350, 83);
+			this->servicesRTB->TabIndex = 12;
+			this->servicesRTB->Text = L"";
+			// 
+			// addServicePriceLbl
+			// 
+			this->addServicePriceLbl->AutoSize = true;
+			this->addServicePriceLbl->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
+			this->addServicePriceLbl->Location = System::Drawing::Point(31, 112);
+			this->addServicePriceLbl->Name = L"addServicePriceLbl";
+			this->addServicePriceLbl->Size = System::Drawing::Size(40, 17);
+			this->addServicePriceLbl->TabIndex = 11;
+			this->addServicePriceLbl->Text = L"Öåíà";
+			this->addServicePriceLbl->TextAlign = System::Drawing::ContentAlignment::TopCenter;
+			// 
+			// addServices
+			// 
+			this->addServices->AutoSize = true;
+			this->addServices->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 15.25F, System::Drawing::FontStyle::Bold));
+			this->addServices->Location = System::Drawing::Point(8, 28);
+			this->addServices->Name = L"addServices";
+			this->addServices->Size = System::Drawing::Size(178, 30);
+			this->addServices->TabIndex = 9;
+			this->addServices->Text = L"Äîáàâèòü óñëóãó";
+			// 
+			// addServiceNameLbl
+			// 
+			this->addServiceNameLbl->AutoSize = true;
+			this->addServiceNameLbl->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
+			this->addServiceNameLbl->Location = System::Drawing::Point(8, 79);
+			this->addServiceNameLbl->Name = L"addServiceNameLbl";
+			this->addServiceNameLbl->Size = System::Drawing::Size(68, 17);
+			this->addServiceNameLbl->TabIndex = 10;
+			this->addServiceNameLbl->Text = L"Íàçâàíèå";
+			// 
+			// serviceNameTB
+			// 
+			this->serviceNameTB->Location = System::Drawing::Point(87, 76);
+			this->serviceNameTB->Name = L"serviceNameTB";
+			this->serviceNameTB->Size = System::Drawing::Size(204, 24);
+			this->serviceNameTB->TabIndex = 6;
+			// 
+			// servicePriceTB
+			// 
+			this->servicePriceTB->Location = System::Drawing::Point(87, 110);
+			this->servicePriceTB->Name = L"servicePriceTB";
+			this->servicePriceTB->Size = System::Drawing::Size(204, 24);
+			this->servicePriceTB->TabIndex = 7;
+			// 
+			// addServiceBtn
+			// 
+			this->addServiceBtn->Location = System::Drawing::Point(191, 142);
+			this->addServiceBtn->Name = L"addServiceBtn";
+			this->addServiceBtn->Size = System::Drawing::Size(100, 31);
+			this->addServiceBtn->TabIndex = 8;
+			this->addServiceBtn->Text = L"Äîáàâèòü";
+			this->addServiceBtn->UseVisualStyleBackColor = true;
+			this->addServiceBtn->Click += gcnew System::EventHandler(this, &menuForm::addServiceBtn_Click);
+			// 
+			// ordersDataGrid
+			// 
+			this->ordersDataGrid->AllowUserToAddRows = false;
+			this->ordersDataGrid->AllowUserToDeleteRows = false;
+			this->ordersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->ordersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->ordersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->orderID,
+					this->employeeID, this->clientID, this->orderStatus
+			});
+			this->ordersDataGrid->Location = System::Drawing::Point(292, 498);
+			this->ordersDataGrid->MultiSelect = false;
+			this->ordersDataGrid->Name = L"ordersDataGrid";
+			this->ordersDataGrid->Size = System::Drawing::Size(543, 176);
+			this->ordersDataGrid->TabIndex = 9;
+			// 
+			// orderID
+			// 
+			this->orderID->HeaderText = L"ID";
+			this->orderID->Name = L"orderID";
+			// 
+			// employeeID
+			// 
+			this->employeeID->HeaderText = L"employee";
+			this->employeeID->Name = L"employeeID";
+			// 
+			// clientID
+			// 
+			this->clientID->HeaderText = L"client";
+			this->clientID->Name = L"clientID";
+			// 
+			// orderStatus
+			// 
+			this->orderStatus->HeaderText = L"status";
+			this->orderStatus->Name = L"orderStatus";
+			// 
+			// servicesDataGrid
+			// 
+			this->servicesDataGrid->AllowUserToAddRows = false;
+			this->servicesDataGrid->AllowUserToDeleteRows = false;
+			this->servicesDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->servicesDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->servicesDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+				this->servicesID,
+					this->serviceName
+			});
+			this->servicesDataGrid->Location = System::Drawing::Point(292, 290);
+			this->servicesDataGrid->MultiSelect = false;
+			this->servicesDataGrid->Name = L"servicesDataGrid";
+			this->servicesDataGrid->Size = System::Drawing::Size(543, 178);
+			this->servicesDataGrid->TabIndex = 8;
+			// 
+			// servicesID
+			// 
+			this->servicesID->HeaderText = L"ID";
+			this->servicesID->Name = L"servicesID";
+			// 
+			// serviceName
+			// 
+			this->serviceName->HeaderText = L"Name";
+			this->serviceName->Name = L"serviceName";
+			// 
+			// usersDataGrid
+			// 
+			this->usersDataGrid->AllowUserToAddRows = false;
+			this->usersDataGrid->AllowUserToDeleteRows = false;
+			this->usersDataGrid->BackgroundColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->usersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->usersDataGrid->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->userID,
+					this->userName, this->userCurrentStatus
+			});
+			this->usersDataGrid->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
+			this->usersDataGrid->Location = System::Drawing::Point(292, 92);
+			this->usersDataGrid->MultiSelect = false;
+			this->usersDataGrid->Name = L"usersDataGrid";
+			this->usersDataGrid->Size = System::Drawing::Size(543, 168);
+			this->usersDataGrid->TabIndex = 7;
+			// 
+			// userID
+			// 
+			this->userID->HeaderText = L"ID";
+			this->userID->Name = L"userID";
+			// 
+			// userName
+			// 
+			this->userName->HeaderText = L"Name";
+			this->userName->Name = L"userName";
+			// 
+			// userCurrentStatus
+			// 
+			this->userCurrentStatus->HeaderText = L"Status";
+			this->userCurrentStatus->Name = L"userCurrentStatus";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(292, 482);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(36, 13);
+			this->label3->TabIndex = 15;
+			this->label3->Text = L"orders";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(292, 274);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(46, 13);
+			this->label2->TabIndex = 14;
+			this->label2->Text = L"services";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(292, 73);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(32, 13);
+			this->label1->TabIndex = 13;
+			this->label1->Text = L"users";
+			// 
+			// updateGridsBtn
+			// 
+			this->updateGridsBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"updateGridsBtn.BackgroundImage")));
+			this->updateGridsBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->updateGridsBtn->Location = System::Drawing::Point(795, 31);
+			this->updateGridsBtn->Name = L"updateGridsBtn";
+			this->updateGridsBtn->Size = System::Drawing::Size(40, 40);
+			this->updateGridsBtn->TabIndex = 12;
+			this->updateGridsBtn->UseVisualStyleBackColor = true;
+			this->updateGridsBtn->Click += gcnew System::EventHandler(this, &menuForm::updateGridsBtn_Click);
+			// 
 			// clientPanel
 			// 
 			this->clientPanel->Controls->Add(this->ClientNameLbl);
@@ -1628,7 +1623,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->clientPanel->Controls->Add(this->serviceIDfromOrderLbl);
 			this->clientPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->clientPanel->Location = System::Drawing::Point(6, 7);
+			this->clientPanel->Location = System::Drawing::Point(68, 12);
 			this->clientPanel->Name = L"clientPanel";
 			this->clientPanel->Size = System::Drawing::Size(961, 751);
 			this->clientPanel->TabIndex = 17;
@@ -1844,6 +1839,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			// 
 			// employeePanel
 			// 
+			this->employeePanel->Controls->Add(this->clientPanel);
 			this->employeePanel->Controls->Add(this->updateOrdersGridBtn);
 			this->employeePanel->Controls->Add(this->label6);
 			this->employeePanel->Controls->Add(this->label5);
@@ -2123,10 +2119,14 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(973, 760);
-			this->Controls->Add(this->adminPanel);
-			this->Controls->Add(this->clientPanel);
+			this->ClientSize = System::Drawing::Size(1707, 912);
 			this->Controls->Add(this->employeePanel);
+			this->Controls->Add(this->changeUserPanel);
+			this->Controls->Add(this->addUserPanel);
+			this->Controls->Add(this->reportPanel);
+			this->Controls->Add(this->addServicePanel);
+			this->Controls->Add(this->changeServicePanel);
+			this->Controls->Add(this->adminPanel);
 			this->MaximizeBox = false;
 			this->Name = L"menuForm";
 			this->ShowIcon = false;
@@ -2137,6 +2137,14 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->VisibleChanged += gcnew System::EventHandler(this, &menuForm::menuForm_VisibleChanged);
 			this->adminPanel->ResumeLayout(false);
 			this->adminPanel->PerformLayout();
+			this->changeServicePanel->ResumeLayout(false);
+			this->changeServicePanel->PerformLayout();
+			this->changeUserPanel->ResumeLayout(false);
+			this->changeUserPanel->PerformLayout();
+			this->changeUserSpecialityPanel->ResumeLayout(false);
+			this->changeUserSpecialityPanel->PerformLayout();
+			this->changeUserSexGP->ResumeLayout(false);
+			this->changeUserSexGP->PerformLayout();
 			this->addUserPanel->ResumeLayout(false);
 			this->addUserPanel->PerformLayout();
 			this->addUserSexGP->ResumeLayout(false);
@@ -2150,14 +2158,6 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ordersDataGrid))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->servicesDataGrid))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->usersDataGrid))->EndInit();
-			this->changeServicePanel->ResumeLayout(false);
-			this->changeServicePanel->PerformLayout();
-			this->changeUserPanel->ResumeLayout(false);
-			this->changeUserPanel->PerformLayout();
-			this->changeUserSpecialityPanel->ResumeLayout(false);
-			this->changeUserSpecialityPanel->PerformLayout();
-			this->changeUserSexGP->ResumeLayout(false);
-			this->changeUserSexGP->PerformLayout();
 			this->clientPanel->ResumeLayout(false);
 			this->clientPanel->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->orderInitGrid))->EndInit();
