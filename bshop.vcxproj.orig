@@ -122,21 +122,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="checkFunctions.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Employee.cpp" />
-    <ClCompile Include="MockDatabase.cpp" />
     <ClCompile Include="Service.cpp" />
     <ClCompile Include="ServiceOrder.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="mainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Admin.h" />
-    <ClInclude Include="checkFunctions.h" />
+=======
     <ClInclude Include="Client.h" />
     <ClInclude Include="Employee.h" />
-    <ClInclude Include="MockDatabase.h" />
+>>>>>>> origin/dmitriev_feature
     <ClInclude Include="Service.h" />
     <ClInclude Include="ServiceOrder.h" />
     <ClInclude Include="speciality.h" />

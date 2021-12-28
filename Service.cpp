@@ -1,6 +1,5 @@
 #include "Service.h"
 
-#pragma region Aphonin
 Service::Service(int ID, std::string name, int price)
 {
 	this->ID = ID;
@@ -38,5 +37,3 @@ std::string Service::getName()
 {
 	return this->name;
 }
-
-#pragma endregion

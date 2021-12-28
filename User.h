@@ -18,7 +18,6 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 
-#pragma region Aphonin
 class User
 {
 public:
@@ -51,4 +50,3 @@ public:
 	friend bool operator==(const User& left, std::string right);
 	friend bool operator!=(const User& left, std::string right);*/
 };
-#pragma endregion

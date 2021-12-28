@@ -1,7 +1,6 @@
 #pragma once
 #include "User.h"
 
-#pragma region Aphonin
 class Service {
 private:
 	int ID;
@@ -18,5 +17,3 @@ public:
 	std::string getInfo();
 	std::string getName();
 };
-
-#pragma endregion
