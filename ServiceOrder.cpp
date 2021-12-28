@@ -1,6 +1,6 @@
 #include "ServiceOrder.h"
 
-ServiceOrder::ServiceOrder(int ID, int serviceID, int employeeID, int clientID, std::string date, std::string time, float serviceCostWithDiscount, bool status)
+ServiceOrder::ServiceOrder(int ID, int serviceID, int employeeID, int clientID, std::string date, std::string time, double serviceCostWithDiscount, bool status)
 {
 	this->ID = ID;
 	this->serviceID = serviceID;
@@ -27,7 +27,7 @@ std::string ServiceOrder::getDate()
 	return this->date;
 }
 
-float ServiceOrder::getCost()
+double ServiceOrder::getCost()
 {
 	return this->serviceCostWithDiscount;
 }
@@ -42,7 +42,7 @@ bool ServiceOrder::getStatus()
 	return this->status;
 }
 
-float ServiceOrder::getServiceCostWithDiscount()
+double ServiceOrder::getServiceCostWithDiscount()
 {
 	return this->serviceCostWithDiscount;
 }

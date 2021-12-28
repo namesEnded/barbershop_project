@@ -42,27 +42,29 @@ System::Void bshop::mainForm::lgnAcceptBtn_Click(System::Object^ sender, System:
 	int userID = db3->findUser(inputEmail, passwordHash);
 	if (userID !=NOT_FOUND)
 	{
-		menuForm^ form;
+		adminForm^ adminNewForm;
+		clientForm^ clientNewForm;
+		employeeForm^ employeeNewForm;
 		int userStatus = db3->getUser(userID)->getStatus();
 
 		switch (userStatus) {
 		case ADMIN:
-			form = gcnew menuForm(userID, ADMIN);
-			form->Show();
+			adminNewForm = gcnew adminForm(userID, ADMIN);
+			adminNewForm->Show();
 			this->Hide();
 			/*curID = userID;
 			adminPanel->Visible = true;*/
 			break;
 		case CLIENT:
-			form = gcnew menuForm(userID, CLIENT);
-			form->Show();
+			clientNewForm = gcnew clientForm(userID, CLIENT);
+			clientNewForm->Show();
 			this->Hide();
 			/*curID = userID;
 			clientPanel->Visible = true;*/
 			break;
 		case EMPLOYEE:
-			form = gcnew menuForm(userID, EMPLOYEE);
-			form->Show();
+			employeeNewForm = gcnew employeeForm(userID, EMPLOYEE);
+			employeeNewForm->Show();
 			this->Hide();
 			/*curID = userID;
 			employeePanel->Visible = true;*/
@@ -97,7 +99,7 @@ System::Void bshop::mainForm::addUserFormBtn_Click(System::Object^ sender, Syste
 		sex = false;
 	}
 
-	float experience = NULL;
+	double experience = NULL;
 	std::string personalAchievements = "";
 	std::string date = msclr::interop::marshal_as<std::string>(addUserDateTB->Text);
 	std::string phonenumber = msclr::interop::marshal_as<std::string>(addUserPhonenumberTB->Text);

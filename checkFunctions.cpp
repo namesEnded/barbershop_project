@@ -3,6 +3,7 @@ bool checkSex(std::string sex)
 {
 	if (sex == "male") return true;
 	if (sex == "female") return false;
+	return false;
 }
 
 std::string statusToString(userType statusString)
@@ -28,7 +29,7 @@ userType checkSelectedStatus(std::string statusString)
 	if (statusString == "EMPLOYEE" || statusString == "employee") return EMPLOYEE;
 	if (statusString == "ADMIN" || statusString == "admin") return ADMIN;
 	if (statusString == "CLIENT" || statusString == "client") return CLIENT;
-
+	return CLIENT;
 }
 
 userSpeciality checkSelectedSpeciality(std::string selectedSpeciality)
@@ -46,5 +47,5 @@ clientStatusType checkClientStatus(int numberOfVisits)
 	if ((numberOfVisits != 0) && (numberOfVisits <= 3)) return ONCE;
 	if (numberOfVisits >= 4) return REGULAR;
 	if (numberOfVisits > 10) return VIP;
-
+	return NEW;
 }
