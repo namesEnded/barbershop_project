@@ -22,8 +22,8 @@ void main(array<String^>^ args) {
 
 System::Void bshop::mainForm::mainForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
-	addUserPanel->Visible = false;
-	addUserPanel->Enabled = false;
+	userRegistrationPanel->Visible = false;
+	userRegistrationPanel->Enabled = false;
 	lgnPanel->Visible = true;
 	lgnPanel->Enabled = true;
 	db3->readDatabaseFromFile();
@@ -82,8 +82,8 @@ System::Void bshop::mainForm::ragBtn_Click(System::Object^ sender, System::Event
 {
 	lgnPanel->Visible = false;
 	lgnPanel->Enabled = false;
-	addUserPanel->Visible = true;
-	addUserPanel->Enabled = true;
+	userRegistrationPanel->Visible = true;
+	userRegistrationPanel->Enabled = true;
 }
 
 System::Void bshop::mainForm::addUserFormBtn_Click(System::Object^ sender, System::EventArgs^ e)
@@ -122,8 +122,8 @@ System::Void bshop::mainForm::addUserFormBtn_Click(System::Object^ sender, Syste
 
 	lgnPanel->Visible = true;
 	lgnPanel->Enabled = true;
-	addUserPanel->Visible = false;
-	addUserPanel->Enabled = false;
+	userRegistrationPanel->Visible = false;
+	userRegistrationPanel->Enabled = false;
 }
 
 System::Void bshop::mainForm::mainForm_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)

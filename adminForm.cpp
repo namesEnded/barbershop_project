@@ -33,15 +33,15 @@ std::vector<std::string> splitToElems(const std::string& s, char delim) {
 System::Void bshop::adminForm::addUserBtn_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	mainTabSekector->SelectTab(addUserTab);
-	/*if (!addUserPanel->Visible)
+	/*if (!userRegistrationPanel->Visible)
 	{
-		addUserPanel->Visible = true;
-		addUserPanel->Enabled = true;
+		userRegistrationPanel->Visible = true;
+		userRegistrationPanel->Enabled = true;
 	}
 	else
 	{
-		addUserPanel->Visible = false;
-		addUserPanel->Enabled = false;
+		userRegistrationPanel->Visible = false;
+		userRegistrationPanel->Enabled = false;
 	}*/
 }
 

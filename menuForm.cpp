@@ -45,8 +45,8 @@ System::Void bshop::menuForm::closeAllPanels(System::Object^ sender, System::Eve
 	clientPanel->Enabled = false;
 	changeUserPanel->Visible = false;
 	changeUserPanel->Enabled = false;
-	addUserPanel->Visible = false;
-	addUserPanel->Enabled = false;
+	userRegistrationPanel->Visible = false;
+	userRegistrationPanel->Enabled = false;
 	changeServicePanel->Visible = false;
 	changeServicePanel->Enabled = false;
 	addServicePanel->Visible = false;
@@ -516,15 +516,15 @@ System::Void bshop::menuForm::employeeCalendar_DateChanged(System::Object^ sende
 System::Void bshop::menuForm::addUserBtn_Click_1(System::Object^ sender, System::EventArgs^ e)
 {
 
-	if (!addUserPanel->Visible)
+	if (!userRegistrationPanel->Visible)
 	{
-		addUserPanel->Visible = true;
-		addUserPanel->Enabled = true;
+		userRegistrationPanel->Visible = true;
+		userRegistrationPanel->Enabled = true;
 	}
 	else
 	{
-		addUserPanel->Visible = false;
-		addUserPanel->Enabled = false;
+		userRegistrationPanel->Visible = false;
+		userRegistrationPanel->Enabled = false;
 	}
 }
 

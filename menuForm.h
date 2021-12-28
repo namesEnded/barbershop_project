@@ -247,7 +247,7 @@ private: System::Windows::Forms::Label^ addUser;
 private: System::Windows::Forms::Panel^ specialityPanel;
 
 
-private: System::Windows::Forms::Panel^ addUserPanel;
+private: System::Windows::Forms::Panel^ userRegistrationPanel;
 private: System::Windows::Forms::ComboBox^ changeUserIdCB;
 private: System::Windows::Forms::MaskedTextBox^ addUserPhonenumberTB;
 private: System::Windows::Forms::MaskedTextBox^ addUserDateTB;
@@ -408,7 +408,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserPasswordTB = (gcnew System::Windows::Forms::TextBox());
 			this->changeUserMailTB = (gcnew System::Windows::Forms::TextBox());
 			this->changeUserNameTB = (gcnew System::Windows::Forms::TextBox());
-			this->addUserPanel = (gcnew System::Windows::Forms::Panel());
+			this->userRegistrationPanel = (gcnew System::Windows::Forms::Panel());
 			this->addUserPhonenumberTB = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->addUserDateTB = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->addUserSexGP = (gcnew System::Windows::Forms::GroupBox());
@@ -513,7 +513,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserPanel->SuspendLayout();
 			this->changeUserSpecialityPanel->SuspendLayout();
 			this->changeUserSexGP->SuspendLayout();
-			this->addUserPanel->SuspendLayout();
+			this->userRegistrationPanel->SuspendLayout();
 			this->addUserSexGP->SuspendLayout();
 			this->specialityPanel->SuspendLayout();
 			this->reportPanel->SuspendLayout();
@@ -1141,29 +1141,29 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserNameTB->Size = System::Drawing::Size(121, 24);
 			this->changeUserNameTB->TabIndex = 37;
 			// 
-			// addUserPanel
+			// userRegistrationPanel
 			// 
-			this->addUserPanel->Controls->Add(this->addUserPhonenumberTB);
-			this->addUserPanel->Controls->Add(this->addUserDateTB);
-			this->addUserPanel->Controls->Add(this->addUserSexGP);
-			this->addUserPanel->Controls->Add(this->specialityPanel);
-			this->addUserPanel->Controls->Add(this->addUserTypeCB);
-			this->addUserPanel->Controls->Add(this->addUserTypeLbl);
-			this->addUserPanel->Controls->Add(this->addUserFormBtn);
-			this->addUserPanel->Controls->Add(this->addPassLbl);
-			this->addUserPanel->Controls->Add(this->addEmailLbl);
-			this->addUserPanel->Controls->Add(this->addPhonenumberLbl);
-			this->addUserPanel->Controls->Add(this->addDateLbl);
-			this->addUserPanel->Controls->Add(addNameLbl);
-			this->addUserPanel->Controls->Add(this->addUserPasswordTB);
-			this->addUserPanel->Controls->Add(this->addUserMailTB);
-			this->addUserPanel->Controls->Add(this->addUserNameTB);
-			this->addUserPanel->Controls->Add(this->addUser);
-			this->addUserPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
-			this->addUserPanel->Location = System::Drawing::Point(990, 562);
-			this->addUserPanel->Name = L"addUserPanel";
-			this->addUserPanel->Size = System::Drawing::Size(651, 686);
-			this->addUserPanel->TabIndex = 26;
+			this->userRegistrationPanel->Controls->Add(this->addUserPhonenumberTB);
+			this->userRegistrationPanel->Controls->Add(this->addUserDateTB);
+			this->userRegistrationPanel->Controls->Add(this->addUserSexGP);
+			this->userRegistrationPanel->Controls->Add(this->specialityPanel);
+			this->userRegistrationPanel->Controls->Add(this->addUserTypeCB);
+			this->userRegistrationPanel->Controls->Add(this->addUserTypeLbl);
+			this->userRegistrationPanel->Controls->Add(this->addUserFormBtn);
+			this->userRegistrationPanel->Controls->Add(this->addPassLbl);
+			this->userRegistrationPanel->Controls->Add(this->addEmailLbl);
+			this->userRegistrationPanel->Controls->Add(this->addPhonenumberLbl);
+			this->userRegistrationPanel->Controls->Add(this->addDateLbl);
+			this->userRegistrationPanel->Controls->Add(addNameLbl);
+			this->userRegistrationPanel->Controls->Add(this->addUserPasswordTB);
+			this->userRegistrationPanel->Controls->Add(this->addUserMailTB);
+			this->userRegistrationPanel->Controls->Add(this->addUserNameTB);
+			this->userRegistrationPanel->Controls->Add(this->addUser);
+			this->userRegistrationPanel->Font = (gcnew System::Drawing::Font(L"Yu Gothic UI Semibold", 9.25F, System::Drawing::FontStyle::Bold));
+			this->userRegistrationPanel->Location = System::Drawing::Point(990, 562);
+			this->userRegistrationPanel->Name = L"userRegistrationPanel";
+			this->userRegistrationPanel->Size = System::Drawing::Size(651, 686);
+			this->userRegistrationPanel->TabIndex = 26;
 			// 
 			// addUserPhonenumberTB
 			// 
@@ -2114,7 +2114,7 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->ClientSize = System::Drawing::Size(1707, 912);
 			this->Controls->Add(this->employeePanel);
 			this->Controls->Add(this->changeUserPanel);
-			this->Controls->Add(this->addUserPanel);
+			this->Controls->Add(this->userRegistrationPanel);
 			this->Controls->Add(this->reportPanel);
 			this->Controls->Add(this->addServicePanel);
 			this->Controls->Add(this->changeServicePanel);
@@ -2141,8 +2141,8 @@ private: System::Windows::Forms::CheckBox^ ExpensesCB;
 			this->changeUserSpecialityPanel->PerformLayout();
 			this->changeUserSexGP->ResumeLayout(false);
 			this->changeUserSexGP->PerformLayout();
-			this->addUserPanel->ResumeLayout(false);
-			this->addUserPanel->PerformLayout();
+			this->userRegistrationPanel->ResumeLayout(false);
+			this->userRegistrationPanel->PerformLayout();
 			this->addUserSexGP->ResumeLayout(false);
 			this->addUserSexGP->PerformLayout();
 			this->specialityPanel->ResumeLayout(false);
